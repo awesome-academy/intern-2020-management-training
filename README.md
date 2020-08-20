@@ -1,0 +1,1 @@
+# intern-2020-management-training
