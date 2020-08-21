@@ -1,0 +1,2 @@
+class TopicSubject < ApplicationRecord
+end
