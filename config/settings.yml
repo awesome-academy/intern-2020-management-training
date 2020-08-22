@@ -1,0 +1,27 @@
+app_ver: 0.0.1
+app:
+  logo: "icons/sun-logo.png"
+  default_avatar: "icons/avatar-02.jpg"    
+datetime:
+  current_year: 2020
+REGEX:
+  model:
+    subject:
+      name: !ruby/regexp '/\A[a-zA-Z][A-Za-z \d_]*\z/i'
+validates:
+  model:
+    subject:
+      name:
+        max_length: 50
+        min_length: 3
+      duration:
+        min: 0
+      image:
+        content_type: /%w(image/jpeg image/gif image/png)/
+        max_size:
+          megabytes: 5
+      note:
+        max_length: 120
+pagination:
+  subject:
+    default: 10

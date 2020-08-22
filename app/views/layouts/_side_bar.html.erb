@@ -1,0 +1,98 @@
+<ul class="nav flex-column" id="side-bar">
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "home" %>
+      <span><%= t ".dashboard" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "list-alt" %>
+      <span><%= t ".my_courses" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "book" %>
+      <span><%= t ".subject" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item text-truncate">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "calendar-alt" %>
+      <span><%= t ".report" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "archive" %>
+      <span><%= t ".topic" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "users" %>
+      <span><%= t ".users" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <div data-toggle="collapse" href="#collapse1" aria-expanded="false" class="nav-link text-truncate">
+      <%= icon "fas", "th-large" %>
+      <span><%= t ".data" %></span>
+      <%= icon "fas", "caret-right float-right" %>
+    </div>
+    <ul class="collapse multi-collapse list-unstyled nav" id="collapse1">
+      <li class="nav-item">
+        <%= link_to root_path, class: "dropdown-item" do %>
+          <%= icon "fas", "angle-right" %>
+          <span><%= t ".program_languages" %></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to root_path, class: "dropdown-item" do %>
+          <%= icon "fas", "angle-right" %>
+          <span><%= t ".departments" %></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to root_path, class: "dropdown-item" do %>
+          <%= icon "fas", "angle-right" %>
+          <span><%= t ".schools" %></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to root_path, class: "dropdown-item" do %>
+          <%= icon "fas", "angle-right" %>
+          <span><%= t ".positions" %></span>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to root_path, class: "dropdown-item" do %>
+          <%= icon "fas", "angle-right" %>
+          <span><%= t ".offices" %></span>
+        <% end %>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ul class="nav flex-column" id="side-bar">
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "list-alt" %>
+      <span><%= t ".my_courses" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item text-truncate">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "chart-bar" %>
+      <span><%= t ".report-history" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item text-truncate">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "calendar-alt" %>
+      <span><%= t ".report" %></span>
+    <% end %>
+  </li>
+</ul>

@@ -1,0 +1,9 @@
+<footer class="d-flex justify-content-between">
+  <div class="footer-block buttons">
+    <%= t ".reserved_html", current_year: Settings.datetime.current_year,
+      brand: t("brand") %>
+  </div>
+  <div class="footer-block author">
+    <%= t ".version_html", ver: Settings.app_ver %>
+  </div>
+</footer>
