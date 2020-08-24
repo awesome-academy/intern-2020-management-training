@@ -5,6 +5,7 @@ ruby "2.7.0"
 
 gem "bootsnap", ">= 1.4.2", require: false
 gem "bootstrap", "~> 4.5", ">= 4.5.2"
+gem "bcrypt", "~> 3.1.7"
 gem "config"
 gem "font-awesome-sass", "~> 5.13.0"
 gem "jbuilder", "~> 2.7"
