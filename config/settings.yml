@@ -34,3 +34,6 @@ validates:
 pagination:
   subject:
     default: 10
+roles:
+  trainee: 0
+  trainer: 1
