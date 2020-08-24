@@ -32,3 +32,12 @@ en:
   trainers:
     index:
       title: "Trainers index"
+  sessions:
+    new:
+      label_email: "Email"
+      label_password: "Password"
+      label_submit: "Submit"
+      label_remember: "Remember"
+  notice:
+    error: "Something is wrong!"
+    success: "Success"

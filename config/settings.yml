@@ -1,13 +1,15 @@
 app_ver: 0.0.1
 app:
   logo: "icons/sun-logo.png"
-  default_avatar: "icons/avatar-02.jpg"    
+  default_avatar: "icons/avatar-02.jpg"
 datetime:
   current_year: 2020
 REGEX:
   model:
     subject:
-      name: !ruby/regexp '/\A[a-zA-Z][A-Za-z \d_]*\z/i'
+      name: !ruby/regexp "/\\A[a-zA-Z][A-Za-z \\d_]*\\z/i"
+    user:
+      email: !ruby/regexp "/\\A[\\w+\\-.]+@[a-z\\d\\-]+(\\.[a-z\\d\\-]+)*\\.[a-z]+\\z/i"
 validates:
   model:
     subject:
@@ -22,6 +24,13 @@ validates:
           megabytes: 5
       note:
         max_length: 120
+    user:
+      name:
+        max_length: 50
+      email:
+        max_length: 255
+      pwd:
+        min_length: 6
 pagination:
   subject:
     default: 10
