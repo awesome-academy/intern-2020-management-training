@@ -1,0 +1,33 @@
+vi:
+  app_title: "Sun* Training"
+  layouts:
+    header:
+      training: "Training"
+      all_notifications: "Hiển thị tất cả thông báo"
+      user_name: "Nguyen Trung Anh"
+      profile: "Trang cá nhân"
+      settings: "Cài đặt"
+      logout: "Đăng xuất"
+      example_notify_content: "Ví dụ nội dung thông báo"
+      example_notify_updated: "Cập nhật 3 phút trước"
+      example_nofify_count: 2
+    side_bar:
+      dashboard: "Bảng điều khiển"
+      my_courses: "Khóa học của tôi"
+      subject: "Môn học"
+      report: "Báo cáo hằng ngày"
+      topic: "Chủ đề"
+      user: "Người dùng"
+      data: "Dữ liệu hệ thống"
+      program_languages: "Ngôn ngữ"
+      positions: "Vị trí"
+      departments: "Bộ phận"
+      schools: "Trường học"
+      offices: "Văn phòng"
+      report-history: "Lịch sử báo cáo"
+    footer:
+      reserved_html: "%{current_year} &copy <strong>%{brand}</strong>. All rights reserved."
+      version_html: "Phiên bản: <strong>%{ver}</strong>"
+  trainers:
+    index:
+      title: "Trang chủ"

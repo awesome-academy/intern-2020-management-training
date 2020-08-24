@@ -1,3 +1,34 @@
 en:
-  hello: "Hello world"
-  app_title: "Trainee Management"
+  app_title: "Sun* Training"
+  brand: "Sun Asterisk"
+  layouts:
+    header:
+      training: "Training"
+      all_notifications: "All notifications"
+      user_name: "Nguyen Trung Anh"
+      profile: "Profile"
+      settings: "Settings"
+      logout: "Log out"
+      example_notify_content: "This is a wider card with supporting text below as"
+      example_notify_updated: "Last updated 3 mins ago"
+      example_nofify_count: 2
+    side_bar:
+      dashboard: "Dashboard"
+      my_courses: "Courses"
+      subject: "Subjects"
+      report: "Daily report"
+      topic: "Topics"
+      user: "Users"
+      data: "System Data"
+      program_languages: "Languages"
+      positions: "Positions"
+      departments: "Departments"
+      schools: "Schools"
+      offices: "Offices"
+      report-history: "All reports"
+    footer:
+      reserved_html: "%{current_year} &copy <strong>%{brand}</strong>. All rights reserved."
+      version_html: "Version: <strong>%{ver}</strong>"
+  trainers:
+    index:
+      title: "Trainers index"

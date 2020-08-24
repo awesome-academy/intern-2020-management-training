@@ -1,0 +1,106 @@
+@import 'colors';
+
+// HEADER
+.sun-logo {
+  height: 30px;
+}
+
+.avatar {
+  height: 30px;
+  border-radius: 5px;
+}
+
+.navbar {
+  padding: 0em;
+}
+
+.navbar-brand {
+  padding: 0.75em 0em;
+  margin-right: 0em;
+}
+
+#navbarNav {
+  padding-right: 1em;
+}
+
+#notifications {
+  .notify-avatar {
+    border-radius: 50%;
+    height: auto;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    padding: 0em;
+    margin-right: 0.25em;
+    font-size: smaller;
+
+    .message-noti {
+      max-width: 300px;
+    }
+  }
+
+  .dropdown-item {
+    padding: 0.25em 0.5em;
+  }
+
+  .notify-body {
+    padding: 0.25em 0.75em;
+  }
+
+  .notify-content {
+    margin-bottom: 0px;
+  }
+}
+
+#profile {
+  .dropdown-item {
+    padding: 0.25em 1em;
+
+    span {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.notifications.new {
+  margin-right: 1em;
+}
+
+// SIDEBAR
+.bd-sidebar {
+  border-right: 1px solid $border_grey;
+  padding: 0em;
+}
+
+#side-bar {
+  padding-top: 0.75em;
+
+  .nav-item {
+    padding: 0.25em 0.5em 0em;
+
+    .nav-link>span {
+      padding-left: 0.75em;
+    }
+  }
+}
+
+// MAIN
+#side-main {
+  margin: 0em;
+
+  #main {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+}
+
+#content {
+  padding: 1em;
+  height: 100vh;
+}
+
+#footer {
+  padding: 1em;
+  border-top: solid 1px $border_grey;
+}
