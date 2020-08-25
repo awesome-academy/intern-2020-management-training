@@ -1,5 +1,6 @@
 vi:
   app_title: "Sun* Training"
+  brand: "Sun Asterisk"
   layouts:
     header:
       training: "Training"
@@ -8,6 +9,7 @@ vi:
       profile: "Trang cá nhân"
       settings: "Cài đặt"
       logout: "Đăng xuất"
+      signin: "Đăng nhập"
       example_notify_content: "Ví dụ nội dung thông báo"
       example_notify_updated: "Cập nhật 3 phút trước"
       example_nofify_count: 2
@@ -31,3 +33,32 @@ vi:
   trainers:
     index:
       title: "Trang chủ"
+      subjects:
+        index:
+          sub_title: "Danh sách môn học"
+          btn_add: "Thêm mới"
+          btn_filter: "Bộ lọc"
+          filter_option: "Filter options"
+          tbl_head:
+            index: "#"
+            image: "Ảnh"
+            name: "Tên"
+            duration: "Thời lượng"
+            note: "Ghi chú"
+            created_at: "Ngày tạo"
+            action: "Hành dộng"
+          search_placeholder: "Tìm kiếm ..."
+    sessions:
+      new:
+        label_email: "Email"
+        label_password: "Password"
+        label_submit: "Submit"
+        label_remember: "Remember"
+    notice:
+      error: "Something is wrong!"
+      success: "Success"
+    model:
+      subject:
+        validates:
+          image_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
+          size: "Uploaded file must be less than "

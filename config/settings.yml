@@ -21,7 +21,7 @@ validates:
       image:
         content_type: /%w(image/jpeg image/gif image/png)/
         max_size:
-          megabytes: 5
+          MB: 5
       note:
         max_length: 120
     user:
