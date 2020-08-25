@@ -9,6 +9,7 @@ en:
       profile: "Profile"
       settings: "Settings"
       logout: "Log out"
+      signin: "Sign in"
       example_notify_content: "This is a wider card with supporting text below as"
       example_notify_updated: "Last updated 3 mins ago"
       example_nofify_count: 2
