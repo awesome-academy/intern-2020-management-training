@@ -1,0 +1,50 @@
+<div class="content-title d-flex justify-content-between">
+  <div class="title text-bold h4"> <%= icon "fas", "book" %>
+    <%= t ".sub_title" %>
+  </div>
+</div>
+<div class="action-wrapper mt-3 row">
+  <div class="filter col-md-4">
+    <button type="button" class="btn btn-success btn-sm" id="btn-add-subject">
+      <%= t ".btn_add" %>
+      <%= icon "fas", "plus" %>
+    </button>
+    <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
+      <%= t ".btn_filter" %>
+    </button>
+  </div>
+  <form class="col-md-4 offset-md-4">
+    <div class="input-group input-group-sm mb-3">
+      <input type="text" class="form-control" placeholder="<%= t ".search_placeholder" %>" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2"><%= icon "fas", "search" %></span>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="collapse" id="filter">
+  <div class="card card-body">
+    <%= t ".filter_option" %>
+  </div>
+</div>
+<div class="table-subject mt-3">
+  <table class="table table-hover table-striped table-responsive table-bordered" id="subjects-tbl">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col"><%= t ".tbl_head.index" %></th>
+        <th scope="col"><%= t ".tbl_head.image" %></th>
+        <th scope="col"><%= t ".tbl_head.name" %></th>
+        <th scope="col"><%= t ".tbl_head.duration" %></th>
+        <th scope="col"><%= t ".tbl_head.note" %></th>
+        <th scope="col"><%= t ".tbl_head.created_at" %></th>
+        <th scope="col"><%= t ".tbl_head.action" %></th>
+      </tr>
+    </thead>
+    <tbody id="subjects-tbody">
+      <%= render @subjects %>
+    </tbody>
+  </table>
+  <div id="paginator" class="text-center">
+    <%= paginate @subjects, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true %>
+  </div>
+</div>

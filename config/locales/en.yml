@@ -33,6 +33,21 @@ en:
   trainers:
     index:
       title: "Trainers index"
+    subjects:
+      index:
+        sub_title: "All subjects"
+        btn_add: "Add new"
+        btn_filter: "Filter"
+        filter_option: "Filter options"
+        tbl_head:
+          index: "#"
+          image: "Image"
+          name: "Name"
+          duration: "Duration"
+          note: "Note"
+          created_at: "Created at"
+          action: "Action"
+        search_placeholder: "Input search ..."
   sessions:
     new:
       label_email: "Email"
@@ -42,3 +57,8 @@ en:
   notice:
     error: "Something is wrong!"
     success: "Success"
+  model:
+    subject:
+      validates:
+        image_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
+        size: "Uploaded file must be less than "

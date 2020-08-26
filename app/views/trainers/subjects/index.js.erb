@@ -1,0 +1,2 @@
+$("#subjects-tbody").html("<%= j render(@subjects) %>");
+$("#paginator").html("<%= j paginate(@subjects, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");

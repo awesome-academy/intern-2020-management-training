@@ -71,16 +71,25 @@
 .bd-sidebar {
   border-right: 1px solid $border_grey;
   padding: 0em;
+  min-height: 100vh;
 }
 
 #side-bar {
   padding-top: 0.75em;
 
   .nav-item {
-    padding: 0.25em 0.5em 0em;
+    padding: 0.25em 0.25em 0em;
 
-    .nav-link>span {
-      padding-left: 0.75em;
+    .nav-link {
+      color: $text_black;
+
+      >span {
+        padding-left: 0.5em;
+
+        .fas.fa-angle-down{
+          padding-top: 0.25em;
+        }
+      }
     }
   }
 }
@@ -96,8 +105,8 @@
 }
 
 #content {
-  padding: 1em;
-  height: 100vh;
+  padding: 2em;
+  min-height: 100vh;
 }
 
 #footer {

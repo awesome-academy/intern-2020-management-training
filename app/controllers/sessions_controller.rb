@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by email: params[:session][:email].downcase
-    if user&.authenticate(params[:session][:password])
+    if user&.authenticate params[:session][:password]
       log_in user
       flash[:success] = t "notice.success"
-      redirect_to root_url
+      redirect_to trainers_url if trainer?
     else
       flash[:danger] = t "notice.error"
       redirect_to login_url
