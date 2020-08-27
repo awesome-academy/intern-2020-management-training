@@ -15,7 +15,7 @@
     <button type="button" class="btn btn-sm btn-outline-primary">
       <%= icon "fas", "pencil-alt" %>
     </button>
-    <%= link_to trainers_subjects_path(subject), class: "btn btn-sm btn-outline-danger delete-subject-item",
+    <%= link_to trainers_subject_path(subject), class: "btn btn-sm btn-outline-danger delete-subject-item",
       type: "button", data: {id: "#{subject.id}"} do %>
       <%= icon "fas", "trash-alt" %>
     <% end %>

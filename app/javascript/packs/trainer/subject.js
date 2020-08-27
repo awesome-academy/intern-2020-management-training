@@ -56,11 +56,3 @@ export function reloadPage() {
     $(element).trigger('click')
   }
 }
-
-export function reloadEntries() {
-  $('.page-item').on('click', function(e) {
-    e.preventDefault();
-    let href_attr = $(this).first().getAttribute('href');
-    let page = parseInt(href_attr.split("=")[1])
-  })
-}

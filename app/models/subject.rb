@@ -5,14 +5,15 @@ class Subject < ApplicationRecord
   TASK_MIN = Settings.validates.model.subject.task_min_size
   IMG_MAX_SIZE = Settings.validates.model.subject.image.max_size.MB
 
-  mount_uploader :image, ImageUploader, reject_if: :reject_image?
+  mount_uploader :image, ImageUploader, reject_if:
+    (proc do |param|
+      param[:image].blank? || param[:image_cache].blank? || param[:id].blank?
+    end)
   has_many :tasks, dependent: :destroy, inverse_of: :subject
   has_many :course_subjects, dependent: :destroy
   has_many :topic_subjects, dependent: :destroy
   accepts_nested_attributes_for :tasks, allow_destroy: true,
-    reject_if: (proc do |param|
-      param[:image].blank? || param[:image_cache].blank? || param[:id].blank?
-    end)
+                                reject_if: :reject_tasks?
 
   validates :name, presence: true, uniqueness: true,
             length: {
@@ -52,5 +53,9 @@ class Subject < ApplicationRecord
     return if valid_min?
 
     errors[:tasks] << I18n.t("model.subject.val_task_size", size: TASK_MIN)
+  end
+
+  def reject_tasks? attributes
+    attributes["name"].blank?
   end
 end
