@@ -10,10 +10,4 @@ class Trainers::SubjectsController < TrainersController
     @subject = Subject.new
     @subject.tasks.build
   end
-
-  private
-
-  def subject_params
-    params.require(:subject).permit Subject::PERMITTED_CREATE_ATTRS
-  end
 end

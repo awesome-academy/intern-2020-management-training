@@ -10,6 +10,7 @@ gem "bootstrap", "~> 4.5", ">= 4.5.2"
 gem "bootstrap4-kaminari-views", "~> 1.0", ">= 1.0.1"
 gem "config"
 gem "faker"
+gem "figaro"
 gem "font-awesome-sass", "~> 5.13.0"
 gem "jbuilder", "~> 2.7"
 gem "jquery-rails"
@@ -24,11 +25,13 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
 group :development, :test do
+  gem "bundle-audit"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "rails_best_practices"
   gem "rubocop", "~> 0.74.0", require: false
   gem "rubocop-checkstyle_formatter", require: false
   gem "rubocop-rails", "~> 2.3.2", require: false
+  gem "rspec-rails", "~> 4.0.1"
 end
 
 group :development do
