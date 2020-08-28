@@ -1,0 +1,6 @@
+<div class="d-flex mt-2 nested-fields" >
+  <%= f.text_field :name, class: "form-control form-control-sm" %>
+  <%= link_to_remove_association f, class: "d-flex align-items-center ml-2" do %>
+    <%= icon "fas", "trash-alt fa-lg" %>
+  <% end %>
+</div>

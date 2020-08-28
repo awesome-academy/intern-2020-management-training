@@ -48,17 +48,51 @@ en:
           created_at: "Created at"
           action: "Action"
         search_placeholder: "Input search ..."
+      new:
+        sub_title: "Subjects"
+        breadcrumb: "Add new subject"
+      form:
+        label_name: "Subject's name"
+        label_duration: "Duration (days)"
+        label_note: "Note"
+        label_image: "Image"
+        label_task: "Tasks"
+        btn_add: "Add subject"
   sessions:
     new:
       label_email: "Email"
       label_password: "Password"
       label_submit: "Submit"
       label_remember: "Remember"
+      slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
+      quote: "\"We are obsessed with making awesome things with awesome people\"."
+      ceo: "Sun* Inc. CEO – Taihei Kobayashi"
   notice:
     error: "Something is wrong!"
     success: "Success"
   model:
     subject:
-      validates:
-        image_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
-        size: "Uploaded file must be less than "
+      val_img_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
+      val_img_size: "Uploaded file must be less than %{size} MB"
+      val_task_size: "The subject must to have at least %{size} task!"
+  flash:
+    error:
+      one: "Has %{count} error"
+      other: "Has %{count} errors"
+    subject:
+      success: "Success"
+      error: "Error!"
+  js:
+    trainer:
+      subject:
+        d_confirm_title: "Are you sure?"
+        d_confirm_text: "You will not be able to recover this subject!"
+        d_btn_confirm: "Yes, delete it!"
+        d_btn_cancel: "Cancel!"
+        res:
+          sc_title: "Deleted!"
+          sc_text: "Your subject has been deleted."
+          sc_class: "success"
+          err_title: "Error!"
+          err_text: "Has a error in deleting subject!"
+          err_class: "error"

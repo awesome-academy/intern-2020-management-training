@@ -1,12 +1,13 @@
-<tr>
-  <th scope="row"><%= subject.id %></th>
-  <td>
-    <%= image_tag subject.image, class: "thumbnail" if subject.image.attached?%>
+<tr id="row-<%= subject.id %>">
+  <th scope="row"><%= subject_counter + sizing(@subjects) %>
+  <td class="td-subject-thumbnail">
+    <% if subject.image.present? %>
+      <%= image_tag subject.image.url, class: "img-thumbnail thumbail" %>
+    <% end %>
   </td>
   <td><%= subject.name %></td>
   <td><%= subject.duration %></td>
   <td><%= subject.note %></td>
-  <td><%= subject.created_at %></td>
   <td>
     <button type="button" class="btn btn-sm btn-outline-info">
       <%= icon "fas", "eye" %>
@@ -14,8 +15,9 @@
     <button type="button" class="btn btn-sm btn-outline-primary">
       <%= icon "fas", "pencil-alt" %>
     </button>
-    <button type="button" class="btn btn-sm btn-outline-danger">
+    <%= link_to trainers_subjects_path(subject), class: "btn btn-sm btn-outline-danger delete-subject-item",
+      type: "button", data: {id: "#{subject.id}"} do %>
       <%= icon "fas", "trash-alt" %>
-    </button>
+    <% end %>
   </td>
 </tr>

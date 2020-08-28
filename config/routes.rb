@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :trainers, only: :index
 
     namespace :trainers do
-      resources :subjects, only: [:new, :index]
+      resources :subjects, only: %i(new create index)
     end
   end
 end

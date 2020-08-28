@@ -36,6 +36,7 @@
 /config/credentials.yml.enc
 /test
 
+/public/uploads
 /public/packs
 /public/packs-test
 /node_modules

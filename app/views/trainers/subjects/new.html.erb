@@ -1,0 +1,11 @@
+<div class="content-title d-flex justify-content-between">
+  <div class="title text-bold h4">
+    <%= icon "fas", "book" %>
+    <%= t ".sub_title" %>
+    <%= "\/" %>
+    <%= t ".breadcrumb" %>
+  </div>
+</div>
+<div class="mt-3">
+  <%= render "trainers/subjects/form", subject: @subject %>
+</div>
