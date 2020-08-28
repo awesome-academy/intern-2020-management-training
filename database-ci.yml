@@ -7,7 +7,7 @@ default: &default
 
 test:
   <<: *default
-  database: Management_Training_Test
+  database: db_test
   host: mysql_test
-  username: mysql_user
-  password: mysql_password
+  username: user_test
+  password: password_test
