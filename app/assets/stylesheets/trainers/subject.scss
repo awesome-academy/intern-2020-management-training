@@ -3,3 +3,23 @@
 .content-title {
   border-bottom: 1px solid $border_grey;
 }
+
+.form-new {
+  background-color: $header_background;
+}
+
+#subjects-tbl > tbody {
+  overflow-y: auto;
+
+  .td-subject-thumbnail {
+    max-width: 5em;
+  }
+}
+
+#img-upload {
+  height: 13em;
+}
+
+.field_with_errors {
+  width: 100%;
+}

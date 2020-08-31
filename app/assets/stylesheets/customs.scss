@@ -1,8 +1,16 @@
 @import 'colors';
 
+body {
+  background-color: $login_background!important;
+}
+
 // HEADER
 .sun-logo {
   height: 30px;
+}
+
+.sun-logo-login {
+  height: 40px;
 }
 
 .avatar {
@@ -112,4 +120,8 @@
 #footer {
   padding: 1em;
   border-top: solid 1px $border_grey;
+}
+
+#login-side {
+  margin-top: 15%;
 }

@@ -48,17 +48,34 @@ vi:
             created_at: "Ngày tạo"
             action: "Hành dộng"
           search_placeholder: "Tìm kiếm ..."
+        new:
+          sub_title: "Môn học"
+          breadcrumb: "Thêm mới"
+        form:
+          label_name: "Tên môn học"
+          label_duration: "Thời lượng (ngày)"
+          label_note: "Chi chú"
+          label_image: "Ảnh đại diện môn học"
+          label_task: "Nhiệm vụ"
+          btn_add: "Thêm nhiệm vụ"
     sessions:
       new:
         label_email: "Email"
         label_password: "Password"
         label_submit: "Submit"
         label_remember: "Remember"
+        slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
+        quote: "\"We are obsessed with making awesome things with awesome people\"."
+        ceo: "Sun* Inc. CEO – Taihei Kobayashi"
     notice:
       error: "Something is wrong!"
       success: "Success"
     model:
       subject:
-        validates:
-          image_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
-          size: "Uploaded file must be less than "
+        val_img_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
+        val_size: "Uploaded file must be less than "
+        val_task_size: "The subject must to have at least %{size} task!"
+    flash:
+      error:
+        one: "Có %{count} lỗi"
+        other: "Có %{count} lỗi"

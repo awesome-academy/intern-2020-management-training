@@ -1,12 +1,18 @@
 class Subject < ApplicationRecord
   SUBJECT_NAME_REGEX = Settings.REGEX.model.subject.name
-  PERMITTED_CREATE_ATTRS = [:name, :duration, :note, :image,
-    task_attributes: [:id, :subject_id, :name, :_destroy].freeze].freeze
+  PERMITTED_CREATE_ATTRS = [:name, :duration, :note, :image, :image_cache,
+    tasks_attributes: [:id, :name, :_destroy].freeze].freeze
+  TASK_MIN = Settings.validates.model.subject.task_min_size
+  IMG_MAX_SIZE = Settings.validates.model.subject.image.max_size.MB
 
-  has_many :tasks, dependent: :destroy
-  has_one_attached :image
+  mount_uploader :image, ImageUploader, reject_if: :reject_image?
+  has_many :tasks, dependent: :destroy, inverse_of: :subject
+  has_many :course_subjects, dependent: :destroy
+  has_many :topic_subjects, dependent: :destroy
   accepts_nested_attributes_for :tasks, allow_destroy: true,
-    reject_if: :reject_tasks
+    reject_if: (proc do |param|
+      param[:image].blank? || param[:image_cache].blank? || param[:id].blank?
+    end)
 
   validates :name, presence: true, uniqueness: true,
             length: {
@@ -22,19 +28,29 @@ class Subject < ApplicationRecord
             length: {
               maximum: Settings.validates.model.subject.note.max_length
             }
-  validates :image,
-            content_type: {
-              in: Settings.validates.model.subject.image.content_type,
-              message: I18n.t("model.subject.validates.image_type")
-            },
-            size: {
-              less_than: Settings.validates.model.subject.image.max_size.MB,
-              message: I18n.t("model.subject.validates.size")
-            }
+  validates_processing_of :image
+  validate :validate_img_size
+  validate :validate_min_count
+
+  scope :by_created_at, ->{order(created_at: :desc)}
 
   private
 
-  def reject_tasks attributes
-    attributes["name"].blank?
+  def validate_img_size
+    return unless image.size > (IMG_MAX_SIZE * 1024 * 1024)
+
+    errors.add :image, I18n.t("model.subject.val_img_size", size: IMG_MAX_SIZE)
+  end
+
+  def valid_min?
+    return if tasks.blank?
+
+    tasks.size > TASK_MIN - 1
+  end
+
+  def validate_min_count
+    return if valid_min?
+
+    errors[:tasks] << I18n.t("model.subject.val_task_size", size: TASK_MIN)
   end
 end

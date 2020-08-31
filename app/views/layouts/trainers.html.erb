@@ -5,7 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_pack_tag "application", "data-turbolinks-track": "reload" %>
+    <%= javascript_pack_tag "trainer/trainer_all", "data-turbolinks-track": "reload" %>
+    <%= javascript_tag do %>
+      I18n.locale = "<%= I18n.locale %>";
+    <% end %>
+    <%= javascript_pack_tag "translations/#{I18n.locale}" %>
     <%= render "layouts/shim" %>
   </head>
   <body>
@@ -23,5 +27,6 @@
         </div>
       </main>
     </div>
+    <%= toastr_flash %>
   </body>
 </html>

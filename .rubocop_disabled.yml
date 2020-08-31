@@ -81,3 +81,7 @@ Rails/InverseOf:
 Rails/ReflectionClassName:
   Description: "Use a string for `class_name` option value in the definition of a reflection."
   Enabled: false
+
+Rails/OutputSafety:
+  Description: "Tagging a string as html safe may be a security risk."
+  Enabled: false

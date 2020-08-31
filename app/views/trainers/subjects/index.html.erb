@@ -1,14 +1,14 @@
 <div class="content-title d-flex justify-content-between">
   <div class="title text-bold h4"> <%= icon "fas", "book" %>
-    <%= t ".sub_title" %>
+    <%= t ".sub_title" %> (<%= @subjects.total_count %>)
   </div>
 </div>
 <div class="action-wrapper mt-3 row">
   <div class="filter col-md-4">
-    <button type="button" class="btn btn-success btn-sm" id="btn-add-subject">
+    <%= link_to new_trainers_subject_path, type: "button", class: "btn btn-success btn-sm", id: "btn-add-subject" do %>
       <%= t ".btn_add" %>
       <%= icon "fas", "plus" %>
-    </button>
+    <% end %>
     <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
       <%= t ".btn_filter" %>
     </button>
@@ -28,20 +28,22 @@
   </div>
 </div>
 <div class="table-subject mt-3">
-  <table class="table table-hover table-striped table-responsive table-bordered" id="subjects-tbl">
+  <div class="page_entries">
+    <%= page_entries_info @subjects, entry_name: 'item' %>
+  </div>
+  <table class="table table-hover table-striped table-bordered" id="subjects-tbl">
     <thead class="thead-light">
-      <tr>
+      <tr class="text-center">
         <th scope="col"><%= t ".tbl_head.index" %></th>
         <th scope="col"><%= t ".tbl_head.image" %></th>
         <th scope="col"><%= t ".tbl_head.name" %></th>
         <th scope="col"><%= t ".tbl_head.duration" %></th>
         <th scope="col"><%= t ".tbl_head.note" %></th>
-        <th scope="col"><%= t ".tbl_head.created_at" %></th>
         <th scope="col"><%= t ".tbl_head.action" %></th>
       </tr>
     </thead>
     <tbody id="subjects-tbody">
-      <%= render @subjects %>
+      <%= render @subjects, collection: @subjects, as: :subject %>
     </tbody>
   </table>
   <div id="paginator" class="text-center">
