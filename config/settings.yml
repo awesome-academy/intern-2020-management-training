@@ -39,6 +39,10 @@ validates:
 pagination:
   subject:
     default: 10
+  course:
+    default: 5
+  trainee:
+    default: 4
 roles:
   trainee: 0
   trainer: 1
@@ -49,3 +53,24 @@ views:
         duration_min: 0.25
         duration_max: 30.0
         duration_step: 0.25
+  progress:
+    min: 0
+    max: 100
+    precision: 2
+status:
+  user_course_subject:
+    done: 1
+    doing: 0
+  course:
+    deleted: 0
+    finished: 1
+    postponed: 2
+    opening: 3
+  course_subject:
+    start: 0
+    pending: 1
+    inprogress: 2
+    finished: 3
+  user_task:
+    done: 1
+    doing: 0

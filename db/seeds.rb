@@ -1,12 +1,18 @@
 require "faker"
 
-(1..20).each do |id|
+(1..22).each do |id|
   Subject.create!(
-    id: id,
-    name: Faker::Educator.subject,
+    name: Faker::Educator.unique.subject,
     duration: Faker::Number.between(from: 1, to: 15),
     note: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
-    image: Faker::LoremFlickr.grayscale_image(size: "50x60", search_terms: ["education", "programming"]),
+    image: Faker::Avatar.image
+  )
+end
+
+(1..100).each do |i|
+  Task.create!(
+    subject_id: Faker::Number.between(from: 1, to: 22),
+    name: Faker::Lorem.unique.sentence(word_count: 3, supplemental: true)
   )
 end
 
@@ -53,18 +59,18 @@ end
   )
 end
 
-(1..15).each do |id|
+(1..25).each do |id|
   Course.create!(
     name: Faker::Educator.unique.course_name,
     note: Faker::Lorem.paragraph(sentence_count: 2, supplemental: true),
     start_date: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
     end_date: Faker::Date.between(from: '2020-01-26', to: '2020-06-27'),
-    status: id%3==0 ? 0 : 1,
+    status: Faker::Number.between(from: 0, to: 3),
     image: Faker::Avatar.image
   )
 end
 
-(1..50).each do |id|
+(0..50).each do |id|
   email = "account-#{id + 1}@sun-asterisk.com"
   role = id<7 ? 1 : 0
   User.create!(
@@ -84,9 +90,9 @@ end
   )
 end
 
-(1..80).each do |i|
+(1..120).each do |i|
   UserCourse.create!(
-    course_id: Faker::Number.between(from: 1, to: 10),
+    course_id: Faker::Number.between(from: 1, to: 25),
     user_id: Faker::Number.between(from: 8, to: 50),
     start_date: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
     end_date: Faker::Date.between(from: '2020-01-26', to: '2020-06-27'),
@@ -104,28 +110,21 @@ end
   )
 end
 
-(1..50).each do |i|
+(1..100).each do |i|
   CourseSubject.create!(
-    course_id: Faker::Number.between(from: 1, to: 10),
-    subject_id: Faker::Number.between(from: 3, to: 13),
+    course_id: Faker::Number.between(from: 1, to: 25),
+    subject_id: Faker::Number.between(from: 1, to: 20),
     start_date: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
     status: i%7==1 ? 0 : 1
   )
 end
 
-(1..50).each do |i|
+(1..100).each do |i|
   UserCourseSubject.create!(
-    user_id: Faker::Number.between(from: 1, to: 10),
-    course_subject_id: Faker::Number.between(from: 1, to: 50),
+    user_id: Faker::Number.between(from: 11, to: 22),
+    course_subject_id: Faker::Number.between(from: 1, to: 100),
     deadline: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
     status: i%7==1 ? 0 : 1
-  )
-end
-
-(1..50).each do |i|
-  Task.create!(
-    subject_id: Faker::Number.between(from: 3, to: 13),
-    name: Faker::Lorem.unique.sentence(word_count: 3, supplemental: true)
   )
 end
 
@@ -135,4 +134,24 @@ end
     task_id: Faker::Number.between(from: 1, to: 50),
     status: i%7==1 ? 0 : 1
   )
+end
+
+[6, 25, 1, 24].each do |id|
+  (1..20).each do |i|
+    CourseSubject.create!(
+      course_id: id,
+      subject_id: Faker::Number.between(from: 1, to: 22),
+      start_date: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
+      status: i%7==1 ? 0 : 1
+    )
+  end
+
+  (1..20).each do |i|
+    UserCourseSubject.create!(
+      user_id: 17,
+      course_subject_id: Faker::Number.between(from: 101, to: 105),
+      deadline: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
+      status: i%7==1 ? 0 : 1
+    )
+  end
 end

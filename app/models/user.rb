@@ -2,6 +2,11 @@ class User < ApplicationRecord
   USER_PARAMS_PERMIT = %i(name email password).freeze
   VALID_EMAIL_REGEX = Settings.REGEX.model.user.email
 
+  has_many :user_courses, dependent: :destroy
+  has_many :courses, through: :user_courses
+  has_many :user_course_subjects, dependent: :destroy
+  has_many :user_tasks, through: :user_course_subjects
+
   validates :name, presence: true,
             length: {maximum: Settings.validates.model.user.name.max_length}
   validates :email, presence: true,

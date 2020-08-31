@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include UsersHelper
   include TableHelper
+  include TimeHelper
 
   before_action :set_locale
 
@@ -20,5 +21,13 @@ class ApplicationController < ActionController::Base
 
     flash[:danger] = t "users.please_login"
     redirect_to login_url
+  end
+
+  def find_user
+    @user = User.find_by id: params[:id] if params[:id]
+    return if @user
+
+    flash[:danger] = t "users.please_login"
+    redirect_to root_url
   end
 end

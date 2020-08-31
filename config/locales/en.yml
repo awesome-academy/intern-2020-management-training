@@ -26,7 +26,7 @@ en:
       departments: "Departments"
       schools: "Schools"
       offices: "Offices"
-      report-history: "All reports"
+      report_history: "Reports log"
     footer:
       reserved_html: "%{current_year} &copy <strong>%{brand}</strong>. All rights reserved."
       version_html: "Version: <strong>%{ver}</strong>"
@@ -58,6 +58,10 @@ en:
         label_image: "Image"
         label_task: "Tasks"
         btn_add: "Add subject"
+    courses:
+      index:
+        sub_title: "All courses"
+        no_record: "You have 0 courses!"
   sessions:
     new:
       label_email: "Email"
@@ -96,3 +100,68 @@ en:
           err_title: "Error!"
           err_text: "Has a error in deleting subject!"
           err_class: "error"
+  trainee:
+    courses:
+      index:
+        sub_title: "My courses"
+        no_record: "You joined 0 courses!"
+      show:
+        trainee_tab_title: "List trainees"
+        sub_title: "Course details"
+        subject_tab: "Subjects"
+        trainee_tab: "Trainees"
+      course_info:
+        expected: "( Expected )"
+        lastest_update: "Lastest updated: %{time}"
+      subject_item_tab:
+        duration: "Duration: %{duration} day"
+        see_task: "Preview tasks"
+        count_tasks: "(%{count} task)"
+    subjects:
+      subject_info:
+        expected: "( Expected )"
+        lastest_update: "Lastest updated: %{time}"
+        detail_of: "Details of course: "
+      progress:
+        sub_title: "Your subject's progressing"
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      long: "%M, %D %Y"
+      short: "%d/%m"
+  time:
+    formats:
+      default: "%H:%M:%S %d/%m/%Y"
+      long: "Ngày %d tháng %m năm %Y, %H:%M:%S"
+      short: "%d/%m/%Y %H:%M"
+      only_date: "%d-%m-%Y"
+  both:
+    search_placeholder: "Input search ..."
+    btn_filter: "Filter"
+    filter_option: "Filter options"
+  bg:
+    danger: "danger"
+    primary: "primary"
+    secondary: "secondary"
+    warning: "warning"
+    success: "success"
+  status:
+    course_subject:
+      start: "start"
+      pending: "pending"
+      inprogress: "inprogress"
+      finished: "finished"
+    user_cs:
+      done: "Done"
+      inprogress: "Inprogress"
+      done_delay: "Done but not on time"
+      not_done_not_on_time: "Not done and out of date"
+    user_task:
+      done: "done"
+      doing: "doing"
+  icon:
+    check: "check"
+    bolt: "bolt"
+    circle: "circle"
+    times: "times text-danger"
+    check_success: "check text-success"

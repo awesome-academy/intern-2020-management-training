@@ -1,3 +1,4 @@
 //= link_tree ../images
 //= link_directory ../stylesheets .css
-//= link trainers/trainer.scss
+//= link trainees/index.scss
+//= link trainees/index.css

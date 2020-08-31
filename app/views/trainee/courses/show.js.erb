@@ -1,0 +1,2 @@
+$("#list-trainees").html("<%= j render partial: "trainee/courses/trainee_tbl", locals: {trainees: @trainees} %>");
+$("#paginator").html("<%= j paginate(@trainees, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");

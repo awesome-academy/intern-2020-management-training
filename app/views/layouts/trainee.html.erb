@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t "app_title" %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "trainees/index", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_pack_tag "trainee/index", "data-turbolinks-track": "reload" %>
+    <%= javascript_tag do %>
+      I18n.locale = "<%= I18n.locale %>";
+    <% end %>
+    <%= javascript_pack_tag "translations/#{I18n.locale}" %>
+    <%= render "layouts/shim" %>
+  </head>
+  <body>
+    <%= render "layouts/header" %>
+    <div class="row" id="side-main">
+      <div class="col-12 col-md-3 col-xl-2 bd-sidebar vh-100 position-fixed overflow-auto" id="sticky-sidebar">
+        <%= render "trainee/layouts/side_bar" %>
+      </div>
+      <main class="col-12 col-md-9 offset-md-3 offset-xl-2 col-xl-10" role="main" id="main">
+        <div id="content">
+          <%= yield %>
+        </div>
+        <div id="footer">
+          <%= render "layouts/footer" %>
+        </div>
+      </main>
+    </div>
+    <%= toastr_flash %>
+  </body>
+</html>

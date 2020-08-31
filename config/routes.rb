@@ -6,10 +6,17 @@ Rails.application.routes.draw do
     post "login", to: "sessions#create"
     delete "logout", to: "sessions#destroy"
 
-    resources :trainers, only: :index
-
     namespace :trainers do
-      resources :subjects, only: %i(new create index)
+      root "trainers#index"
+      resources :subjects, except: %i(edit update)
+      resources :courses
+    end
+    
+    namespace :trainee do
+      root "courses#index"
+      resources :courses do
+        resources :subjects
+      end
     end
   end
 end
