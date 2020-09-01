@@ -1,0 +1,37 @@
+@import '../colors';
+
+a:hover, :link {
+  text-decoration: none !important;
+}
+
+.content-title {
+  border-bottom: 1px solid $border_grey;
+}
+
+.item {
+  padding-right: 0em;
+  padding-left: 0em;
+
+  .card-img-top {
+    height: 15em;
+    position: relative;
+  }
+
+  .course-status {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+
+    .badge {
+      font-size: 100%;
+    }
+  }
+
+  .card-body {
+    border-bottom: 0.25px solid $border_grey;
+  }
+
+  .info {
+    padding: 1.25em;
+  }
+}

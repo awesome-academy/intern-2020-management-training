@@ -2,11 +2,10 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by email: params[:session][:email].downcase
-    if user&.authenticate params[:session][:password]
-      log_in user
-      flash[:success] = t "notice.success"
-      redirect_to trainers_url if trainer?
+    @user = User.find_by email: params[:session][:email].downcase
+    if @user&.authenticate params[:session][:password]
+      log_in @user
+      redirect_to trainer? ? trainers_root_path : trainee_root_path
     else
       flash[:danger] = t "notice.error"
       redirect_to login_url

@@ -1,4 +1,9 @@
 class UserCourseSubject < ApplicationRecord
   belongs_to :course_subject
-  has_many :user_task, dependent: :destroy
+  belongs_to :user
+  has_many :user_tasks, dependent: :destroy
+
+  enum status: {doing: 0, done: 1}
+
+  scope :status, ->(status){where status: status if status.present?}
 end

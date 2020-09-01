@@ -1,0 +1,46 @@
+<div class="content-title d-flex justify-content-between">
+  <div class="title text-bold h4"> <%= icon "fas", "book" %>
+    <%= t ".sub_title" %>
+    <% if @courses.present? %>
+      <%= "\(#{@courses.total_count}\)" %>
+    <% else %>
+      <%= "(0)" %>
+    <% end %>
+  </div>
+</div>
+<div class="action-wrapper mt-3 row">
+  <div class="filter col-md-4">
+    <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
+      <%= t ".btn_filter" %>
+    </button>
+  </div>
+  <div class="col-md-4 offset-md-4">
+    <%= form_with do |f| %>
+      <div class="input-group input-group-sm mb-3">
+        <%= f.text_field :search, class: "form-control", placeholder: t(".search_placeholder"), "aria-describedby": "basic-search" %>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-search"><%= icon "fas", "search" %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="collapse mt-2" id="filter">
+  <div class="card card-body">
+    <%= t ".filter_option" %>
+  </div>
+</div>
+<div class="list-course mt-4">
+  <div class="d-flex flex-wrap clearfix" id="list-course">
+    <% if @courses.present? %>
+      <%= render @courses %>
+    <% else %>
+      <div class="no-record">
+        <%= t ".no_record" %>
+      </div>
+    <% end %>
+  </div>
+  <div id="paginator" class="mt-4 pl-3">
+    <%= paginate @courses, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true if @courses.present?%>
+  </div>
+</div>

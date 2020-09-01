@@ -43,10 +43,10 @@
       </tr>
     </thead>
     <tbody id="subjects-tbody">
-      <%= render @subjects, collection: @subjects, as: :subject %>
+      <%= render @subjects %>
     </tbody>
   </table>
   <div id="paginator" class="text-center">
-    <%= paginate @subjects, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true %>
+    <%= paginate @subjects, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true, param: {controller: 'trainers/subjects', action: 'index'} %>
   </div>
 </div>

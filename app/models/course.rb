@@ -6,7 +6,9 @@ class Course < ApplicationRecord
   has_many :course_subjects, dependent: :destroy
   has_many :subjects, through: :course_subjects
   has_many :user_courses, dependent: :destroy
-  has_many :users, through: :user_courses
+  has_many :trainees, through: :user_courses, source: :user
+  has_many :user_course_subjects, through: :course_subjects
+
   accepts_nested_attributes_for :course_subjects, :user_courses
 
   validates :name, presence: true,
@@ -24,4 +26,14 @@ class Course < ApplicationRecord
               less_than: Settings.validates.model.subject.image.max_size.MB,
               message: I18n.t("model.subject.validates.size")
             }
+
+  enum status: {deleted: 0, finished: 1, postponed: 2, opening: 3}
+
+  scope :order_by_start_date, ->{order start_date: :desc}
+  scope :order_by_status, ->{order status: :desc}
+
+  def progress_by_user user_id
+    user_course = user_courses.find_by user_id: user_id
+    user_course.progress
+  end
 end

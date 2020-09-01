@@ -19,7 +19,7 @@ export function deleteSubject() {
           success: function(response) {
             if (response.success) {
               customAlert('sc');
-              let id = response.room_id;
+              let id = response.subject_id;
               $('#row-' + id).remove();
               reloadPage();
             } else {

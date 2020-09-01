@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
+  has_many :user_course_subjects, dependent: :destroy
 
   validates :name, presence: true,
             length: {maximum: Settings.validates.model.user.name.max_length}
@@ -15,8 +16,7 @@ class User < ApplicationRecord
             length: {minimum: Settings.validates.model.user.pwd.min_length},
             allow_nil: true
 
-  enum role: {trainee: Settings.roles.trainee, trainer: Settings.roles.trainer},
-       _prefix: true
+  enum role: {trainee: 0, trainer: 1}, _prefix: true
 
   scope :by_name, ->(name){where("name LIKE ?", "%#{name}%") if name.present?}
   scope :exclude_ids, ->(ids){where.not id: ids if ids.present?}
