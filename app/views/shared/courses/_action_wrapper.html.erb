@@ -1,0 +1,15 @@
+<div class="action-wrapper mt-3 row">
+  <div class="filter col-md-4">
+    <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
+      <%= t "both.btn_filter" %>
+    </button>
+  </div>
+  <div class="col-md-4 offset-md-4">
+    <%= render partial: "shared/courses/search_form" %>
+  </div>
+</div>
+<div class="collapse mt-2" id="filter">
+  <div class="card card-body">
+    <%= t "both.filter_option" %>
+  </div>
+</div>

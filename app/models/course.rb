@@ -34,6 +34,8 @@ class Course < ApplicationRecord
 
   def progress_by_user user_id
     user_course = user_courses.find_by user_id: user_id
+    return if user_course.blank?
+
     user_course.progress
   end
 end

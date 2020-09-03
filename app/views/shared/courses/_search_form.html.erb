@@ -1,0 +1,8 @@
+<%= form_with do |f| %>
+  <div class="input-group input-group-sm mb-3">
+    <%= f.text_field :search, class: "form-control", placeholder: t(".search_placeholder"), "aria-describedby": "basic-search" %>
+    <div class="input-group-append">
+      <span class="input-group-text" id="basic-search"><%= icon "fas", "search" %></span>
+    </div>
+  </div>
+<% end %>
