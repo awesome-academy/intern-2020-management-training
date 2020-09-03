@@ -30,6 +30,15 @@ en:
     footer:
       reserved_html: "%{current_year} &copy <strong>%{brand}</strong>. All rights reserved."
       version_html: "Version: <strong>%{ver}</strong>"
+  sessions:
+    new:
+      label_email: "Email"
+      label_password: "Password"
+      label_submit: "Submit"
+      label_remember: "Remember"
+      slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
+      quote: "\"We are obsessed with making awesome things with awesome people\"."
+      ceo: "Sun* Inc. CEO – Taihei Kobayashi"
   trainers:
     index:
       title: "Trainers index"
@@ -58,15 +67,25 @@ en:
         label_image: "Image"
         label_task: "Tasks"
         btn_add: "Add subject"
-  sessions:
-    new:
-      label_email: "Email"
-      label_password: "Password"
-      label_submit: "Submit"
-      label_remember: "Remember"
-      slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
-      quote: "\"We are obsessed with making awesome things with awesome people\"."
-      ceo: "Sun* Inc. CEO – Taihei Kobayashi"
+    courses:
+      new:
+        title: "Create new course"
+        label_name: "Name's course"
+        label_note: "Note"
+        label_subject: "Subject"
+        label_submit: "Submit"
+        label_topic: "Choose topic"
+        label_saving: "Saving..."
+        label_select_topic: "Please select topic"
+        label_check_all: "Check all"
+        label_add_subject: "Add subject"
+        label_add_trainee: "Add trainee"
+        label_add_extra_subject: "Add extra subject"
+        label_add: "Add"
+        label_close: "Close"
+        placeholder_search: "Input something ..."
+        label_step_one: "Step 1"
+        label_step_two: "Step 2"
   notice:
     error: "Something is wrong!"
     success: "Success"

@@ -36,6 +36,9 @@ validates:
       name:
         min_length: 5
         max_length: 50
+    course:
+      min_length: 6
+      max_length: 255
 pagination:
   subject:
     default: 10

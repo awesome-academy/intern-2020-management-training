@@ -1,0 +1,163 @@
+<div class="content-title d-flex justify-content-between">
+  <div class="title text-bold h4"> <%= icon "fas", "list-alt" %>
+    <%= t ".title" %>
+  </div>
+</div>
+
+<%= form_with scope: :course, url: trainers_courses_path, local: true,
+              class: "border rounded p-4", id: "form-course" do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <%= f.label :name, t(".label_name"), class: "label-required" %>
+      <%= f.text_field :name, class: "form-control", required: true,
+                       placeholder: t(".label_name")%>
+    </div>
+    <div class="form-group col-md-12">
+      <%= f.label :note, t(".label_note") %>
+      <%= f.text_area :note, class: "form-control",
+                      placeholder: t(".label_note") %>
+    </div>
+    <div class="tab-content col-md-12" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="form-group col-md-12">
+          <div class="wrap-topic">
+            <div class="selection-topic">
+              <%= f.label :topic, t(".label_topic"), class: "label-required" %>
+              <%= select_tag :topic,
+                             options_from_collection_for_select(@topics, :id, :name, '1'),
+                             data: {
+                               remote: true,
+                               url: trainers_topics_path,
+                             },
+                             class: "form-control",
+                             name: "topic"
+              %>
+            </div>
+            <div class="wrap-list-subjects">
+              <div id="checkbox-all" class="mt-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="check-all">
+                  <label class="form-check-label" for="check-all">
+                    <%= t ".label_check_all" %>
+                  </label>
+                </div>
+              </div>
+              <ul id="list-subjects" class="list-unstyled mt-2">
+                <%= render partial: "/partials/courses/subject", collection: @subjects,
+                           as: :item %>
+              </ul>
+              <%= button_tag class: "btn-sm btn btn-primary btn-lg btn-block",
+                             id: "search-subject",
+                             type: "button",
+                             data: {
+                               toggle: "modal",
+                               target: "#modalSubject",
+                               url: trainers_subjects_path
+                             } do %>
+                <i class="fas fa-plus"></i>
+                <%= t ".label_add_subject" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+        <%= button_tag class: "btn-sm btn btn-primary btn-lg btn-block",
+                       id: "btn-search-trainee",
+                       type: "button",
+                       data: {
+                         toggle: "modal",
+                         target: "#modalTrainee",
+                         url: trainers_search_trainees_path
+                       } do %>
+          <i class="fas fa-plus"></i>
+          <%= t ".label_add_trainee" %>
+        <% end %>
+        <div class="form-group col-md-12">
+          <div class="wrap-trainee">
+            <ul id="list-trainee-added" class="list-unstyled mt-2"></ul>
+          </div>
+        </div>
+        <%= f.submit t(".label_submit"), class: "btn btn-primary btn-lg btn-block mb-2",
+                     data: {"disable-with": t(".label_saving")}%>
+      </div>
+    </div>
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+          <%= t ".label_add_subject" %> <span class="badge badge-light">
+          <%= t ".label_step_one" %></span>
+        </a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+          <%= t ".label_add_trainee" %> <span class="badge badge-light">
+          <%= t ".label_step_two" %></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+<% end %>
+
+<div class="modal fade" id="modalSubject" data-backdrop="static"
+     data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <%= t ".label_add_extra_subject" %>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= text_field_tag "searchSubject", "", class: "form-control",
+                             placeholder: t(".placeholder_search"),
+                             maxlength: Settings.validates.model.course.max_length %>
+        </div>
+        <ul id="other-list-subjects" class="list-unstyled mt-2 row"></ul>
+        <div id="paginator" class="text-center"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <%= t ".label_close" %>
+        </button>
+        <button id="add-subject" type="button" class="btn btn-primary">
+          <%= t ".label_add" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalTrainee" data-backdrop="static"
+     data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <%= t ".label_add_trainee" %>
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= text_field_tag "searchTrainee", "", class: "form-control",
+                             placeholder: t(".placeholder_search"),
+                             maxlength: Settings.validates.model.course.max_length %>
+        </div>
+        <ul id="list-trainee" class="list-unstyled mt-2 row"></ul>
+        <div id="paginator-trainee" class="text-center"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <%= t ".label_close" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

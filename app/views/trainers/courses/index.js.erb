@@ -1,0 +1,3 @@
+$("#list-trainee").html("<%= j render partial: "/partials/courses/trainee",
+collection: @users, as: :item %>");
+$("#paginator-trainee").html("<%= j paginate(@users, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");

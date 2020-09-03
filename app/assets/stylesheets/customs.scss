@@ -125,3 +125,14 @@ body {
 #login-side {
   margin-top: 15%;
 }
+
+.label-required::after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+}
+
+#list-trainee li:hover {
+  background: $eee;
+  cursor: pointer;
+}

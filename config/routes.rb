@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     resources :trainers, only: :index
 
     namespace :trainers do
-      resources :subjects, except: %i(edit update)
+      resources :subjects, only: %i(index new create)
+      resources :courses
+      resources :topics, only: :index
+      resources :search_trainees, only: :index
     end
   end
 end

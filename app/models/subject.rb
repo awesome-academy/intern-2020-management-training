@@ -10,8 +10,12 @@ class Subject < ApplicationRecord
       param[:image].blank? || param[:image_cache].blank? || param[:id].blank?
     end)
   has_many :tasks, dependent: :destroy, inverse_of: :subject
+  has_many :tasks, dependent: :destroy
   has_many :course_subjects, dependent: :destroy
+  has_many :courses, through: :course_subjects
   has_many :topic_subjects, dependent: :destroy
+  has_many :topics, through: :topic_subjects
+
   accepts_nested_attributes_for :tasks, allow_destroy: true,
                                 reject_if: :reject_tasks?
 
@@ -33,7 +37,8 @@ class Subject < ApplicationRecord
   validate :validate_img_size
   validate :validate_min_count
 
-  scope :by_created_at, ->{order(created_at: :desc)}
+  scope :by_name, ->(name){where("name LIKE ?", "%#{name}%") if name.present?}
+  scope :exclude_ids, ->(ids){where.not id: ids if ids.present?}
 
   private
 

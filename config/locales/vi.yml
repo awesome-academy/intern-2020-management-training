@@ -67,9 +67,28 @@ vi:
         slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
         quote: "\"We are obsessed with making awesome things with awesome people\"."
         ceo: "Sun* Inc. CEO – Taihei Kobayashi"
+    courses:
+      new:
+        title: "Create new course"
+        label_name: "Tên khóa học"
+        label_note: "Ghi chú"
+        label_subject: "Môn học"
+        label_submit: "Gửi"
+        label_topic: "Chọn chủ đề"
+        label_saving: "Đang lưu..."
+        label_select_topic: "Làm ơn hãy chọn một chủ đề"
+        label_check_all: "Chọn tất cả môn học"
+        label_add_subject: "Thêm môn học"
+        label_add_trainee: "Thêm trainee"
+        label_add_extra_subject: "Thêm môn học"
+        label_add: "Thêm"
+        label_close: "Đóng"
+        placeholder_search: "Hãy nhập từ khóa tìm kiếm ..."
+        label_step_one: "Step 1"
+        label_step_two: "Step 2"
     notice:
-      error: "Something is wrong!"
-      success: "Success"
+      error: "Đã có lỗi xảy ra!"
+      success: "Thành công!"
     model:
       subject:
         val_img_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
@@ -79,3 +98,6 @@ vi:
       error:
         one: "Có %{count} lỗi"
         other: "Có %{count} lỗi"
+        validates:
+          image_type: "Định dạng tập tin không hợp lệ. Chỉ: .jpeg, .png, .gif"
+          size: "Kích thước tập tin phải nhỏ hơn "

@@ -3,8 +3,11 @@ class Trainers::SubjectsController < TrainersController
   before_action :load_subject, only: :destroy
 
   def index
-    @subjects = Subject.by_created_at.page(params[:page])
-                       .per Settings.pagination.subject.default
+    @subjects = Subject.by_name(params[:query])
+                       .exclude_ids union_id_subjects(params[:topic])
+    @subjects = @subjects.page(params[:page])
+                         .per Settings.pagination.subject.default
+    respond_to :js
   end
 
   def new
@@ -46,5 +49,10 @@ class Trainers::SubjectsController < TrainersController
 
     flash.now[:danger] = t "notice.error"
     redirect_to :index
+  end
+
+  def union_id_subjects topic_id
+    id_subjects = Topic.by_id(topic_id).first.subject_ids
+    id_subjects.union params[:ids] if params[:ids].present?
   end
 end
