@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include UsersHelper
   include TableHelper
+  include SubjectsHelper
 
   before_action :set_locale
 

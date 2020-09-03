@@ -3,25 +3,38 @@
     <%= t ".title" %>
   </div>
 </div>
-
-<%= form_with scope: :course, url: trainers_courses_path, local: true,
+<%= form_with model: @course, url: trainers_courses_path, local: true,
               class: "border rounded p-4", id: "form-course" do |f| %>
+  <div class="border rounded mb-2">
+    <%= render "shared/error_messages", object: f.object %>
+  </div>
   <div class="form-row">
-    <div class="form-group col-md-12">
-      <%= f.label :name, t(".label_name"), class: "label-required" %>
-      <%= f.text_field :name, class: "form-control", required: true,
-                       placeholder: t(".label_name")%>
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= f.label :name, t(".label_name"), class: "label-required" %>
+        <%= f.text_field :name, class: "form-control", required: true,
+                         placeholder: t(".label_name")%>
+      </div>
+      <div class="form-group">
+        <%= f.label :note, t(".label_note") %>
+        <%= f.text_area :note, class: "form-control",
+                        placeholder: t(".label_note") %>
+      </div>
     </div>
-    <div class="form-group col-md-12">
-      <%= f.label :note, t(".label_note") %>
-      <%= f.text_area :note, class: "form-control",
-                      placeholder: t(".label_note") %>
+    <div class="col-md-4 align-self-end">
+      <div class="form-group">
+        <%= label :course, :image, "Course's avatar" %>
+        <img class="img-thumbnail" id="img-preview" src="#" style="display: none" />
+        <%= f.file_field :image,
+                         accept: Settings.validates.model.course.image.content_type,
+                         class: "form-control-file"%>
+      </div>
     </div>
     <div class="tab-content col-md-12" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class="form-group col-md-12">
+        <div class="form-group">
           <div class="wrap-topic">
-            <div class="selection-topic">
+            <div class="selection-topic w-25">
               <%= f.label :topic, t(".label_topic"), class: "label-required" %>
               <%= select_tag :topic,
                              options_from_collection_for_select(@topics, :id, :name, '1'),
@@ -62,7 +75,13 @@
         </div>
       </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <%= button_tag class: "btn-sm btn btn-primary btn-lg btn-block",
+        <div class="form-group">
+          <div class="wrap-trainee">
+            <%= f.label :topic, t(".label_add_trainee") %>
+            <ul id="list-trainee-added" class="list-unstyled mt-2"></ul>
+          </div>
+        </div>
+        <%= button_tag class: "btn-sm btn btn-success btn-lg btn-block",
                        id: "btn-search-trainee",
                        type: "button",
                        data: {
@@ -82,16 +101,17 @@
                      data: {"disable-with": t(".label_saving")}%>
       </div>
     </div>
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mb-3 m-auto" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
-          <%= t ".label_add_subject" %> <span class="badge badge-light">
+        <a class="nav-link active border font-weight-bold" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+          <%= t ".label_add_subject" %> <span class="badge badge-warning">
           <%= t ".label_step_one" %></span>
         </a>
       </li>
+      <li class="mr-3 ml-3"><i class="far fa-arrow-alt-circle-right fa-lg mt-3"></i></li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
-          <%= t ".label_add_trainee" %> <span class="badge badge-light">
+        <a class="nav-link border font-weight-bold" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+          <%= t ".label_add_trainee" %> <span class="badge badge-warning">
           <%= t ".label_step_two" %></span>
         </a>
       </li>

@@ -3,16 +3,14 @@ class Trainers::SubjectsController < TrainersController
   before_action :load_subject, only: :destroy
 
   def index
-    @subjects = if params[:topic].present?
+    @subjects = if params[:ids].present?
                   load_subject_for_search
                 else
-                  @subjects = Subject.by_created_at.page(params[:page])
-                                     .per Settings.pagination.subject.default
+                  Subject.by_created_at
                 end
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @subjects = @subjects.page(params[:page])
+                         .per Settings.pagination.subject.default
+    respond_to :js, :html
   end
 
   def new
@@ -57,7 +55,8 @@ class Trainers::SubjectsController < TrainersController
   end
 
   def union_id_subjects topic_id
-    id_subjects = Topic.by_id(topic_id).first.subject_ids
+    id_subjects = []
+    id_subjects = Topic.by_id(topic_id).first.subject_ids if topic_id.present?
     id_subjects.union params[:ids] if params[:ids].present?
   end
 

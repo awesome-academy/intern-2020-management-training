@@ -1,0 +1,22 @@
+<li class="media border-bottom py-3 col-md-6">
+  <%= hidden_field_tag "course[course_subjects_attributes][#{item.id}][subject_id]", item.id, class: "subject" %>
+  <%= hidden_field_tag "course[course_subjects_attributes][#{item.id}][id]",
+                       item.course_subjects.by_course(course.id).first.id %>
+  <%= hidden_field_tag "course[course_subjects_attributes][#{item.id}][priority]",
+                       item.course_subjects.by_course(course.id).first.priority, class: "subject-priority"%>
+  <%= hidden_field_tag "course[course_subjects_attributes][#{item.id}][_destroy]", nil, id: "subject-hidden" %>
+  <% if item.image.present? %>
+    <%= image_tag item.image.url, class: "align-self-center mr-3 img-thumbnail" %>
+  <% else %>
+    <img class="img-thumbnail" id="img-preview" src="#" style="display: none" />
+  <% end %>
+  <div class="media-body">
+    <h5 class="mt-0"><%= item.name %></h5>
+    <p><%= item.note %></p>
+  </div>
+  <% if bigger_with_now? item.started_at %>
+    <%= button_tag class: "btn btn-danger delete-subject mt-3" do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  <% end %>
+</li>

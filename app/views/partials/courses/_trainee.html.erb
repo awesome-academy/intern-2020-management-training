@@ -1,6 +1,6 @@
-<li class="media border-top mt-3 pt-3 col-md-6">
-  <div class="media-body">
+<li class="media col-md-6">
+  <div class="media-body border-bottom py-3">
     <h5 class="mt-0"><%= item.name %></h5>
   </div>
-  <%= hidden_field_tag "course[user_courses_attributes][#{item.id}][user_id]", item.id%>
+  <%= hidden_field_tag "course[user_courses_attributes][#{item.id}][user_id]", item.id, class: "trainees"%>
 </li>
