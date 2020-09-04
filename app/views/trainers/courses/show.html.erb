@@ -30,7 +30,7 @@
   </li>
   <li class="nav-item mr-2 border rounded" role="presentation">
     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
-      <i class="fas fa-users"></i> <%= t ".all_subject" %>(<%= @users.size %>)
+      <i class="fas fa-users"></i> <%= t ".all_trainee" %>(<%= @users.size %>)
     </a>
   </li>
   <li class="nav-item mr-2 border rounded" role="presentation">
@@ -66,8 +66,8 @@
       </tr>
       </thead>
       <tbody>
-        <%= render partial: "/partials/courses/show/trainee_progress", collection: @users,
-                   as: :item %>
+      <%= render partial: "/partials/courses/show/trainee_progress",
+                 collection: @users, as: :item, locals: {course: @course} %>
       </tbody>
     </table>
   </div>

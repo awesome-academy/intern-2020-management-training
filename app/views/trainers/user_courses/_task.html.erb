@@ -1,0 +1,12 @@
+<li class="list-group-item">
+  <p>
+    <span class="mr-2">
+      <% if item.status.equal? Settings.validates.model.user_task.done %>
+        <i class="fas fa-check text-success"></i>
+      <% else %>
+        <i class="fas fa-times text-danger"></i>
+      <% end %>
+    </span>
+    <%= item.name %>
+  </p>
+</li>
