@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_151113) do
     t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "priority"
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
   end
@@ -143,7 +144,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_151113) do
   end
 
   create_table "user_courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.date "start_date"
+    t.datetime "start_date"
     t.datetime "end_date"
     t.bigint "course_id", null: false
     t.bigint "user_id", null: false

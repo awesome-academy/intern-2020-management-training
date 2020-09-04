@@ -136,3 +136,13 @@ body {
   background: $eee;
   cursor: pointer;
 }
+
+#img-preview {
+  width: 200px;
+  height: 200px;
+}
+
+#list-subjects li:hover {
+  cursor: pointer;
+  background: $eee;
+}

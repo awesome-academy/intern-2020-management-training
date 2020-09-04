@@ -21,9 +21,13 @@
     </div>
     <div class="col-md-4 align-self-end">
       <div class="form-group">
-        <%= label :course, :image, "Course's avatar" %>
+        <%= label :course, :image, t(".alt_avatar") %>
         <div class="wrap-preview">
-          <%= image_tag @course.image_url, id: "img-preview", class: "img-thumbnail" if @course.image.file.present? %>
+          <% if @course.image.present? %>
+            <%= image_tag @course.image.url,  id: "img-preview", class: "img-thumbnail" %>
+          <% else %>
+            <img class="img-thumbnail" id="img-preview" src="#" style="display: none" />
+          <% end %>
         </div>
         <%= f.file_field :image,
                          accept: Settings.validates.model.course.image.content_type,
@@ -36,8 +40,8 @@
           <div class="wrap-topic">
             <div class="wrap-list-subjects">
               <ul id="list-subjects" class="list-unstyled mt-2">
-                <%= render partial: "/partials/courses/edit/edit_subject", collection: @subjects,
-                           as: :item %>
+                <%= render partial: "/partials/courses/edit/subject",
+                           collection: @subjects, as: :item, locals: {course: @course} %>
               </ul>
               <%= button_tag class: "btn-sm btn btn-success btn-lg btn-block",
                              id: "search-subject",
@@ -45,7 +49,7 @@
                              data: {
                                  toggle: "modal",
                                  target: "#modalSubject",
-                                 url: search_subject_trainers_courses_path
+                                 url: trainers_subjects_path
                              } do %>
                 <i class="fas fa-plus"></i>
                 <%= t ".label_add_subject" %>
@@ -59,8 +63,8 @@
           <div class="wrap-trainee">
             <%= f.label :topic, t(".label_add_trainee"), class: "label-required" %>
             <ul id="list-trainee-added" class="list-unstyled mt-2">
-              <%= render partial: "/partials/courses/trainee", collection: @users,
-                         as: :item %>
+              <%= render partial: "/partials/courses/edit/trainee", collection: @users,
+                         as: :item, locals: {course: @course} %>
             </ul>
           </div>
         </div>
@@ -70,7 +74,7 @@
                        data: {
                          toggle: "modal",
                          target: "#modalTrainee",
-                         url: search_trainee_trainers_courses_path
+                         url: trainers_search_trainees_path
                        } do %>
           <i class="fas fa-plus"></i>
           <%= t ".label_add_trainee" %>
@@ -116,7 +120,7 @@
                              maxlength: Settings.validates.model.course.max_length %>
         </div>
         <ul id="other-list-subjects" class="list-unstyled mt-2 row"></ul>
-        <div id="paginator" class="text-center"></div>
+        <div id="paginator-subject" class="text-center"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">

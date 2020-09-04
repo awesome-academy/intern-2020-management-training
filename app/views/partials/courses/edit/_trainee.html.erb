@@ -1,0 +1,13 @@
+<% user_course_id = item.user_courses.by_course(course.id).first.id %>
+<% user_id = item.id %>
+<li class="media col-md-6">
+  <div class="media-body border-bottom py-3">
+    <h5 class="mt-0"><%= item.name %></h5>
+  </div>
+  <%= hidden_field_tag "course[user_courses_attributes][#{user_id}][user_id]", user_id, class: "trainees"%>
+  <%= hidden_field_tag "course[user_courses_attributes][#{user_id}][id]", user_course_id %>
+  <%= hidden_field_tag "course[user_courses_attributes][#{user_id}][_destroy]", nil, id: "trainee-hidden"%>
+  <%= button_tag class: "btn btn-danger delete-trainee mt-3" do %>
+    <i class="fas fa-trash-alt"></i>
+  <% end %>
+</li>

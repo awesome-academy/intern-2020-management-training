@@ -39,6 +39,12 @@ validates:
     course:
       min_length: 6
       max_length: 255
+      image:
+        content_type: image/jpeg, image/png
+        max_size: 1
+        width: 200
+        height: 200
+      date_format: "%d-%m-%Y"
 pagination:
   subject:
     default: 10

@@ -5,6 +5,7 @@ require('channels')
 require('jquery')
 require('bootstrap')
 require('cocoon-js')
+require('../../custom')
 
 import I18n from 'i18n-js';
 global.I18n = I18n;
@@ -21,3 +22,10 @@ import {deleteSubject} from './subject';
 $(document).on('turbolinks:load', function() {
   deleteSubject();
 })
+
+import $ from 'jquery';
+global.$ = $
+global.jQuery = $
+require('jquery-ui');
+require.context('file-loader?name=[path][name].[ext]&context=node_modules/jquery-ui-dist!jquery-ui-dist', true,    /jquery-ui\.css/ );
+require.context('file-loader?name=[path][name].[ext]&context=node_modules/jquery-ui-dist!jquery-ui-dist', true,    /jquery-ui\.theme\.css/ );

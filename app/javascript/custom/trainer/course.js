@@ -1,3 +1,5 @@
+import {customAlert} from "../../packs/trainer/subject";
+
 $(document).on('turbolinks:load', function () {
   //Config Ajax
   $.ajaxSetup({
@@ -21,6 +23,7 @@ $(document).on('turbolinks:load', function () {
         $(element).next().val(null);
       })
     }
+    updatePrioritySubject();
   });
   // End Feature checkbox all
 
@@ -45,8 +48,8 @@ $(document).on('turbolinks:load', function () {
       url: urlSearchSubject,
       method: 'GET',
       data: {
-        topic: topicId,
-        ids: listSubject
+        topic: getTopic(),
+        ids: getSubjects()
       }
     });
   });
@@ -67,19 +70,58 @@ $(document).on('turbolinks:load', function () {
         method: 'GET',
         data: {
           query: keyword,
-          topic: topicId
+          topic: getTopic(),
+          ids: getSubjects()
         }
       });
     }
   });
 
+  function getTopic() {
+    let topicId = '';
+    $('#topic option').each(function (index, element) {
+      if ($(element).prop('selected')) {
+        topicId = $(element).val();
+        return false;
+      }
+    });
+    return topicId;
+  }
+
+  function getSubjects() {
+    let listSubject = [];
+    $('#list-subjects input[type="checkbox"]').each(function (index, element) {
+      listSubject.push($(element).data('id'));
+    });
+
+    $('#list-subjects input.subject').each(function (index, element) {
+      listSubject.push($(element).val());
+    });
+
+    return listSubject;
+  }
+
   $('#add-subject').on('click', function () {
     $('#other-list-subjects li').each(function (index, element) {
       if ($(element).children('input[type="checkbox"]').prop('checked')) {
-        $(element).clone().appendTo('#list-subjects');
+        let btn_delete = '<button class="btn btn-danger delete-subject-new mt-3"><i class="fas fa-trash-alt"></i></button>';
+        $(element).clone().append(btn_delete).appendTo('#list-subjects');
         $(element).remove();
+        updatePrioritySubject();
       }
     });
+  });
+
+  $('.wrap-topic').on('click', '.delete-subject', function (e) {
+    e.preventDefault();
+    let inputDelete = $(this).siblings('input#subject-hidden')
+    if(inputDelete) inputDelete.val(1);
+    $(this).parent('li').hide();
+  });
+
+  $('.wrap-topic').on('click', '.delete-subject-new', function (e) {
+    e.preventDefault();
+    $(this).parent('li').remove();
   });
   //End Subject and Topic
 
@@ -90,7 +132,7 @@ $(document).on('turbolinks:load', function () {
       let keyword = $(this).val();
       let ids = [];
 
-      $('#list-trainee-added li input').each(function (index, element) {
+      $('#list-trainee-added input.trainees').each(function (index, element) {
         if($(element).val()) ids.push($(element).val())
       });
 
@@ -108,7 +150,21 @@ $(document).on('turbolinks:load', function () {
 
   //Add trainee
   $('#list-trainee').on('click', 'li',function (element) {
+    let btn_delete = '<button class="btn btn-danger delete-trainee-new mt-3"><i class="fas fa-trash-alt"></i></button>';
+    $(this).append(btn_delete);
     $('#list-trainee-added').append($(this));
+  });
+
+  $('.wrap-trainee').on('click', '.delete-trainee', function (e) {
+    e.preventDefault();
+    let inputDelete = $(this).siblings('input#trainee-hidden')
+    if(inputDelete) inputDelete.val(1);
+    $(this).parent('li').hide();
+  });
+
+  $('.wrap-trainee').on('click', '.delete-trainee-new', function (e) {
+    e.preventDefault();
+    $(this).parent('li').remove();
   });
   //End Trainee
 
@@ -118,6 +174,43 @@ $(document).on('turbolinks:load', function () {
     } else {
       $(this).next().val(null);
     }
+    updatePrioritySubject();
   });
-  //End Submit form
+
+  //End trainee
+
+  // Preview image
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#img-preview').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+      $('#img-preview').css('display', 'block');
+    }
+  }
+
+  $('#course_image').on('change', function() {
+    readURL(this);
+  });
+
+  // End preview image
+
+  //Feature Priority
+  $('#list-subjects').sortable({
+    update: function (event, ui) {
+      updatePrioritySubject();
+    }
+  });
+
+  function updatePrioritySubject() {
+    $('#list-subjects input.subject-priority').each(function (index, element) {
+      $(element).val(index);
+    });
+  }
+  // End Feature Priority
 });

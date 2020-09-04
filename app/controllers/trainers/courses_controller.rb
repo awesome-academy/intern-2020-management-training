@@ -11,10 +11,12 @@ class Trainers::CoursesController < TrainersController
   def create
     @course = Course.new course_params
     if @course.save
-      flash.now[:success] = t "notice.success"
-      redirect_to @course
+      flash[:success] = t "notice.success"
+      redirect_to trainers_course_path @course
     else
       flash.now[:danger] = t "notice.error"
+      @topics = Topic.all
+      @subjects = @topics.first.subjects
       render :new
     end
   end
@@ -27,14 +29,19 @@ class Trainers::CoursesController < TrainersController
     @subjects = @topics.first.subjects
   end
 
-  def edit; end
+  def edit
+    @subjects = @course.subjects.order_priority.page(params[:page])
+                       .per Settings.pagination.subject.default
+    @users = @course.users.page(params[:page])
+                    .per Settings.pagination.subject.default
+  end
 
   def show; end
 
   def update
     if @course.update course_params
-      flash.now[:success] = t "notice.success"
-      redirect_to @course
+      flash[:success] = t "notice.success"
+      redirect_to trainers_course_path @course
     else
       flash.now[:danger] = t "notice.error"
       render :edit
