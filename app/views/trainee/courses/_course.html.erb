@@ -1,0 +1,48 @@
+<div class="item mt-3 col-md-4 col-lg-3 col-sm-6">
+  <div class="card">
+    <%= image_tag course.image, class: "card-img-top img-na" %>
+    <% unless course.deleted? %>
+      <div class="course-status">
+        <span class="badge badge-warning text-capitalize">
+          <%= course.status %>
+        </span>
+      </div>
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title text-truncate">
+        <%= link_to trainee_course_path course do %>
+          <%= course.name %>
+        <% end %>
+      </h5>
+      <div class="card-text">
+        <div class="progress">
+          <% progress = course.progress_by_user(current_user.id) %>
+          <% if progress > 0 %>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+              style="width: <%= number_to_percentage progress %>;"
+              aria-valuenow="<%= number_to_percentage progress, precision: Settings.views.progress.precision %>"
+              aria-valuemin="<%= Settings.views.progress.min %>"
+              aria-valuemax="<%= Settings.views.progress.max %>">
+              <%= number_to_percentage progress, precision: Settings.views.progress.precision %>
+            </div>
+          <% else %>
+            <div class="progress-bar bg-danger" role="progressbar"
+                style="width:100%;" aria-valuenow="<%= progress %>">
+              <%= number_to_percentage progress, precision: Settings.views.progress.precision %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="info d-flex justify-content-between">
+      <div class="lastest-update">
+        <%= icon "fas", "sync-alt" %>
+        <%= course.start_date %>
+      </div>
+      <div class="trainee-count">
+        <%= icon "fas", "graduation-cap" %>
+        <%= course.trainees.size %>
+      </div>
+    </div>
+  </div>
+</div>

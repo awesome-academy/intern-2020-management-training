@@ -26,7 +26,7 @@ en:
       departments: "Departments"
       schools: "Schools"
       offices: "Offices"
-      report-history: "All reports"
+      report_history: "Reports log"
     footer:
       reserved_html: "%{current_year} &copy <strong>%{brand}</strong>. All rights reserved."
       version_html: "Version: <strong>%{ver}</strong>"
@@ -115,3 +115,21 @@ en:
           err_title: "Error!"
           err_text: "Has a error in deleting subject!"
           err_class: "error"
+  trainee:
+    courses:
+      index:
+        sub_title: "My courses"
+        btn_filter: "Filter"
+        no_record: "You joined 0 courses!"
+        search_placeholder: "Input search ..."
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      long: "%M, %D %Y"
+      short: "%d/%m"
+  time:
+    formats:
+      default: "%H:%M:%S %d/%m/%Y"
+      long: "Ngày %d tháng %m năm %Y, %H:%M:%S"
+      short: "%d/%m/%Y %H:%M"
+      only_date: "%d-%m-%Y"

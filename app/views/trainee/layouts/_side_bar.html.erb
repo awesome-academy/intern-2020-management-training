@@ -1,0 +1,20 @@
+<ul class="nav flex-column" id="side-bar">
+  <li class="nav-item">
+    <%= link_to trainee_courses_path, class: "nav-link" do %>
+      <%= icon "fas", "list-alt" %>
+      <span><%= t ".my_courses" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "", class: "nav-link" do %>
+      <%= icon "fas", "book" %>
+      <span><%= t ".report" %></span>
+    <% end %>
+  </li>
+  <li class="nav-item text-truncate">
+    <%= link_to root_path, class: "nav-link" do %>
+      <%= icon "fas", "calendar-alt" %>
+      <span><%= t ".report_history" %></span>
+    <% end %>
+  </li>
+</ul>

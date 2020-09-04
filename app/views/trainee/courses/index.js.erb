@@ -1,0 +1,2 @@
+$("#list-course").html("<%= j render(@courses) %>");
+$("#paginator").html("<%= j paginate(@courses, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");

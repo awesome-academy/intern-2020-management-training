@@ -39,6 +39,7 @@ class Subject < ApplicationRecord
 
   scope :by_name, ->(name){where("name LIKE ?", "%#{name}%") if name.present?}
   scope :exclude_ids, ->(ids){where.not id: ids if ids.present?}
+  scope :by_created_at, ->{order created_at: :desc}
 
   private
 
