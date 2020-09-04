@@ -1,0 +1,74 @@
+<div class="media mb-3 border p-2 rounded shadow-sm bg-white">
+  <% if @course.image.present? %>
+    <%= image_tag @course.image.url, class: "align-self-center border rounded mr-3" %>
+  <% end %>
+  <div class="media-body">
+    <h2 class="mt-0"><%= @course.name %>
+      <%= link_to edit_trainers_course_path @course do %>
+        <i class="fas fa-pen-square text-info"></i>
+      <% end %>
+    </h2>
+    <p class="font-weight-bold">
+      <i class="fas fa-clock"></i> <%= @course.stated_at %>
+      <i class="fas fa-arrow-circle-right mx-2"></i>
+      <span class="text-danger"><%= @course.ended_at @course.subjects.total_time_subjects %></span>
+      <small class="text-muted">(<%= t ".prediction" %>)</small>
+    </p>
+    <p><i class="fas fa-user"></i> <%= t ".created_by" %></p>
+    <p>
+      <i class="fas fa-redo-alt"></i> <%= t ".updated_at" %>
+      <span class="font-weight-bold"><%= @course.updated_at_custom %></span>
+    </p>
+  </div>
+</div>
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item mr-2 border rounded" role="presentation">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+      <i class="fas fa-book-open"></i> <%= t ".all_subject" %>
+    </a>
+  </li>
+  <li class="nav-item mr-2 border rounded" role="presentation">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">
+      <i class="fas fa-users"></i> <%= t ".all_subject" %>(<%= @users.size %>)
+    </a>
+  </li>
+  <li class="nav-item mr-2 border rounded" role="presentation">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+      <i class="fas fa-tasks"></i><%= t ".progress" %>
+    </a>
+  </li>
+</ul>
+<div class="tab-content border rounded" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <ul class="list-unstyled p-3">
+      <%= render partial: "/partials/courses/show/subject", collection: @subjects,
+                 as: :item %>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+    <ul class="list-unstyled">
+      <%= render partial: "/partials/courses/trainee", collection: @users,
+                 as: :item %>
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col"><%= t "trainers.courses.show.col_name" %></th>
+        <% @subjects.each do |subject| %>
+          <th scope="col">
+            <%= subject.name %>
+            <small class="text-muted">(<%= "#{t "trainers.courses.show.task"} #{subject.tasks.size}" %>)</small>
+          </th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "/partials/courses/show/trainee_progress", collection: @users,
+                   as: :item %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -7,7 +7,8 @@
     <%= image_tag item.image.url, class: "align-self-center mr-3 w-25 rounded img-thumbnail" %>
   <% end %>
   <div class="media-body">
-    <h5 class="mt-0"><%= item.name %></h5>
+    <h5 class="mt-0 font-weight-bold"><%= item.name %></h5>
+    <p class="text-success"><i class="fas fa-clock"></i> <%= "#{item.duration} #{t "trainers.courses.show.days"}" %></p>
     <p><%= item.note %></p>
   </div>
 </li>

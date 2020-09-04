@@ -11,7 +11,8 @@
     <img class="img-thumbnail" id="img-preview" src="#" style="display: none" />
   <% end %>
   <div class="media-body">
-    <h5 class="mt-0"><%= item.name %></h5>
+    <h5 class="mt-0 font-weight-bold"><%= item.name %></h5>
+    <p class="text-success"><i class="fas fa-clock"></i> <%= "#{item.duration} #{t "trainers.courses.show.days"}" %> </p>
     <p><%= item.note %></p>
   </div>
   <% if bigger_with_now? item.started_at %>

@@ -108,6 +108,16 @@ en:
         label_step_one: "Step 1"
         label_step_two: "Step 2"
         alt_avatar: "Course's avatar"
+      show:
+        prediction: "prediction"
+        created_by: "Created_by"
+        updated_at: "Updated at"
+        all_subject: "All subjects"
+        all_trainee: "All trainee"
+        progress: "Process"
+        days: "day"
+        task: "Task"
+        col_name: "Name"
   notice:
     error: "Something is wrong!"
     success: "Success"

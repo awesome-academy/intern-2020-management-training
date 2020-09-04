@@ -34,14 +34,15 @@ ActiveRecord::Schema.define(version: 2020_08_31_151113) do
   end
 
   create_table "course_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.bigint "course_id", null: false
-    t.bigint "subject_id", null: false
+    t.integer "subject_id"
+    t.integer "course_id"
     t.integer "status"
     t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "priority"
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
+    t.index ["subject_id", "course_id"], name: "index_course_subjects_on_subject_id_and_course_id", unique: true
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
   end
 
@@ -191,8 +192,6 @@ ActiveRecord::Schema.define(version: 2020_08_31_151113) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "course_subjects", "courses"
-  add_foreign_key "course_subjects", "subjects"
   add_foreign_key "reports", "courses"
   add_foreign_key "reports", "users"
   add_foreign_key "tasks", "subjects"
