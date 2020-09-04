@@ -2,7 +2,11 @@ class Trainers::CoursesController < TrainersController
   before_action :logged_in_user, :trainer?
   before_action :get_course, except: %i(index create new)
 
-  def index; end
+  def index
+    @courses = Course.order_by_start_date.order_by_status
+                     .page(params[:page])
+                     .per Settings.pagination.course.default
+  end
 
   def create
     @course = Course.new course_params

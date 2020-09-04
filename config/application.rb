@@ -10,5 +10,6 @@ module Intern2020ManagementTraining
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
     config.i18n.available_locales = %i(en vi)
     config.i18n.default_locale = :en
+    config.i18n.fallbacks = [I18n.default_locale]
   end
 end

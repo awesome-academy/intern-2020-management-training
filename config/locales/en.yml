@@ -68,6 +68,9 @@ en:
         label_task: "Tasks"
         btn_add: "Add subject"
     courses:
+      index:
+        sub_title: "All courses"
+        no_record: "You have 0 courses!"
       new:
         title: "Create new course"
         label_name: "Name's course"
@@ -86,6 +89,15 @@ en:
         placeholder_search: "Input something ..."
         label_step_one: "Step 1"
         label_step_two: "Step 2"
+  sessions:
+    new:
+      label_email: "Email"
+      label_password: "Password"
+      label_submit: "Submit"
+      label_remember: "Remember"
+      slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
+      quote: "\"We are obsessed with making awesome things with awesome people\"."
+      ceo: "Sun* Inc. CEO – Taihei Kobayashi"      
   notice:
     error: "Something is wrong!"
     success: "Success"
@@ -133,3 +145,10 @@ en:
       long: "Ngày %d tháng %m năm %Y, %H:%M:%S"
       short: "%d/%m/%Y %H:%M"
       only_date: "%d-%m-%Y"
+  both:
+    btn_filter: "Filter"
+    filter_option: "Filter options"
+  shared:
+    courses:
+      search_form:
+        search_placeholder: "Input search ..."
