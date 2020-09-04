@@ -44,6 +44,12 @@ $(document).on('turbolinks:load', function () {
       if($(element).prop('checked')) listSubject.push($(element).val());
     });
 
+    if($('#list-subjects input[type="hidden"]').length > 0) {
+      $('#list-subjects input[type="hidden"]').each(function (index, element) {
+        if($(element).val()) listSubject.push($(element).val());
+      });
+    }
+
     $.ajax({
       url: urlSearchSubject,
       method: 'GET',

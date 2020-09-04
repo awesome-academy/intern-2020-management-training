@@ -36,4 +36,17 @@ class Course < ApplicationRecord
 
     user_course.progress
   end
+
+  def stated_at
+    created_at.strftime Settings.validates.model.course.date_format
+  end
+
+  def ended_at duration
+    ended_at = created_at + duration.to_int.days
+    ended_at.strftime Settings.validates.model.course.date_format
+  end
+
+  def updated_at_custom
+    updated_at.strftime Settings.validates.model.course.date_format
+  end
 end

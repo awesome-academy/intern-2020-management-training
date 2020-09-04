@@ -15,6 +15,7 @@ const aliasConfig = {
   'jquery': 'jquery/src/jquery',
   'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
 };
+
 environment.loaders.prepend('erb', erb)
 environment.config.set('resolve.alias', aliasConfig);
 module.exports = environment

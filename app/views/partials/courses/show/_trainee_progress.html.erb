@@ -1,0 +1,6 @@
+<tr>
+  <th scope="row"><%= item.name %></th>
+  <% item.user_course_subject.each do |subject| %>
+    <td><%= subject.user_tasks.task_done.count[subject.id] %></td>
+  <% end %>
+</tr>

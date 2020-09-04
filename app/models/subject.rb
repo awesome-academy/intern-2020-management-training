@@ -9,8 +9,6 @@ class Subject < ApplicationRecord
     (proc do |param|
       param[:image].blank? || param[:image_cache].blank? || param[:id].blank?
     end)
-
-  has_many :tasks, dependent: :destroy, inverse_of: :subject
   has_many :tasks, dependent: :destroy
   has_many :course_subjects, dependent: :destroy
   has_many :courses, through: :course_subjects
@@ -41,14 +39,15 @@ class Subject < ApplicationRecord
   scope :by_name, ->(name){where("name LIKE ?", "%#{name}%") if name.present?}
   scope :exclude_ids, ->(ids){where.not id: ids if ids.present?}
   scope :by_created_at, ->{order created_at: :desc}
-  scope :order_priority, ->{order :priority}
+  scope :order_priority, ->{order priority: :asc}
+  scope :total_time_subjects, ->{sum :duration}
 
   def started_at
     created_at.strftime Settings.validates.model.course.date_format
   end
 
-  def ended_at duration
-    ended_at = created_at + duration.to_int.days
+  def ended_at started_at
+    ended_at = Time.zone.strptime(started_at, "%d-%m-%Y") + duration.to_int.days
     ended_at.strftime Settings.validates.model.course.date_format
   end
 

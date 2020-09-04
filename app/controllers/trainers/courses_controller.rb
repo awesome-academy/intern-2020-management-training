@@ -36,7 +36,10 @@ class Trainers::CoursesController < TrainersController
                     .per Settings.pagination.subject.default
   end
 
-  def show; end
+  def show
+    @subjects = @course.subjects.order_priority
+    @users = @course.users
+  end
 
   def update
     if @course.update course_params

@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-4 align-self-end">
       <div class="form-group">
-        <%= label :course, :image, "Course's avatar" %>
+        <%= label :course, :image, t("trainers.courses.edit.alt_avatar") %>
         <img class="img-thumbnail" id="img-preview" src="#" style="display: none" />
         <%= f.file_field :image,
                          accept: Settings.validates.model.course.image.content_type,
