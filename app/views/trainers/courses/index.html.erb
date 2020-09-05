@@ -4,6 +4,10 @@
     <% if @courses.present? %>
       <%= "\(#{@courses.total_count}\)" %>
     <% end %>
+    <%= link_to new_trainers_course_path, type: "button", class: "btn btn-success btn-sm" do %>
+      <%= t ".btn_add" %>
+      <%= icon "fas", "plus" %>
+    <% end %>
   </div>
 </div>
 <%= render partial: "shared/courses/action_wrapper" %>

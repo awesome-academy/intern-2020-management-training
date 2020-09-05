@@ -19,6 +19,7 @@ class User < ApplicationRecord
   delegate :name, to: :position, prefix: true
   delegate :name, to: :department, prefix: true
   delegate :name, to: :office, prefix: true
+  delegate :task_done, to: :user_course_subject
 
   validates :name, presence: true,
             length: {maximum: Settings.validates.model.user.name.max_length}
@@ -35,6 +36,9 @@ class User < ApplicationRecord
 
   scope :by_name, ->(name){where("name LIKE ?", "%#{name}%") if name.present?}
   scope :exclude_ids, ->(ids){where.not id: ids if ids.present?}
+  scope :by_course, (lambda do |course_id|
+    includes(:courses).where courses: {id: course_id} if course_id.present?
+  end)
 
   has_secure_password
 

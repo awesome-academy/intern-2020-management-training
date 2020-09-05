@@ -1,10 +1,10 @@
 <tr>
   <th scope="row">
-    <%= link_to trainers_course_user_course_path course, item do%>
+    <%= link_to trainers_course_user_course_path course.id, item.id do%>
       <%= item.name %>
     <% end %>
   </th>
-  <% item.task_done.each do |task| %>
+  <% item.task_done.by_subject(subject.id).each do |task| %>
     <% task_percent = progress_color task.task_done, task.subject_id %>
     <td class="text-light text-center border-right <%= task_percent[:color] %>"><%= task_percent[:percent] %>%</td>
   <% end %>

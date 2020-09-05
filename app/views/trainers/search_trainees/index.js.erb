@@ -1,3 +1,4 @@
 $("#list-trainee").html("<%= j render partial: "/partials/courses/trainee",
 collection: @users, as: :item %>");
 $("#paginator-trainee").html("<%= j paginate(@users, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");
+$("#total-count-trainee").html("(<%= @users.total_count %> <%= t "trainers.subject_courses.show.result" %>)")

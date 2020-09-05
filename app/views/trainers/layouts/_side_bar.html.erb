@@ -2,74 +2,74 @@
   <li class="nav-item">
     <%= link_to root_path, class: "nav-link" do %>
       <%= icon "fas", "home" %>
-      <span><%= t ".dashboard" %></span>
+      <span><%= t "layouts.side_bar.dashboard" %></span>
     <% end %>
   </li>
   <li class="nav-item">
     <%= link_to trainers_courses_path, class: "nav-link" do %>
       <%= icon "fas", "list-alt" %>
-      <span><%= t ".my_courses" %></span>
+      <span><%= t "layouts.side_bar.my_courses" %></span>
     <% end %>
   </li>
   <li class="nav-item">
     <%= link_to trainers_subjects_path, class: "nav-link" do %>
       <%= icon "fas", "book" %>
-      <span><%= t ".subject" %></span>
+      <span><%= t "layouts.side_bar.subject" %></span>
     <% end %>
   </li>
   <li class="nav-item text-truncate">
     <%= link_to root_path, class: "nav-link" do %>
       <%= icon "fas", "calendar-alt" %>
-      <span><%= t ".report" %></span>
+      <span><%= t "layouts.side_bar.report" %></span>
     <% end %>
   </li>
   <li class="nav-item">
     <%= link_to root_path, class: "nav-link" do %>
       <%= icon "fas", "archive" %>
-      <span><%= t ".topic" %></span>
+      <span><%= t "layouts.side_bar.topic" %></span>
     <% end %>
   </li>
   <li class="nav-item">
-    <%= link_to root_path, class: "nav-link" do %>
+    <%= link_to trainers_users_path, class: "nav-link" do %>
       <%= icon "fas", "users" %>
-      <span><%= t ".users" %></span>
+      <span><%= t "layouts.side_bar.users" %></span>
     <% end %>
   </li>
   <li class="nav-item">
     <div data-toggle="collapse" href="#collapse1" aria-expanded="false" class="nav-link text-truncate">
       <%= icon "fas", "th-large" %>
-      <span><%= t ".data" %></span>
+      <span><%= t "layouts.side_bar.data" %></span>
       <%= icon "fas", "angle-down float-right" %>
     </div>
     <ul class="collapse multi-collapse list-unstyled nav" id="collapse1">
-      <li class="nav-item">
+      <li class="nav-item w-100">
         <%= link_to root_path, class: "dropdown-item" do %>
           <%= icon "fas", "angle-right" %>
-          <span><%= t ".program_languages" %></span>
+          <span><%= t "layouts.side_bar.program_languages" %></span>
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item w-100">
         <%= link_to root_path, class: "dropdown-item" do %>
           <%= icon "fas", "angle-right" %>
-          <span><%= t ".departments" %></span>
+          <span><%= t "layouts.side_bar.departments" %></span>
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item w-100">
         <%= link_to root_path, class: "dropdown-item" do %>
           <%= icon "fas", "angle-right" %>
-          <span><%= t ".schools" %></span>
+          <span><%= t "layouts.side_bar.schools" %></span>
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item w-100">
         <%= link_to root_path, class: "dropdown-item" do %>
           <%= icon "fas", "angle-right" %>
-          <span><%= t ".positions" %></span>
+          <span><%= t "layouts.side_bar.positions" %></span>
         <% end %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item w-100">
         <%= link_to root_path, class: "dropdown-item" do %>
           <%= icon "fas", "angle-right" %>
-          <span><%= t ".offices" %></span>
+          <span><%= t "layouts.side_bar.offices" %></span>
         <% end %>
       </li>
     </ul>

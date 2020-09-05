@@ -16,6 +16,8 @@ class Subject < ApplicationRecord
   has_many :topic_subjects, dependent: :destroy
   has_many :topics, through: :topic_subjects
 
+  mount_uploader :image, ImageUploader
+
   accepts_nested_attributes_for :tasks, allow_destroy: true,
                                 reject_if: :reject_tasks?
 
@@ -45,6 +47,7 @@ class Subject < ApplicationRecord
   scope :by_course, (lambda do |course_id|
     includes(:courses).where courses: {id: course_id} if course_id.present?
   end)
+  scope :by_id, ->(subject_id){where id: subject_id if subject_id.present?}
 
   def started_at
     created_at.strftime Settings.validates.model.course.date_format

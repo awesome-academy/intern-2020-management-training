@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       root "subjects#index"
       resources :courses do
         resources "user_courses", only: :show
+        resources "subject_courses", only: :show
       end
       resources :topics, only: :index
       resources :search_trainees, only: :index

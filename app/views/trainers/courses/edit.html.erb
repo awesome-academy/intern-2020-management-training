@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-4 align-self-end">
       <div class="form-group">
-        <%= label :course, :image, t(".alt_avatar") %>
+        <%= label :course, :image, t(".alt_avatar"), class: "label-required" %>
         <div class="wrap-preview">
           <% if @course.image.present? %>
             <%= image_tag @course.image.url,  id: "img-preview", class: "img-thumbnail" %>
@@ -36,7 +36,7 @@
     </div>
     <div class="tab-content col-md-12" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <p><%= t ".label_add_trainee" %></p>
+        <p class="label-required"><%= t ".label_add_subject" %></p>
         <div class="form-group">
           <div class="wrap-topic">
             <div class="wrap-list-subjects">
@@ -109,6 +109,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">
           <%= t ".label_add_extra_subject" %>
+          <small id="total-count-subject" class="text-muted"></small>
         </h5>
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
@@ -143,6 +144,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">
           <%= t ".label_add_trainee" %>
+          <small id="total-count-trainee" class="text-muted"></small>
         </h5>
         <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span>
