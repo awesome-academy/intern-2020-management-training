@@ -1,0 +1,19 @@
+<tr id="row-<%= report.id %>">
+  <td><%= report.course_name %></td>
+  <td><%= report.work_done %></td>
+  <td><%= report.created_at %></td>
+  <td>
+    <%= link_to "", class: "btn btn-sm btn-outline-info detail-report-item",
+      type: "button", data: {id: "#{report.id}"} do %>
+      <%= icon "fas", "eye" %>
+    <% end %>
+    <%= link_to "", class: "btn btn-sm btn-outline-primary edit-report-item",
+      type: "button", data: {id: "#{report.id}"} do %>
+      <%= icon "fas", "pencil-alt" %>
+    <% end %>
+    <%= link_to trainee_report_path(report), class: "btn btn-sm btn-outline-danger delete-report-item",
+      type: "button", data: {id: "#{report.id}"} do %>
+      <%= icon "fas", "trash-alt" %>
+    <% end %>
+  </td>
+</tr>

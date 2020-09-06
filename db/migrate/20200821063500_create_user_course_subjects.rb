@@ -3,10 +3,13 @@ class CreateUserCourseSubjects < ActiveRecord::Migration[6.0]
     create_table :user_course_subjects do |t|
       t.date :deadline
       t.integer :status
-      t.references :user, null: false, foreign_key: true
-      t.references :course_subject, null: false, foreign_key: true
+      t.integer :course_subject_id
+      t.integer :user_id
 
       t.timestamps
     end
+    add_index :user_course_subjects, :course_subject_id
+    add_index :user_course_subjects, :user_id
+    add_index :user_course_subjects, [:course_subject_id, :user_id], unique: true
   end
 end

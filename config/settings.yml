@@ -73,3 +73,5 @@ status:
     finished: 1
     postponed: 2
     opening: 3
+report:
+  limit_record: 5
