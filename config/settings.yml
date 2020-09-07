@@ -45,6 +45,8 @@ validates:
         width: 200
         height: 200
       date_format: "%d-%m-%Y"
+    user_task:
+      done: 1
 pagination:
   subject:
     default: 10

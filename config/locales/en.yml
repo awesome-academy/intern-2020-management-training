@@ -119,6 +119,19 @@ en:
         task: "Task"
         col_name: "Name"
         label_delete: "Delete course"
+    user_courses:
+      show:
+        prediction: "prediction"
+        created_by: "Created by"
+        updated_at: "Updated at"
+        all_subject: "All subjects"
+        all_trainee: "All trainee"
+        progress: "Process"
+        days: "day"
+        task: "Task"
+        col_name: "Name"
+        label_trainee: "Trainee"
+        total_task: "Total task"
   notice:
     error: "Something is wrong!"
     success: "Success"

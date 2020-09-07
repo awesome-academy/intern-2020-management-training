@@ -1,0 +1,30 @@
+<li class="media rounded bg-white shadow-sm p-3 my-4">
+  <% if item.image.present? %>
+    <%= image_tag item.image.url, class: "align-self-center mr-3 rounded" %>
+  <% end %>
+  <div class="media-body">
+    <div class="border btn-warning w-25 p-1 rounded text-white text-center mb-2">
+      <%= item.course_subjects.first.started_at %>
+      <i class="fas fa-arrow-circle-right mx-2"></i>
+      <%= item.ended_at item.course_subjects.first.started_at %>
+    </div>
+    <h3 class="mt-0"><%= item.name %></h3>
+    <p><i class="fas fa-clock"></i> <%= item.duration %> <%= t "trainers.courses.show.days" %></p>
+    <p><%= item.note %></p>
+    <p>
+      <button class="btn btn-outline-info w-25" type="button" data-toggle="collapse" data-target="#subject<%= item.id %>" aria-expanded="false" aria-controls="subject<%= item.id %>">
+        <%= t "trainers.user_courses.show.task" %>
+      </button>
+    </p>
+    <div class="task-list">
+      <div class="collapse" id="subject<%= item.id %>">
+        <div class="card card-body">
+          <ul class="list-group list-group-flush">
+              <%= render partial: "task", collection: item.course_subjects.first.user_course_subjects.task_of_user(user_id),
+                         as: :item %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

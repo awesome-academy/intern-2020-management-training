@@ -41,6 +41,9 @@ class Subject < ApplicationRecord
   scope :by_created_at, ->{order created_at: :desc}
   scope :order_priority, ->{order priority: :asc}
   scope :total_time_subjects, ->{sum :duration}
+  scope :by_course, (lambda do |course_id|
+    includes(:courses).where courses: {id: course_id} if course_id.present?
+  end)
 
   def started_at
     created_at.strftime Settings.validates.model.course.date_format
