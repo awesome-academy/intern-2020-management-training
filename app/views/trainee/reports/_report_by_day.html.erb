@@ -1,0 +1,20 @@
+<li class="list-group-item mb-3 border-bottom">
+  <h5 class="text-black my-2">
+    <%= icon "fas", "calendar" %>
+    <%= date = report_by_day.first %>
+    <%= t(".count_report_by_day", count: report_by_day.size) %>
+  </h5>
+  <table class="table table-striped table-bordered w-100 " id="by-day-<%= date %>">
+    <thead class="thead-light w-100">
+      <tr class="text-center">
+        <th scope="col"><%= t ".thead.course" %></th>
+        <th scope="col"><%= t ".thead.done" %></th>
+        <th scope="col"><%= t ".thead.time" %></th>
+        <th scope="col"><%= t ".thead.action" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "trainee/reports/report", collection: report_by_day.second, as: :report %>
+    </tbody>
+  </table>
+</li>

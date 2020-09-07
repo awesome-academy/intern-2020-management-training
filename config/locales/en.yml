@@ -155,6 +155,21 @@ en:
         btn_filter: "Filter"
         no_record: "You joined 0 courses!"
         search_placeholder: "Input search ..."
+    reports:
+      index:
+        sub_title: "Report list"
+        btn_filter: "Filter"
+        no_record: "You have 0 report!"
+        search_placeholder: "Input search ..."
+      report_by_day:
+        count_report_by_day:
+          one: "(%{count} report)"
+          other: "(%{count} reports)"
+          thead:
+            coure: "Course"
+            done: "Done"
+            time: "Created at"
+            action: "Action"
   date:
     formats:
       default: "%d-%m-%Y"

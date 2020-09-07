@@ -1,0 +1,35 @@
+<div class="content-title d-flex justify-content-between">
+  <div class="title text-bold h4"> <%= icon "fas", "book" %>
+    <%= t ".sub_title" %>
+  </div>
+</div>
+<div class="action-wrapper mt-3 row">
+  <div class="filter col-md-4">
+    <%= link_to "", class: "btn btn-info btn-sm", type:"button", 'data-toggle': "collapse",
+      'data-target': "#filter", 'aria-expanded': false, 'aria-controls': "filter" do %>
+      <%= t ".btn_filter" %>
+    <% end %>
+  </div>
+  <div class="col-md-4 offset-md-4">
+    <%= form_with do |f| %>
+      <div class="input-group input-group-sm mb-3">
+        <%= f.text_field :search, class: "form-control", placeholder: t(".search_placeholder"), "aria-describedby": "basic-search" %>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-search"><%= icon "fas", "search" %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="collapse" id="filter">
+  <div class="card card-body">
+    <%= t ".filter_option" %>
+  </div>
+</div>
+<div class="table-report mt-3">
+  <div id="reports-tbody">
+    <ul class="list-group">
+      <%= render partial: "trainee/reports/report_by_day", collection: @reports, as: :report_by_day %>
+    </ul>
+  </div>
+</div>

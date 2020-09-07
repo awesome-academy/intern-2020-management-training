@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
   has_many :user_course_subject, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   validates :name, presence: true,
             length: {maximum: Settings.validates.model.user.name.max_length}
