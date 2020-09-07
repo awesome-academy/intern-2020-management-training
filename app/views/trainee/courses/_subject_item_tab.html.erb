@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-1 text-center d-flex flex-column justify-content-center align-items-center">
+    <div class="subject-status text-capitalize">
+      <% course_subject = subject.find_course_subject_by_course(course.id) %>
+      <% user_course_subject = course_subject&.find_user_course_subject_by_user(current_user.id) %>
+      <%= status = get_status course_subject %>
+    </div>
+    <span class="badge badge-pill badge-status bg-<%= get_bg_status(status) %> d-flex justify-content-center align-items-center">
+      <%= icon "fas", get_icon_status(status) %>
+    </span>
+  </div>
+  <div class="col-md-11 py-2">
+    <div class="card subject-item">
+      <div class="card-body d-flex">
+        <div class="subject-info col-md-9">
+          <div class="text-success">
+            <button class="btn btn-sm btn-warning font-weight-bold">
+              <%= icon "far", "clock" %>
+              <%= convert_datetime_to_date course_subject.start_date %>
+              <%= icon "fas", "long-arrow-alt-right" %>
+              <span class="end-date">
+                <%= user_course_subject.deadline if user_course_subject.present? %>
+              </span>
+            </button>
+          </div>
+          <h5 class="card-title mt-2">
+            <%= link_to subject.name, trainee_course_subject_path(course, subject) %>
+            <%= t ".count_tasks", count: subject.tasks.size %>
+            <div>
+              <small><%= t ".duration", duration: subject.duration %></small>
+            </div>
+          </h5>
+          <p class="card-text"></p>
+          <button class="btn btn-sm btn-secondary btn-see-task"
+            type="button" data-target="#tasks-of-<%= subject.id %>"
+            data-toggle="collapse" aria-expanded="true">
+            <%= t ".see_tasks" %>
+            <%= icon "fas", "caret-down" %>
+          </button>
+          <div class="border collapse mt-1" id="tasks-of-<%= subject.id %>">
+            <ul class="text-monospace list-unstyled">
+            </ul>
+          </div>
+        </div>
+        <div class="subject_actions col-md-3 d-flex flex-column justify-content-center align-items-center">
+          <%= link_to trainee_course_subject_path(subject), class: "btn btn-info" do %>
+            <%= icon "fas", "bolt" %>
+            <%= user_course_subject.status if user_course_subject.present? %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

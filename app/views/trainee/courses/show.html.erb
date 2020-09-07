@@ -1,0 +1,25 @@
+<% provide :sub_title, t(".sub_title") %>
+<div id="course-info">
+  <%= render "course_info", course: @course %>
+</div>
+<div class="course-detail mt-4">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <%= link_to "#subjects", class: "nav-link active", id: "subjets-tab",
+      "data-toggle": "tab", role: "tab", "aria-controls": "subjects", "aria-selected": "true" do %>
+        <%= icon "fas", "list-alt" %>
+        <%= t ".subject_tab" %>
+        <%= "\(#{@subjects.size}\)" %>
+      <% end %>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="subjects" role="tabpanel" aria-labelledby="subjects-tab">
+      <div id="list-subject" class="py-2">
+        <div class="container-fluid">
+          <%= render partial: "subject_item_tab", collection: @subjects, as: :subject, locals: {course: @course} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

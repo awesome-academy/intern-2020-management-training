@@ -165,6 +165,27 @@ en:
     courses:
       index:
         sub_title: "My courses"
+        no_record: "You joined 0 courses!"
+      show:
+        trainee_tab_title: "List trainees"
+        sub_title: "Course details"
+        subject_tab: "Subjects"
+        trainee_tab: "Trainees"
+      course_info:
+        expected: "( Expected )"
+        lastest_update: "Lastest updated: %{time}"
+      subject_item_tab:
+        duration: "Duration: %{duration} day"
+        see_task: "Preview tasks"
+        count_tasks: "(%{count} task)"
+        course_subject: "course_subject"
+    subjects:
+      subject_info:
+        expected: "( Expected )"
+        lastest_update: "Lastest updated: %{time}"
+        detail_of: "Details of course: "
+      progress:
+        sub_title: "Your subject's progressing"
         btn_filter: "Filter"
         no_record: "You joined 0 courses!"
         search_placeholder: "Input search ..."
@@ -195,9 +216,42 @@ en:
       short: "%d/%m/%Y %H:%M"
       only_date: "%d-%m-%Y"
   both:
+    search_placeholder: "Input search ..."
     btn_filter: "Filter"
     filter_option: "Filter options"
+  bg:
+    danger: "danger"
+    primary: "primary"
+    secondary: "secondary"
+    warning: "warning"
+    success: "success"
+  status:
+    course_subject:
+      start: "start"
+      pending: "pending"
+      inprogress: "inprogress"
+      finished: "finished"
+    user_cs:
+      done: "done"
+      inprogress: "Inprogress"
+      done_delay: "Done but not on time"
+      not_done_not_on_time: "Not done and out of date"
+    user_task:
+      done: "done"
+      inprogress: "inprogress"
+  icons:
+    check: "check"
+    bolt: "bolt"
+    circle: "circle"
+    times: "times text-danger"
+    check_success: "check text-success"
+    btn_filter: "Filter"
+    filter_option: "Filter options"
+    start: "start"
+    pending: "pending"
+    inprogress: "inprogress"
+    finished: "finished"
   shared:
     courses:
       search_form:
-        search_placeholder: "Input search ..."
+        search_placeholder: "Input search   ..."

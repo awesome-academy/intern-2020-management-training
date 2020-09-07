@@ -1,2 +1,2 @@
-$("#list-course").html("<%= j render(@courses) %>");
+$("#list-course").html("<%= j render partial: "shared/courses/course", collection: @courses, as: :course %>");
 $("#paginator").html("<%= j paginate(@courses, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");
