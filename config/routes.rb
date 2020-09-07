@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     
     namespace :trainee do
       root "courses#index"
-      resources :courses
+      resources :courses do
+        resources :subjects
+      end
       resources :reports
     end
   end

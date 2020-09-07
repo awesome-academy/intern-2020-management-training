@@ -3,7 +3,7 @@ class UserCourseSubject < ApplicationRecord
   belongs_to :user
   has_many :user_tasks, dependent: :destroy
 
-  enum status: {doing: 0, done: 1}
+  enum status: {inprogress: 0, done: 1}
 
   scope :status, ->(status){where status: status if status.present?}
   scope :task_done, (lambda do
@@ -18,4 +18,5 @@ class UserCourseSubject < ApplicationRecord
         .joins(:course_subject, [user_tasks: :task])
         .where(user_course_subjects: {user_id: user_id})
   end)
+  scope :by_user, ->(user_id){where user_id: user_id if user_id.present?}
 end

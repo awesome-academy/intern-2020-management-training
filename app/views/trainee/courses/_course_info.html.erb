@@ -1,0 +1,30 @@
+<div class="d-flex">
+  <div class="p-0 col-md-2">
+    <% if course.image.present? %>
+      <%= image_tag course.image, class: "img-fluid img-thumbnail" %>
+    <% end %>
+  </div>
+  <div class="course-info-details col-md-10">
+    <%= link_to trainee_course_path(course) do %>
+      <h4 class="d-flex">
+        <div class="badge badge-success mr-2"><%= course.status %></div>
+        <div class="text-uppercase"><%= course.name %></div>
+      </h4>
+    <% end %>
+    <div class="course-time font-weight-bold">
+      <%= icon "far", "clock" %>
+      <%= l course.start_date %>
+      <%= icon "fas", "long-arrow-alt-right" %>
+      <span class="end-date"><%= l course.end_date %></span>
+      <%= t ".expected" %>
+    </div>
+    <div class="lastest-updated">
+      <%= icon "fas", "sync-alt" %>
+      <%= t ".lastest_update", time: course.updated_at %>
+    </div>
+    <div class="note text-truncate">
+      <%= icon "fas", "clipboard" %>
+      <%= course.note %>
+    </div>
+  </div>
+</div>

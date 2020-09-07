@@ -9,7 +9,8 @@ class Subject < ApplicationRecord
     (proc do |param|
       param[:image].blank? || param[:image_cache].blank? || param[:id].blank?
     end)
-  has_many :tasks, dependent: :destroy
+
+  has_many :tasks, dependent: :destroy, inverse_of: :subject
   has_many :course_subjects, dependent: :destroy
   has_many :courses, through: :course_subjects
   has_many :topic_subjects, dependent: :destroy
@@ -52,6 +53,10 @@ class Subject < ApplicationRecord
   def ended_at started_at
     ended_at = Time.zone.strptime(started_at, "%d-%m-%Y") + duration.to_int.days
     ended_at.strftime Settings.validates.model.course.date_format
+  end
+
+  def find_course_subject_by_course course_id
+    course_subjects.by_course(course_id).first
   end
 
   private

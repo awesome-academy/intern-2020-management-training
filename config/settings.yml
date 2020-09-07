@@ -52,6 +52,8 @@ pagination:
     default: 10
   course:
     default: 5
+  trainee:
+    default: 4
 roles:
   trainee: 0
   trainer: 1
@@ -67,13 +69,15 @@ views:
     max: 100
     precision: 2
 status:
-  user_course_subject:
-    done: 1
-    doing: 0
-  course:
-    deleted: 0
-    finished: 1
-    postponed: 2
-    opening: 3
+  start: "secondary"
+  pending: "primary"
+  inprogress: "warning"
+  finished: "success"
+  done: "success"
+icons:
+  start: "circle"
+  pending: "bolt"
+  inprogress: "bolt"
+  finished: "check"
 report:
   limit_record: 5
