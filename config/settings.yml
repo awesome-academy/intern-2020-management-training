@@ -88,3 +88,7 @@ progress_course:
   percent:
     zero: 0
     one_hundred: 100
+default_user:
+  birthday: "2000-01-01"
+  password: "123456"
+  error_class: "error-feedback"

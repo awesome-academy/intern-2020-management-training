@@ -157,19 +157,19 @@ body {
 }
 
 .zui-table thead th {
-  background-color: #DDEFEF;
+  background-color: $border_table_user;
   border: none;
-  color: #336B6B;
+  color: $color_bg_table_user;
   padding: 10px;
   text-align: left;
-  text-shadow: 1px 1px 1px #fff;
+  text-shadow: 1px 1px 1px white;
   white-space: nowrap;
 }
 
 .zui-table tbody td {
-  border-bottom: solid 1px #DDEFEF;
+  border-bottom: solid 1px $border_table_user;
   padding: 10px;
-  text-shadow: 1px 1px 1px #fff;
+  text-shadow: 1px 1px 1px white;
   white-space: nowrap;
 }
 
@@ -186,8 +186,8 @@ body {
 }
 
 .zui-table .zui-sticky-col {
-  border-left: solid 1px #DDEFEF;
-  border-right: solid 1px #DDEFEF;
+  border-left: solid 1px $border_table_user;
+  border-right: solid 1px $border_table_user;
   left: 0;
   position: absolute;
   top: auto;
@@ -195,8 +195,8 @@ body {
 }
 
 .zui-table .zui-sticky-col-right {
-  border-left: solid 1px #DDEFEF;
-  border-right: solid 1px #DDEFEF;
+  border-left: solid 1px $border_table_user;
+  border-right: solid 1px $border_table_user;
   right: 0;
   position: absolute;
   top: auto;
@@ -205,4 +205,19 @@ body {
 
 .trash-user {
   cursor: pointer;
+}
+
+.field_with_errors .form-control {
+  border-color: $border_color_error;
+  padding-right: calc(1.5em + 0.75rem);
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.error-feedback {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: $border_color_error
 }

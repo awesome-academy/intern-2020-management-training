@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  USER_PARAMS_PERMIT = %i(name email password).freeze
+  USER_PARAMS_PERMIT = %i(name email password date_of_birth address gender
+    program_language_id position_id department_id school_id office_id
+    image password_confirmation).freeze
   VALID_EMAIL_REGEX = Settings.REGEX.model.user.email
 
   has_many :user_courses, dependent: :destroy
@@ -30,6 +32,13 @@ class User < ApplicationRecord
   validates :password, presence: true,
             length: {minimum: Settings.validates.model.user.pwd.min_length},
             allow_nil: true
+  validates :address,
+            length: {maximum: Settings.validates.model.user.name.max_length}
+  validates :program_language_id, :position_id, :department_id, :school_id,
+            :office_id, :date_of_birth, presence: true
+  validate :birthday_cannot_be_in_future, :birthday_old_men
+
+  mount_uploader :image, UserUploader
 
   enum role: {trainee: 0, trainer: 1}, _prefix: true
   enum gender: {male: 1, female: 0}, _prefix: true
@@ -44,5 +53,22 @@ class User < ApplicationRecord
 
   def birthday
     date_of_birth.strftime Settings.validates.model.course.date_format
+  end
+
+  private
+
+  def birthday_cannot_be_in_future
+    return unless date_of_birth > Time.zone.today
+
+    errors.add :date_of_birth,
+               I18n.t("trainers.users.new.error_birthday_in_future")
+  end
+
+  def birthday_old_men
+    return unless date_of_birth < Settings.progress_course.percent.one_hundred
+                                          .years.ago
+
+    errors.add :date_of_birth,
+               I18n.t("trainers.users.new.error_birthday_in_oldmen")
   end
 end

@@ -4,6 +4,10 @@
     <small class="text-muted">
       (<span id="total-count-user"><%= @users.total_count %></span> <%= t ".label_user" %>)
     </small>
+    <%= link_to new_trainers_user_path, type: "button", class: "btn btn-success btn-sm" do %>
+      <%= t ".btn_add" %>
+      <%= icon "fas", "plus" %>
+    <% end %>
   </div>
 </div>
 <div class="form-group">
