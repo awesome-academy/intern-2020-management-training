@@ -3,10 +3,9 @@ class CourseSubject < ApplicationRecord
   belongs_to :course
   has_many :user_course_subjects, dependent: :destroy
 
-  validates :course_id, presence: true
-  validates :subject_id, presence: true
-
   enum status: {start: 0, inprogress: 1, pending: 2, finished: 3}
+
+  delegate :task_of_user, to: :user_course_subjects
 
   scope :by_course, ->(id){where course_id: id if id.present?}
 

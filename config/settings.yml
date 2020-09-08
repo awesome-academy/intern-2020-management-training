@@ -81,3 +81,13 @@ icons:
   finished: "check"
 report:
   limit_record: 5
+progress_course:
+  color:
+    level_one: "bg-dark"
+    level_two: "bg-warning"
+    level_three: "bg-info"
+    level_four: "bg-success"
+  round: 2
+  percent:
+    zero: 0
+    one_hundred: 100
