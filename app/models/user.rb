@@ -21,6 +21,18 @@ class User < ApplicationRecord
   delegate :name, to: :office, prefix: true
   delegate :task_done, to: :user_course_subject
 
+  belongs_to :school
+  belongs_to :program_language
+  belongs_to :position
+  belongs_to :department
+  belongs_to :office
+
+  delegate :name, to: :school, prefix: true
+  delegate :name, to: :program_language, prefix: true
+  delegate :name, to: :position, prefix: true
+  delegate :name, to: :department, prefix: true
+  delegate :name, to: :office, prefix: true
+
   validates :name, presence: true,
             length: {maximum: Settings.validates.model.user.name.max_length}
   validates :email, presence: true,
