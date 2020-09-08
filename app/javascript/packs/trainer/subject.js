@@ -35,12 +35,13 @@ export function deleteSubject() {
   });
 }
 
-export function customAlert(type) {
-  let prefix = type
+export function customAlert(type, action = "delete") {
+  let prefix = type;
+  let vari = "js.trainer.subject.res." + action + "." + prefix;
   Swal.fire({
-    title: I18n.t("js.trainer.subject.res." + prefix + "_title"),
-    text: I18n.t("js.trainer.subject.res." + prefix + "_text"),
-    icon: I18n.t("js.trainer.subject.res." + prefix + "_class"),
+    title: I18n.t(vari + "_title"),
+    text: I18n.t(vari + "_text"),
+    icon: I18n.t(vari + "_class"),
     timer: CLOSER_TIME
   });
 }
@@ -55,4 +56,23 @@ export function reloadPage() {
   } else {
     $(element).trigger('click')
   }
+}
+
+export function viewSubjectDetail(){
+  $('body').on('click', '#subjects-tbl .detail-subject-item', function(event){
+    event.preventDefault();
+    let url = this.getAttribute('href');
+    $.ajax({
+      url: url,
+      type: 'get',
+      success: function(response) {
+        if(response.err){
+          customAlert('err', 'show');
+        }
+      },
+      error: function(error) {
+        customAlert('err');
+      }
+    });
+  })
 }

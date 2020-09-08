@@ -1,15 +1,14 @@
 class Trainers::SubjectsController < TrainersController
   before_action :logged_in_user, only: %i(index create new)
-  before_action :load_subject, only: :destroy
+  before_action :load_subject, only: %i(destroy show)
 
   def index
     @subjects = if params[:ids].present?
                   load_subject_for_search
                 else
-                  Subject.by_created_at
-                end
-    @subjects = @subjects.page(params[:page])
+                  Subject.by_created_at.page(params[:page])
                          .per Settings.pagination.subject.default
+                end
     respond_to :js, :html
   end
 
@@ -24,12 +23,22 @@ class Trainers::SubjectsController < TrainersController
       flash[:success] = t "flash.subject.success"
       redirect_to trainers_subjects_path
     else
-      flash.now[:danger] = t "flash.subject.error"
+      flash.now[:error] = t "flash.subject.error"
       render :new
     end
   end
 
-  def show; end
+  def show
+    if @subject.blank?
+      respond_to do |format|
+        format.json do
+          render json: {err: true}
+        end
+      end
+    else
+      respond_to :js, :html
+    end
+  end
 
   def destroy
     respond_to do |format|
@@ -50,8 +59,8 @@ class Trainers::SubjectsController < TrainersController
     @subject = Subject.find_by id: params[:id] if params[:id]
     return if @subject
 
-    flash.now[:danger] = t "notice.error"
-    redirect_to :index
+    flash.now[:error] = t "notice.error"
+    redirect_to trainers_subjects_path
   end
 
   def union_id_subjects topic_id
@@ -61,7 +70,8 @@ class Trainers::SubjectsController < TrainersController
   end
 
   def load_subject_for_search
-    Subject.by_name(params[:query])
-           .exclude_ids union_id_subjects(params[:topic])
+    Subject.exclude_ids union_id_subjects(params[:topic])
+      .by_name(params[:query]).page(params[:page])
+      .per Settings.pagination.subject.default
   end
 end

@@ -17,5 +17,4 @@ const aliasConfig = {
 
 environment.loaders.prepend('erb', erb)
 environment.config.set('resolve.alias', aliasConfig);
-
 module.exports = environment
