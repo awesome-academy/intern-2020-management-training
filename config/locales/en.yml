@@ -68,6 +68,13 @@ en:
         label_image: "Image"
         label_task: "Tasks"
         btn_add: "Add subject"
+      show:
+        modal_title: Subject details
+        no_task: "This subject has 0 task!"
+        label_subject: "Subject"
+        label_duration: "Duration"
+        label_note: "Note"
+        btn_close: "Close"
     courses:
       index:
         sub_title: "All courses"
@@ -201,12 +208,17 @@ en:
         d_btn_confirm: "Yes, delete it!"
         d_btn_cancel: "Cancel!"
         res:
-          sc_title: "Deleted!"
-          sc_text: "Your subject has been deleted."
-          sc_class: "success"
-          err_title: "Error!"
-          err_text: "Has a error in deleting subject!"
-          err_class: "error"
+          delete:
+            sc_title: "Deleted!"
+            sc_text: "Your subject has been deleted."
+            sc_class: "success"
+            err_title: "Error!"
+            err_text: "Has a error in deleting subject!"
+            err_class: "error"
+          show:
+            err_title: "Error!"
+            err_text: "Loading this subject failed!"
+            err_class: "error"
   trainee:
     courses:
       index:

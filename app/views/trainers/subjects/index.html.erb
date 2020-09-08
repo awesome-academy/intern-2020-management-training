@@ -46,7 +46,8 @@
       <%= render @subjects %>
     </tbody>
   </table>
-  <div id="paginator" class="text-center">
+  <div id="paginator-subject" class="text-center">
     <%= paginate @subjects, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true, param: {controller: 'trainers/subjects', action: 'index'} %>
   </div>
+  <div id="subject-detail-modal"></div>
 </div>
