@@ -10,7 +10,7 @@ class Course < ApplicationRecord
   has_many :user_courses, dependent: :destroy
   has_many :trainees, through: :user_courses, source: :user
   has_many :user_course_subjects, through: :course_subjects
-  has_many :users, through: :user_courses
+  has_many :users, through: :user_courses, dependent: :destroy
 
   accepts_nested_attributes_for :course_subjects, :user_courses,
                                 allow_destroy: true

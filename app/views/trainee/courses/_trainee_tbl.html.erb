@@ -1,0 +1,16 @@
+<table class="table table-hover table-striped table-bordered" id="trainees-tbl">
+  <thead class="thead-light">
+    <tr class="text-center">
+      <th scope="col"><%= t ".tbl_head.index" %></th>
+      <th scope="col"><%= t ".tbl_head.name" %></th>
+      <th scope="col"><%= t ".tbl_head.start_date" %></th>
+      <th scope="col"><%= t ".tbl_head.status" %></th>
+    </tr>
+  </thead>
+  <tbody id="subjects-tbody">
+    <%= render partial: "trainee", collection: trainees, as: :trainee %>
+  </tbody>
+</table>
+<div id="paginator" class="text-center">
+  <%= paginate trainees, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true %>
+</div>

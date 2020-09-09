@@ -13,6 +13,8 @@ class Trainee::CoursesController < TraineesController
   def show
     @subjects = @course.subjects.page(params[:page])
                        .per Settings.pagination.course.default
+    @trainees = @course.trainees.page(params[:page])
+                       .per Settings.pagination.trainee.default
   end
 
   private

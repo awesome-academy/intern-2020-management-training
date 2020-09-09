@@ -39,6 +39,7 @@
           </button>
           <div class="border collapse mt-1" id="tasks-of-<%= subject.id %>">
             <ul class="text-monospace list-unstyled">
+              <%= render partial: "task", collection: subject.tasks, as: :task, locals:{course_id: course.id} %>
             </ul>
           </div>
         </div>
