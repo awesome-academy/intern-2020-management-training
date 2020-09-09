@@ -57,3 +57,4 @@ config/environments/*.local.yml
 # Ignore application configuration
 /config/application.yml
 public/uploads
+public/javascripts/translations.js

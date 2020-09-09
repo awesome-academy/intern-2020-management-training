@@ -299,6 +299,34 @@ en:
       inprogress: "inprogress"
       finished: "finished"
     user_cs:
+      done: "Done"
+      inprogress: "Inprogress"
+      done_delay: "Done but not on time"
+      not_done_not_on_time: "Not done and out of date"
+    user_task:
+      done: "done"
+      inprogress: "inprogress"
+  icon:
+    check: "check"
+    bolt: "bolt"
+    circle: "circle"
+    times: "times text-danger"
+    check_success: "check text-success"
+    btn_filter: "Filter"
+    filter_option: "Filter options"
+  bg:
+    danger: "danger"
+    primary: "primary"
+    secondary: "secondary"
+    warning: "warning"
+    success: "success"
+  status:
+    course_subject:
+      start: "start"
+      pending: "pending"
+      inprogress: "inprogress"
+      finished: "finished"
+    user_cs:
       done: "done"
       inprogress: "Inprogress"
       done_delay: "Done but not on time"

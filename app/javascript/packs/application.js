@@ -13,3 +13,4 @@ import 'sweetalert2/src/sweetalert2.scss';
 window.Swal = Swal;
 
 global.I18n = I18n;
+global.toastr = require('toastr');

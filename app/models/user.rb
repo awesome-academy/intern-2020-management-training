@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
-  has_many :user_course_subject, dependent: :destroy
+  has_many :user_course_subjects, dependent: :destroy
   has_many :reports, dependent: :destroy
   belongs_to :school
   belongs_to :program_language
@@ -19,19 +19,7 @@ class User < ApplicationRecord
   delegate :name, to: :position, prefix: true
   delegate :name, to: :department, prefix: true
   delegate :name, to: :office, prefix: true
-  delegate :task_done, to: :user_course_subject
-
-  belongs_to :school
-  belongs_to :program_language
-  belongs_to :position
-  belongs_to :department
-  belongs_to :office
-
-  delegate :name, to: :school, prefix: true
-  delegate :name, to: :program_language, prefix: true
-  delegate :name, to: :position, prefix: true
-  delegate :name, to: :department, prefix: true
-  delegate :name, to: :office, prefix: true
+  delegate :task_done, to: :user_course_subjects
 
   validates :name, presence: true,
             length: {maximum: Settings.validates.model.user.name.max_length}
