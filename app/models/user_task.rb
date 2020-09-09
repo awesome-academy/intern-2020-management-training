@@ -1,6 +1,6 @@
 class UserTask < ApplicationRecord
-  belongs_to :user_course_subject
   belongs_to :task
+  belongs_to :user_course_subject, dependent: :destroy
 
   enum status: {done: 1, doing: 0}, _prefix: true
 

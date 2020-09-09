@@ -1,0 +1,5 @@
+<li class="p-1" id="task-<%= task.id %>">
+  <% status = task.status_by_user_course_subject current_user.id, course_id %>
+  <%= icon "fas", "#{get_icon_status status} text-#{get_bg_status status}" %>
+  <%= task.name %>
+</li>

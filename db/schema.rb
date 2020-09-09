@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   end
 
   create_table "user_courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.datetime "start_date"
+    t.date "start_date"
     t.datetime "end_date"
     t.bigint "course_id", null: false
     t.bigint "user_id", null: false

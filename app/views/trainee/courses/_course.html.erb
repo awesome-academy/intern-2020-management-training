@@ -16,7 +16,7 @@
       </h5>
       <div class="card-text">
         <div class="progress">
-          <% progress = course.progress_by_user(current_user.id) %>
+          <% progress = course.progress_by_user current_user.id %>
           <% if progress > 0 %>
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
               style="width: <%= number_to_percentage progress %>;"

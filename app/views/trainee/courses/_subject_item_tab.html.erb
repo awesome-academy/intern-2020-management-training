@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-1 text-center d-flex flex-column justify-content-center align-items-center">
     <div class="subject-status text-capitalize">
-      <% course_subject = subject.find_course_subject_by_course(course.id) %>
-      <% user_course_subject = course_subject&.find_user_course_subject_by_user(current_user.id) %>
+      <% course_subject = subject.find_course_subject_by_course course.id %>
+      <% user_course_subject = course_subject&.find_user_course_subject_by_user current_user.id %>
       <%= status = get_status course_subject %>
     </div>
-    <span class="badge badge-pill badge-status bg-<%= get_bg_status(status) %> d-flex justify-content-center align-items-center">
+    <span class="badge badge-pill badge-status bg-<%= get_bg_status status %> d-flex justify-content-center align-items-center">
       <%= icon "fas", get_icon_status(status) %>
     </span>
   </div>
@@ -44,8 +44,9 @@
           </div>
         </div>
         <div class="subject_actions col-md-3 d-flex flex-column justify-content-center align-items-center">
-          <%= link_to trainee_course_subject_path(subject), class: "btn btn-info" do %>
-            <%= icon "fas", "bolt" %>
+          <% ucs_status = get_status user_course_subject %>
+          <%= link_to trainee_course_subject_path(subject), class: "btn btn-#{get_bg_status ucs_status}" do %>
+            <%= icon "fas", "#{get_icon_status ucs_status}" %>
             <%= user_course_subject.status if user_course_subject.present? %>
           <% end %>
         </div>

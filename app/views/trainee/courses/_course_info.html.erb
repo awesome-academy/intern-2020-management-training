@@ -2,6 +2,8 @@
   <div class="p-0 col-md-2">
     <% if course.image.present? %>
       <%= image_tag course.image, class: "img-fluid img-thumbnail" %>
+    <% else %>
+      <%= image_tag Settings.app.default_avatar, class: "img-fluid img-thumbnail" %>
     <% end %>
   </div>
   <div class="course-info-details col-md-10">

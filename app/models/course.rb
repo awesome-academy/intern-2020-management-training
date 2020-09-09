@@ -29,6 +29,7 @@ class Course < ApplicationRecord
 
   scope :order_by_start_date, ->{order start_date: :desc}
   scope :order_by_status, ->{order status: :desc}
+  scope :join_user_course, ->{includes(:user_courses)}
 
   def progress_by_user user_id
     user_course = user_courses.find_by user_id: user_id
