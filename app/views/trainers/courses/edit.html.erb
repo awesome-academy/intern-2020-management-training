@@ -12,6 +12,7 @@
         <%= f.label :name, t(".label_name"), class: "label-required" %>
         <%= f.text_field :name, class: "form-control", required: true,
                          placeholder: t(".label_name")%>
+        <%= display_error f.object, :name, t(".label_name") %>
       </div>
       <div class="form-group">
         <%= f.label :note, t(".label_note") %>
@@ -32,6 +33,7 @@
         <%= f.file_field :image,
                          accept: Settings.validates.model.course.image.content_type,
                          class: "form-control-file"%>
+        <%= display_error f.object, :image, t(".alt_avatar") %>
       </div>
     </div>
     <div class="tab-content col-md-12" id="pills-tabContent">

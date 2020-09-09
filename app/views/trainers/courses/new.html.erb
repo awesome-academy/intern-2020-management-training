@@ -6,15 +6,13 @@
 
 <%= form_with model: @course, url: trainers_courses_path, local: true,
               class: "border rounded p-4", id: "form-course" do |f| %>
-  <div class="border rounded mb-2">
-    <%= render "shared/error_messages", object: f.object %>
-  </div>
   <div class="form-row">
     <div class="col-md-8">
       <div class="form-group">
         <%= f.label :name, t(".label_name"), class: "label-required" %>
         <%= f.text_field :name, class: "form-control", required: true,
                          placeholder: t(".label_name")%>
+        <%= display_error f.object, :name, t(".label_name") %>
       </div>
       <div class="form-group">
         <%= f.label :note, t(".label_note") %>
@@ -29,6 +27,7 @@
         <%= f.file_field :image,
                          accept: Settings.validates.model.course.image.content_type,
                          class: "form-control-file"%>
+        <%= display_error f.object, :image, t("trainers.courses.edit.alt_avatar") %>
       </div>
     </div>
     <div class="tab-content col-md-12" id="pills-tabContent">
@@ -36,7 +35,7 @@
         <div class="form-group">
           <div class="wrap-topic">
             <div class="selection-topic w-25">
-              <%= f.label :topic, t(".label_topic"), class: "label-required" %>
+              <%= f.label :topic, t(".label_topic") %>
               <%= select_tag :topic,
                              options_from_collection_for_select(@topics, :id, :name, '1'),
                              data: {

@@ -18,4 +18,11 @@ module UsersHelper
 
     t "trainers.users.show.label_role_trainee"
   end
+
+  def display_error object, method, name
+    return unless object.errors.present? && object.errors.key?(method)
+
+    error = "#{name} #{object.errors.messages[method][0]}"
+    content_tag :div, error, class: Settings.default_user.error_class
+  end
 end
