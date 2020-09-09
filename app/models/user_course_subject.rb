@@ -6,11 +6,12 @@ class UserCourseSubject < ApplicationRecord
   enum status: {inprogress: 0, done: 1}
 
   scope :status, ->(status){where status: status if status.present?}
-  scope :task_done, (lambda do
+  scope :task_done, (lambda do |course_id|
     select("COUNT(user_tasks.user_course_subject_id) AS task_done,
            	course_subjects.subject_id")
         .joins(:course_subject, :user_tasks)
-        .where(user_tasks: {status: Settings.validates.model.user_task.done})
+        .where(user_tasks: {status: Settings.validates.model.user_task.done},
+               course_subjects: {id: course_id})
         .group("user_tasks.user_course_subject_id")
         .order(priority: :asc)
   end)

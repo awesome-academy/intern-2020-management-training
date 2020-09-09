@@ -4,7 +4,7 @@
       <%= item.name %>
     <% end %>
   </th>
-  <% item.task_done.by_subject(subject.id).each do |task| %>
+  <% item.task_done(course.id).by_subject(subject.id).each do |task| %>
     <% task_percent = progress_color task.task_done, task.subject_id %>
     <td class="text-light text-center border-right <%= task_percent[:color] %>"><%= task_percent[:percent] %>%</td>
   <% end %>
