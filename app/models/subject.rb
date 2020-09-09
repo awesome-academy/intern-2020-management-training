@@ -62,6 +62,10 @@ class Subject < ApplicationRecord
     course_subjects.by_course(course_id).first
   end
 
+  def active_course
+    course_subjects.in_active
+  end
+
   private
 
   def validate_img_size

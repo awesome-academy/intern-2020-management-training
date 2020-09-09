@@ -5,9 +5,9 @@
         <h5 class="modal-title" id="subjectDetailLabel">
           <%= t ".modal_title" %>
         </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <%= link_to "", type: "button", class: "close", "data-dismiss": "modal" do %>
           <span aria-hidden="true">&times;</span>
-        </button>
+        <% end %>
       </div>
       <div class="modal-body d-flex">
         <div class="col-6">
@@ -18,11 +18,14 @@
               <%= image_tag "", class: "card-img-top" %>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title">
+              <h5 class="card-title text-uppercase text-primary">
                 <%= t ".label_subject" %>:
                 <%= subject.name %>
               </h5>
-              <p><%= "(#{subject.duration} days)" %></p>
+              <p class="text-danger">
+                <%= icon "fas", "clock" %>
+                <%= t ".duration", count: subject.duration %>
+              </p>
               <p class="card-text">
                 <%= subject.note %>
               </p>
@@ -30,6 +33,9 @@
           </div>
         </div>
         <div class="col-6">
+          <h5 class="pl-1">
+            <%= t ".task_head_title", count: subject.tasks.size %>
+          </h5>
           <% if subject.present? %>
             <ul class="list-group">
               <%= render partial: "trainers/subjects/task_item", collection: subject.tasks, as: :item %>
@@ -42,7 +48,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t ".btn_close" %></button>
+        <%= link_to "", type: "button", class: "btn btn-secondary", "data-dismiss": "modal" do %>
+          <%= t ".btn_close" %>
+        <% end %>
       </div>
     </div>
   </div>

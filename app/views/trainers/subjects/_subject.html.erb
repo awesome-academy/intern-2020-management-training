@@ -13,7 +13,7 @@
       type: "button", data: {id: "#{subject.id}"} do %>
       <%= icon "fas", "eye" %>
     <% end %>
-    <%= link_to trainers_subject_path(subject), class: "btn btn-sm btn-outline-primary edit-subject-item",
+    <%= link_to edit_trainers_subject_path(subject), class: "btn btn-sm btn-outline-primary edit-subject-item",
       type: "button", data: {id: "#{subject.id}"} do %>
       <%= icon "fas", "pencil-alt" %>
     <% end %>

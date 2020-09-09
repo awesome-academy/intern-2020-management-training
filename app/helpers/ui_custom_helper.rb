@@ -34,4 +34,16 @@ module UiCustomHelper
   def get_status object
     object.present? ? object.status : "nilll"
   end
+
+  def select_url obj
+    if action_name.eql?("new")
+      trainers_subjects_path
+    else
+      trainers_subject_path(obj)
+    end
+  end
+
+  def select_btn
+    action_name.eql?("new") ? t(".btn_add") : t(".btn_update")
+  end
 end

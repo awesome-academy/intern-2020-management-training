@@ -1,5 +1,6 @@
 <div class="form-new p-4">
-  <%= form_for subject, url: trainers_subjects_path do |f| %>
+  <% url = select_url subject %>
+  <%= form_for subject, url: url, id: "subject-form", remote: true do |f| %>
     <%= render "shared/error_messages", object: f.object %>
     <div class="form-group row">
       <div class="col-sm-2 col-form-label label-required">
@@ -64,7 +65,8 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-10">
-        <%= f.submit t(".btn_add"), class: "btn btn-primary btn-sm" %>
+        <% btn = select_btn %>
+        <%= f.submit btn, class: "btn btn-primary btn-sm" %>
       </div>
     </div>
   <% end %>
