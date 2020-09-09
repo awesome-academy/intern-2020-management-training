@@ -70,8 +70,8 @@ class Trainers::SubjectsController < TrainersController
   end
 
   def load_subject_for_search
-    Subject.exclude_ids union_id_subjects(params[:topic])
-      .by_name(params[:query]).page(params[:page])
-      .per Settings.pagination.subject.default
+    Subject.by_name(params[:query])
+           .exclude_ids(union_id_subjects(params[:topic])).page(params[:page])
+           .per Settings.pagination.subject.default
   end
 end

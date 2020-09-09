@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
     t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "priority"
+    t.integer "priority", default: 0
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
     t.index ["subject_id", "course_id"], name: "index_course_subjects_on_subject_id_and_course_id", unique: true
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"

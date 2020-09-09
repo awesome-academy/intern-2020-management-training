@@ -185,6 +185,15 @@ en:
         return: "Return to course"
         result: "results"
         label_user: "users"
+  sessions:
+    new:
+      label_email: "Email"
+      label_password: "Password"
+      label_submit: "Submit"
+      label_remember: "Remember"
+      slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
+      quote: "\"We are obsessed with making awesome things with awesome people\"."
+      ceo: "Sun* Inc. CEO – Taihei Kobayashi"
   notice:
     error: "Something is wrong!"
     success: "Success"
@@ -274,6 +283,45 @@ en:
       short: "%d/%m/%Y %H:%M"
       only_date: "%d-%m-%Y"
   both:
+    search_placeholder: "Input search ..."
+    btn_filter: "Filter"
+    filter_option: "Filter options"
+  bg:
+    danger: "danger"
+    primary: "primary"
+    secondary: "secondary"
+    warning: "warning"
+    success: "success"
+  status:
+    course_subject:
+      start: "start"
+      pending: "pending"
+      inprogress: "inprogress"
+      finished: "finished"
+    user_cs:
+      done: "done"
+      inprogress: "Inprogress"
+      done_delay: "Done but not on time"
+      not_done_not_on_time: "Not done and out of date"
+    user_task:
+      done: "done"
+      inprogress: "inprogress"
+  icons:
+    check: "check"
+    bolt: "bolt"
+    circle: "circle"
+    times: "times text-danger"
+    check_success: "check text-success"
+    btn_filter: "Filter"
+    filter_option: "Filter options"
+    start: "start"
+    pending: "pending"
+    inprogress: "inprogress"
+    finished: "finished"
+  shared:
+    courses:
+      search_form:
+        search_placeholder: "Input search ..."
     search_placeholder: "Input search ..."
     btn_filter: "Filter"
     filter_option: "Filter options"

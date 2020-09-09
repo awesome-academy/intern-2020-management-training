@@ -12,7 +12,8 @@ module UiCustomHelper
     start: "circle",
     pending: "bolt",
     inprogress: "bolt",
-    finished: "check"
+    finished: "check",
+    nilll: "times"
   }.freeze
 
   def get_bg_status status
