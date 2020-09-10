@@ -11,6 +11,6 @@
     <%= render partial: "trainee", collection: trainees, as: :trainee %>
   </tbody>
 </table>
-<div id="paginator" class="text-center">
+<div id="trainee-paginator" class="text-center">
   <%= paginate trainees, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true %>
 </div>

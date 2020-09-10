@@ -1,0 +1,24 @@
+<li class="list-group-item d-flex justify-content-between" id="task-<%= task.id %>">
+  <div class="task-name">
+    <%= task.name %>
+  </div>
+  <div class="task-action">
+    <% if user_task.present? %>
+      <%= form_with model: user_task,  url: trainee_user_task_path(user_task), method: :patch, remote: true, class: "form-task", data: {id: user_task.id} do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :task_id, value: task.id %>
+        <%= f.hidden_field :status, value: user_task.status %>
+        <%= f.hidden_field :user_course_subject_id, value: user_task.user_course_subject.id %>
+        <% status = user_task.status %>
+        <% bg_status = get_bg_status(:user_task, status) || t(".bg_danger")  %>
+        <%= link_to "", id: "btn-task-#{user_task.id}", class: "btn btn-sm btn-#{bg_status} btn-update-task #{"disabled" if status.eql?("done")}", type: "submit" do %>
+          <%= status.eql?("done")? t(".done") : t(".mark_as_done") %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to "", class: "btn btn-sm btn-secondary disabled", type: "submit" do %>
+        <%= t ".not_ready" %>
+      <% end %>
+    <% end %>
+  </div>
+</li>

@@ -23,9 +23,12 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="subjects" role="tabpanel" aria-labelledby="subjects-tab">
-      <div id="list-subject" class="py-2">
-        <div class="container-fluid">
+      <div class="container-fluid pb-2">
+        <div class="py-2" id="list-subjects">
           <%= render partial: "subject_item_tab", collection: @subjects, as: :subject, locals: {course: @course} %>
+        </div>
+        <div id="subject-paginator" class="text-center d-flex justify-content-center">
+          <%= paginate @subjects, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", class: "d-none", remote: true %>
         </div>
       </div>
     </div>

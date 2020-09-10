@@ -1,0 +1,9 @@
+<% course_id = @user_task.user_course_subject.cs_course_id %>
+<% subject = @user_task.task.subject %>
+$('#task-<%= @user_task.task.id %>').replaceWith('<%= j render partial: 'trainee/user_tasks/user_task', locals: {task: @user_task.task, user_task: @user_task} %>');
+$('#subject-progress').html('<%= j render partial: 'trainee/subjects/progress', locals: {course_id: course_id, subject: subject} %>')
+
+<% progress = subject.subject_progress(current_user.id, course_id) %>
+<% if progress.present? && progress == 100 %>
+  $('.btn-finish').removeClass('disabled');
+<% end %>

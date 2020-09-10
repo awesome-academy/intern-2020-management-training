@@ -36,21 +36,21 @@ a:hover, :link {
   }
 }
 
-#course-info, #subject-info {
+#course-info, #subject-info, #course-subject-info {
   background: $white_background;
   padding: 0.75em;
   border-radius: 0.75em;
 
   .course-info-details {
     font-size: 1.25rem;
-    
+
     .end-date {
       color: $text_danger;
     }
   }
 
   .subject-info-details {
-    
+
     .end-date {
       color: $text_danger;
     }
@@ -60,7 +60,6 @@ a:hover, :link {
       border-radius: 1.25em;
     }
   }
-    
 }
 
 .tab-content{

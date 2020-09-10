@@ -1,0 +1,26 @@
+.progress-detail {
+
+  #subject_progress {
+    height: 1em;
+    border-radius: 0.5em;
+  }
+}
+
+#list-tasks.list-group {
+
+  .list-group-item {
+    margin-bottom: 0.5em;
+  }
+}
+
+.subject-info-avatar {
+  position: absolute;
+  border-radius: 50%!important;
+  width: 26%;
+  left: 37%;
+  top: -3em
+}
+
+.user-subject-card {
+  position: relative;
+}

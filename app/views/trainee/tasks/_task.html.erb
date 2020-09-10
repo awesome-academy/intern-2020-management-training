@@ -1,0 +1,2 @@
+<% user_task = task.user_task_by_course_user current_user.id, course_id %>
+<%= render partial: "trainee/user_tasks/user_task", locals: {task: task, user_task: user_task} %>

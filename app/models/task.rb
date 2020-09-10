@@ -14,4 +14,12 @@ class Task < ApplicationRecord
     user_task = user_tasks.task_status(user_id, course_id).first
     user_task&.status
   end
+
+  def user_task_by_course_user user_id, course_id
+    course_subject = subject.course_subjects.find_by course_id: course_id
+    ucs = course_subject.user_course_subjects.find_by user_id: user_id
+    return if ucs.blank?
+
+    user_tasks.find_by user_course_subject_id: ucs.id
+  end
 end

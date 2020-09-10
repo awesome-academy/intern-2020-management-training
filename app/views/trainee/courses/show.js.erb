@@ -1,2 +1,10 @@
-$("#list-trainees").html("<%= j render partial: "trainee/courses/trainee_tbl", locals: {trainees: @trainees} %>");
-$("#paginator").html("<%= j paginate(@trainees, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");
+$('#list-trainees').html('<%= j render partial: 'trainee/courses/trainee_tbl', locals: {trainees: @trainees} %>');
+$('#trainee-paginator').html('<%= j paginate(@trainees, remote: true, theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm') %>');
+$('#list-subjects').append('<%= j render partial: 'trainee/courses/subject_item_tab', collection: @subjects, as: :subject, locals: {course: @course} %>')
+
+<% if @subjects.next_page %>
+  $('#subject-paginator .pagination').replaceWith('<%= j paginate @subjects, theme: 'twitter-bootstrap-4', pagination_class: 'pagination-sm', class: 'd-none', remote: true  %>');
+<% else %>
+  $(window).off('scroll');
+  $('#subject-paginator .pagination').remove();
+<% end %>
