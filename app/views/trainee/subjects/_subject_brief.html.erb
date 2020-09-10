@@ -1,0 +1,22 @@
+<div class="card user-subject-card">
+  <div class="card-img pb-5 text-center">
+    <%= image_tag Settings.app.default_avatar, class: "subject-info-avatar img-thumbnail"%>
+  </div>
+  <div class="text-center py-2">
+    <h5><%= subject.name %></h5>
+    <h5><%= t ".duration", duration: subject.duration %></h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text text-center font-weight-bold">
+      <%= t ".remind" %>
+    </p>
+    <div class="d-flex justify-content-center">
+      <%  progress = subject.subject_progress current_user.id, course_id %>
+      <% if progress.present? && progress < 100 %>
+        <%= link_to t(".btn_finish"), "", class: "btn btn-success btn-finish disabled"%>
+      <% else %>
+        <%= link_to t(".btn_finish"), "", class: "btn btn-success btn-finish" %>
+      <% end %>
+    </div>
+  </div>
+</div>

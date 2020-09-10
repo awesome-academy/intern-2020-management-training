@@ -1,0 +1,33 @@
+<div class="d-flex">
+  <div class="p-0 col-md-2">
+    <% if subject.image.present? %>
+      <%= image_tag subject.image.url, class: "img-fluid img-thumbnail" %>
+    <% end %>
+  </div>
+  <div class="subject-info-details col-md-10">
+    <h4 class="font-weight-bold text-uppercase">
+      <%= current_user.name %>
+    </h4>
+    <div class="subject-time font-weight-bold">
+      <%= icon "far", "clock" %>
+      <%= course.start_date if course.start_date %>
+      <%= icon "fas", "long-arrow-alt-right" %>
+      <span class="end-date"><%=  %></span>
+      <%= t ".expected" %>
+    </div>
+    <div class="lastest-updated">
+      <%= icon "fas", "sync-alt" %>
+      <%= t ".lastest_update", time: subject.updated_at %>
+    </div>
+    <div class="course-info">
+      <%= icon "fas", "list-alt" %>
+      <%= t ".detail_of" %>
+      <%= link_to trainee_course_path(course) do %>
+        <div class="badge badge-success mr-1">
+          <%= course.status %>
+        </div>
+        <span class="text-uppercase"><%= course.name %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

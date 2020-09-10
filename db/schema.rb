@@ -135,24 +135,26 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   create_table "user_course_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.date "deadline"
     t.integer "status"
-    t.bigint "user_id", null: false
-    t.bigint "course_subject_id", null: false
+    t.integer "user_id"
+    t.integer "course_subject_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "progress", default: 0.0
     t.index ["course_subject_id"], name: "index_user_course_subjects_on_course_subject_id"
+    t.index ["user_id", "course_subject_id"], name: "index_user_course_subjects_on_user_id_and_course_subject_id", unique: true
     t.index ["user_id"], name: "index_user_course_subjects_on_user_id"
   end
 
   create_table "user_courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.date "start_date"
     t.datetime "end_date"
-    t.bigint "course_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id"
+    t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "progress", default: 0.0
     t.index ["course_id"], name: "index_user_courses_on_course_id"
+    t.index ["user_id", "course_id"], name: "index_user_courses_on_user_id_and_course_id", unique: true
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
@@ -198,10 +200,6 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   add_foreign_key "tasks", "subjects"
   add_foreign_key "topic_subjects", "subjects"
   add_foreign_key "topic_subjects", "topics"
-  add_foreign_key "user_course_subjects", "course_subjects"
-  add_foreign_key "user_course_subjects", "users"
-  add_foreign_key "user_courses", "courses"
-  add_foreign_key "user_courses", "users"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "user_course_subjects"
   add_foreign_key "users", "departments"

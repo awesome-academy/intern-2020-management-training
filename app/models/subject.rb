@@ -66,6 +66,13 @@ class Subject < ApplicationRecord
     course_subjects.in_active
   end
 
+  def subject_progress user_id, course_id
+    cs = course_subjects.progress_user_course user_id, course_id
+    return Settings.progress.zero if cs.blank?
+
+    cs.first.progress
+  end
+
   private
 
   def validate_img_size

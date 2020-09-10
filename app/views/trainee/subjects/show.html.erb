@@ -1,7 +1,20 @@
 <% provide :sub_title, t(".sub_title") %>
-<div id="subject-info">
-  <%= render "subject_info", course: @course, subject: @subject %>
+<div id="course-subject-info">
+  <%= render "course_subject_info", course: @course, subject: @subject %>
 </div>
 <div id="subject-progress">
-  <%= render "progress", user: current_user, course: @course, subject: @subjects %>
+  <%= render "progress", course_id: @course.id, subject: @subject %>
+</div>
+<h5 class="mt-4">
+  <%= t ".your_task", count: @subject.tasks.size %>
+</h5>
+<div class="subject-wrapper mt-3 d-flex">
+  <div id="subject-tasks" class="col-md-8 pl-0">
+    <ul class="list-group" id="list-tasks">
+      <%= render partial: "trainee/tasks/task", collection: @subject.tasks, locals: {course_id: @course.id} %>
+    </ul>
+  </div>
+  <div class="col-md-4 pr-0">
+    <%= render "subject_brief", subject: @subject, course_id: @course.id %>
+  </div>
 </div>

@@ -250,6 +250,15 @@ en:
         return: "Return to course"
         result: "results"
         label_user: "users"
+  sessions:
+    new:
+      label_email: "Email"
+      label_password: "Password"
+      label_submit: "Submit"
+      label_remember: "Remember"
+      slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
+      quote: "\"We are obsessed with making awesome things with awesome people\"."
+      ceo: "Sun* Inc. CEO – Taihei Kobayashi"
   notice:
     error: "Something is wrong!"
     success: "Success"
@@ -265,6 +274,10 @@ en:
     subject:
       success: "Success"
       error: "Error!"
+    task:
+      not_exist: " not exist!"
+      invalid_user: "User is not valid!"
+      update_error: "Update failed!"
   js:
     trainer:
       subject:
@@ -337,6 +350,53 @@ en:
             done: "Done"
             time: "Created at"
             action: "Action"
+        no_record: "You joined 0 courses!"
+      show:
+        trainee_tab_title: "List trainees"
+        sub_title: "Course details"
+        subject_tab: "Subjects"
+        trainee_tab: "Trainees"
+      course_info:
+        expected: "( Expected )"
+        lastest_update: "Lastest updated: %{time}"
+      subject_item_tab:
+        duration: "Duration: %{duration} day"
+        see_task: "Preview tasks"
+        count_tasks: "(%{count} task)"
+    subjects:
+      course_subject_info:
+        expected: "( Expected )"
+        lastest_update: "Lastest updated: %{time}"
+        detail_of: "Details of course: "
+      progress:
+        sub_title: "Your subject's progressing"
+        btn_filter: "Filter"
+        no_record: "You joined 0 courses!"
+        search_placeholder: "Input search ..."
+      show:
+        your_task: "Your task: (%{count}) task"
+      subject_brief:
+        duration: "Duration: %{duration} day"
+        remind: "After doing all task, please click \"Finish\" to update your progress"
+        btn_finish: "Finish"
+    user_tasks:
+      user_task:
+        mark_as_done: "Mark as done"
+        done: "Done"
+        not_ready: "Not ready"
+        bg_danger: "danger"
+    task:
+      confirm_title: "Are you sure?"
+      confirm_text: "You will not be able to change this task progress!"
+      btn_confirm: "Yes, update it!"
+      btn_cancel: "Cancel!"
+      res:
+        sc_title: "Updated!"
+        sc_text: "Your task has been updated."
+        sc_class: "success"
+        err_title: "Error!"
+        err_text: "Has a error in update progressing!"
+        err_class: "error"
   date:
     formats:
       default: "%d-%m-%Y"
@@ -352,12 +412,6 @@ en:
     search_placeholder: "Input search ..."
     btn_filter: "Filter"
     filter_option: "Filter options"
-  bg:
-    danger: "danger"
-    primary: "primary"
-    secondary: "secondary"
-    warning: "warning"
-    success: "success"
   status:
     course_subject:
       start: "start"
@@ -372,34 +426,12 @@ en:
     user_task:
       done: "done"
       inprogress: "inprogress"
-  icon:
-    check: "check"
-    bolt: "bolt"
-    circle: "circle"
-    times: "times text-danger"
-    check_success: "check text-success"
-    btn_filter: "Filter"
-    filter_option: "Filter options"
   bg:
     danger: "danger"
     primary: "primary"
     secondary: "secondary"
     warning: "warning"
     success: "success"
-  status:
-    course_subject:
-      start: "start"
-      pending: "pending"
-      inprogress: "inprogress"
-      finished: "finished"
-    user_cs:
-      done: "done"
-      inprogress: "Inprogress"
-      done_delay: "Done but not on time"
-      not_done_not_on_time: "Not done and out of date"
-    user_task:
-      done: "done"
-      inprogress: "inprogress"
   icons:
     check: "check"
     bolt: "bolt"
@@ -419,39 +451,3 @@ en:
     search_placeholder: "Input search ..."
     btn_filter: "Filter"
     filter_option: "Filter options"
-  bg:
-    danger: "danger"
-    primary: "primary"
-    secondary: "secondary"
-    warning: "warning"
-    success: "success"
-  status:
-    course_subject:
-      start: "start"
-      pending: "pending"
-      inprogress: "inprogress"
-      finished: "finished"
-    user_cs:
-      done: "done"
-      inprogress: "Inprogress"
-      done_delay: "Done but not on time"
-      not_done_not_on_time: "Not done and out of date"
-    user_task:
-      done: "done"
-      inprogress: "inprogress"
-  icons:
-    check: "check"
-    bolt: "bolt"
-    circle: "circle"
-    times: "times text-danger"
-    check_success: "check text-success"
-    btn_filter: "Filter"
-    filter_option: "Filter options"
-    start: "start"
-    pending: "pending"
-    inprogress: "inprogress"
-    finished: "finished"
-  shared:
-    courses:
-      search_form:
-        search_placeholder: "Input search   ..."

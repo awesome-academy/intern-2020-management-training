@@ -1,12 +1,12 @@
 <div class="progress-wrapper mt-3">
   <h5 class="progress-title">
-    <%= t ".sub_title"%>
+    <%= t ".sub_title" %>
   </h5>
   <div class="progress-detail">
     <div class="progress">
-      <% progress = get_ucs_progress user&.id, course&.id, subject&.id %>
-      <% if (progress > 0) %>
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+      <% progress = subject.subject_progress current_user.id, course_id %>
+      <% if progress > 0 %>
+        <div class="progress-bar progress-bar-striped progress-bar-animated" id="subject_progress" role="progressbar"
                 style="width: <%= number_to_percentage progress %>;"
                 aria-valuenow="<%= number_to_percentage progress, precision: Settings.views.progress.precision %>"
                 aria-valuemin="<%= Settings.views.progress.min %>"
@@ -14,7 +14,7 @@
           <%= number_to_percentage progress, precision: Settings.views.progress.precision %>
         </div>
       <% else %>
-        <div class="progress-bar bg-danger" role="progressbar"
+        <div class="progress-bar bg-warning text-dark font-weight-bold" role="progressbar"  id="subject_progress"
                   style="width:100%;" aria-valuenow="<%= progress %>">
           <%= number_to_percentage progress, precision: Settings.views.progress.precision %>
         </div>

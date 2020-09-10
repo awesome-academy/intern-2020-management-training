@@ -3,6 +3,9 @@ class UserCourseSubject < ApplicationRecord
   belongs_to :user
   has_many :user_tasks, dependent: :destroy
 
+  delegate :course_id, to: :course_subject,
+    prefix: Settings.prefix.course_subject
+
   enum status: {inprogress: 0, done: 1}
 
   scope :status, ->(status){where status: status if status.present?}
