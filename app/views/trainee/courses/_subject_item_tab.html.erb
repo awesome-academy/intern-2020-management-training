@@ -2,11 +2,11 @@
   <div class="col-md-1 text-center d-flex flex-column justify-content-center align-items-center">
     <div class="subject-status text-capitalize">
       <% course_subject = subject.find_course_subject_by_course course.id %>
-      <% user_course_subject = course_subject&.find_user_course_subject_by_user current_user.id %>
-      <%= status = get_status course_subject %>
+      <%= t(".start") unless status = course_subject&.status %>
+      <%= status %>
     </div>
-    <span class="badge badge-pill badge-status bg-<%= get_bg_status status %> d-flex justify-content-center align-items-center">
-      <%= icon "fas", get_icon_status(status) %>
+    <span class="badge badge-pill badge-status bg-<%= get_bg_status :course_subject, status %> d-flex justify-content-center align-items-center">
+      <%= icon "fas", get_icon_status(:course_subject, status) %>
     </span>
   </div>
   <div class="col-md-11 py-2">
@@ -16,10 +16,10 @@
           <div class="text-success">
             <button class="btn btn-sm btn-warning font-weight-bold">
               <%= icon "far", "clock" %>
-              <%= convert_datetime_to_date course_subject.start_date %>
+              <%= start = subject.started_at %>
               <%= icon "fas", "long-arrow-alt-right" %>
               <span class="end-date">
-                <%= user_course_subject.deadline if user_course_subject.present? %>
+                <%= subject.ended_at start %>
               </span>
             </button>
           </div>
@@ -44,10 +44,11 @@
           </div>
         </div>
         <div class="subject_actions col-md-3 d-flex flex-column justify-content-center align-items-center">
-          <% ucs_status = get_status user_course_subject %>
-          <%= link_to trainee_course_subject_path(subject), class: "btn btn-#{get_bg_status ucs_status}" do %>
-            <%= icon "fas", "#{get_icon_status ucs_status}" %>
-            <%= user_course_subject.status if user_course_subject.present? %>
+          <% user_course_subject = course_subject&.find_user_course_subject_by_user current_user.id %>
+          <% ucs_status = user_course_subject&.status %>
+          <%= link_to trainee_course_subject_path(course.id, subject), class: "btn btn-#{get_bg_status :ucs, ucs_status}" do %>
+            <%= icon "fas", "#{get_icon_status :ucs, ucs_status}" %>
+            <%= ucs_status.present? ? ucs_status : t(".inprogress") %>
           <% end %>
         </div>
       </div>

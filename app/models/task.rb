@@ -9,4 +9,9 @@ class Task < ApplicationRecord
                    }
 
   scope :by_id, ->(ids){where id: ids if ids.present?}
+
+  def status_by_user_course_subject user_id, course_id
+    user_task = user_tasks.task_status(user_id, course_id).first
+    user_task&.status
+  end
 end

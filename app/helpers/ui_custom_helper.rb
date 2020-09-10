@@ -1,38 +1,36 @@
 module UiCustomHelper
   BG_CLASS = {
-    start: "secondary",
-    pending: "primary",
-    inprogress: "warning",
-    finished: "success",
-    done: "success",
-    nilll: "danger",
-    doing: "danger"
+    course: {
+      postponed: "warning", finished: "primary", opening: "warning",
+      deleted: "danger", start: "secondary"
+    }.freeze,
+    course_subject: {
+      start: "secondary", pending: "primary", inprogress: "warning",
+      finished: "success", default: "secondary"
+    }.freeze,
+    user_task: {done: "success", doing: "danger"}.freeze,
+    ucs: {done: "success", inprogress: "warning", default: "secondary"}.freeze
   }.freeze
 
   ICONS = {
-    start: "circle",
-    pending: "bolt",
-    inprogress: "bolt",
-    finished: "check",
-    done: "check",
-    doing: "times",
-    nilll: "question"
+    course_subject: {
+      start: "circle", pending: "bolt", inprogress: "bolt", finished: "check",
+      default: "circle"
+    }.freeze,
+    user_task: {done: "check", doing: "times", default: ""}.freeze,
+    ucs: {done: "check", inprogress: "bolt", default: "sync-alt"}.freeze
   }.freeze
 
-  def get_bg_status status
-    return BG_CLASS[:nilll] if status.blank?
+  def get_bg_status object, status
+    return BG_CLASS[object.to_sym][:default] if status.blank?
 
-    BG_CLASS[status.to_sym]
+    BG_CLASS[object.to_sym][status.to_sym]
   end
 
-  def get_icon_status status
-    return ICONS[:nilll] if status.blank?
+  def get_icon_status object, status
+    return ICONS[object.to_sym][:default] if status.blank?
 
-    ICONS[status.to_sym]
-  end
-
-  def get_status object
-    object.present? ? object.status : "nilll"
+    ICONS[object.to_sym][status.to_sym]
   end
 
   def select_url obj
