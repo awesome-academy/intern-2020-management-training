@@ -68,6 +68,7 @@ en:
         label_image: "Image"
         label_task: "Tasks"
         btn_add: "Add subject"
+        btn_update: "Update subject"
       show:
         modal_title: Subject details
         no_task: "This subject has 0 task!"
@@ -75,6 +76,14 @@ en:
         label_duration: "Duration"
         label_note: "Note"
         btn_close: "Close"
+        task_head_title:
+          one: "This subject has %{count} task"
+          other: "This subject has %{count} tasks"
+        duration:
+          one: "(%{count} day)"
+          other: "(%{count} days)"
+      edit:
+        modal_edit_title: "Edit subject"
     courses:
       index:
         sub_title: "All courses"
@@ -259,11 +268,19 @@ en:
   js:
     trainer:
       subject:
+        action:
+          delete: "delete"
+          show: "show"
+          cant_delete: "cant_delete"
         d_confirm_title: "Are you sure?"
         d_confirm_text: "You will not be able to recover this subject!"
         d_btn_confirm: "Yes, delete it!"
         d_btn_cancel: "Cancel!"
         res:
+          cant_delete:
+            err_title: "This action is not allowed!"
+            err_text: "This subject is in active course!"
+            err_class: "error"
           delete:
             sc_title: "Deleted!"
             sc_text: "Your subject has been deleted."

@@ -8,6 +8,7 @@ class CourseSubject < ApplicationRecord
   delegate :task_of_user, to: :user_course_subjects
 
   scope :by_course, ->(id){where course_id: id if id.present?}
+  scope :in_active, ->{where status: %i(inprogress pending)}
 
   def started_at
     created_at.strftime Settings.validates.model.course.date_format

@@ -14,10 +14,10 @@ Rails.application.routes.draw do
       end
       resources :topics, only: :index
       resources :search_trainees, only: :index
-      resources :subjects, except: %i(edit update)
+      resources :subjects
       resources :users
     end
-    
+
     namespace :trainee do
       root "courses#index"
       resources :reports

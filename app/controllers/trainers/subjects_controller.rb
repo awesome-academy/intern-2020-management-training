@@ -1,6 +1,7 @@
 class Trainers::SubjectsController < TrainersController
   before_action :logged_in_user, only: %i(index create new)
-  before_action :load_subject, only: %i(destroy show)
+  before_action :load_subject, except: %i(index new create)
+  before_action :in_active_course, only: :destroy
 
   def index
     @subjects = if params[:ids].present?
@@ -40,6 +41,21 @@ class Trainers::SubjectsController < TrainersController
     end
   end
 
+  def edit
+    respond_to :js
+  end
+
+  def update
+    if @subject.update subject_params
+      flash[:success] = t "flash.subject.success"
+      redirect_to trainers_subjects_path
+    else
+      respond_to do |format|
+        format.js{render :edit}
+      end
+    end
+  end
+
   def destroy
     respond_to do |format|
       format.json do
@@ -59,8 +75,13 @@ class Trainers::SubjectsController < TrainersController
     @subject = Subject.find_by id: params[:id] if params[:id]
     return if @subject
 
-    flash.now[:error] = t "notice.error"
-    redirect_to trainers_subjects_path
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {err: @subject}
+      end
+      format.js
+    end
   end
 
   def union_id_subjects topic_id
@@ -73,5 +94,17 @@ class Trainers::SubjectsController < TrainersController
     Subject.by_name(params[:query])
            .exclude_ids(union_id_subjects(params[:topic])).page(params[:page])
            .per Settings.pagination.subject.default
+  end
+
+  def in_active_course
+    @course = @subject.active_course
+    return if @course.blank?
+
+    respond_to do |format|
+      format.json do
+        render json: {active_course: true}
+      end
+      format.js{redirect_to :index}
+    end
   end
 end
