@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   include UsersHelper
   include TableHelper
   include SubjectsHelper
-  include TimeHelper
   include UiCustomHelper
 
   before_action :set_locale

@@ -310,6 +310,8 @@ en:
         see_task: "Preview tasks"
         count_tasks: "(%{count} task)"
         course_subject: "course_subject"
+        start: "Start"
+        inprogress: "Inprogress"
     subjects:
       subject_info:
         expected: "( Expected )"

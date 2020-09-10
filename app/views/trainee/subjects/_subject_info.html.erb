@@ -1,14 +1,14 @@
 <div class="d-flex">
   <div class="p-0 col-md-2">
-    <%= image_tag subject.image, class: "img-fluid img-thumbnail" if subject.image.present? %>
+    <%= image_tag subject.image.url, class: "img-fluid img-thumbnail" if subject.image.present? %>
   </div>
   <div class="subject-info-details col-md-10">
     <h4 class="font-weight-bold"><%= current_user.name %></h4>
     <div class="course-time font-weight-bold">
       <%= icon "far", "clock" %>
-      <%= l course.start_date %>
+      <%= course.start_date if course.start_date %>
       <%= icon "fas", "long-arrow-alt-right" %>
-      <span class="end-date"><%= l course.end_date %></span>
+      <span class="end-date"><%= course.end_date if course.end_date%></span>
       <%= t ".expected" %>
     </div>
     <div class="lastest-updated">

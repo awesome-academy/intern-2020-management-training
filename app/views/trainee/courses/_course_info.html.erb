@@ -15,9 +15,9 @@
     <% end %>
     <div class="course-time font-weight-bold">
       <%= icon "far", "clock" %>
-      <%= l course.start_date %>
+      <%= course.stated_at %>
       <%= icon "fas", "long-arrow-alt-right" %>
-      <span class="end-date"><%= l course.end_date %></span>
+      <span class="end-date"><%= course.ended_at course.subjects.total_time_subjects %></span>
       <%= t ".expected" %>
     </div>
     <div class="lastest-updated">
@@ -25,8 +25,10 @@
       <%= t ".lastest_update", time: course.updated_at %>
     </div>
     <div class="note text-truncate">
-      <%= icon "fas", "clipboard" %>
-      <%= course.note %>
+      <% if course.note.present? %>
+        <%= icon "fas", "clipboard" %>
+        <%= course.note %>
+      <% end %>
     </div>
   </div>
 </div>
