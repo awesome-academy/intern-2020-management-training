@@ -31,7 +31,7 @@ gem "webpacker", "~> 4.0"
 
 group :development, :test do
   gem "bundle-audit"
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "factory_bot_rails"
   gem "pry"
   gem "rails_best_practices"
   gem "rspec-rails", "~> 4.0.1"
@@ -48,8 +48,11 @@ group :development do
 end
 
 group :test do
+  gem "database_cleaner-active_record"
   gem "capybara", ">= 2.15"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
+  gem "simplecov", require: false
   gem "webdrivers"
 end
 
