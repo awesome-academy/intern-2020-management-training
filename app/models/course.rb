@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-  COURSE_PARAMS_PERMIT = [:name, :note, :image,
+  COURSE_PARAMS_PERMIT = [:name, :note, :image, :image_cache,
                           course_subjects_attributes: [:id, :subject_id,
                                                        :priority, :_destroy],
                           user_courses_attributes: [:id, :user_id,
@@ -15,6 +15,7 @@ class Course < ApplicationRecord
 
   accepts_nested_attributes_for :course_subjects, :user_courses,
                                 allow_destroy: true
+  accepts_nested_attributes_for :course_subjects, reject_if: :checked?
 
   validates :name, presence: true,
             length: {minimum: Settings.validates.model.course.min_length,
@@ -51,5 +52,11 @@ class Course < ApplicationRecord
 
   def updated_at_custom
     updated_at.strftime Settings.validates.model.course.date_format
+  end
+
+  private
+
+  def checked? attributes
+    attributes[:subject_id].blank?
   end
 end

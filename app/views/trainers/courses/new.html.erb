@@ -6,6 +6,10 @@
 
 <%= form_with model: @course, url: trainers_courses_path, local: true,
               class: "border rounded p-4", id: "form-course" do |f| %>
+  <div class="p-3 mb-2 font-weight-bold" style="size: 2em">
+    <%= display_error f.object.user_courses.first, :base, t(".error_user_course_subject") %>
+    <%= display_error f.object.course_subjects.first, :base, t(".error_user_course_subject") %>
+  </div>
   <div class="form-row">
     <div class="col-md-8">
       <div class="form-group">
@@ -23,11 +27,16 @@
     <div class="col-md-4 align-self-end">
       <div class="form-group">
         <%= label :course, :image, t("trainers.courses.edit.alt_avatar"), class: "label-required"%>
-        <img class="img-thumbnail" id="img-preview" src="#" style="display: none" />
+        <% if @course.image? %>
+          <%= image_tag @course.image_url, class: "img-thumbnail", id: "img-preview" %>
+        <% else %>
+          <%= image_tag "nil", class: "img-thumbnail", id: "img-preview", style: "display: none" %>
+        <% end %>
         <%= f.file_field :image,
                          accept: Settings.validates.model.course.image.content_type,
                          class: "form-control-file"%>
         <%= display_error f.object, :image, t("trainers.courses.edit.alt_avatar") %>
+        <%= f.hidden_field :image_cache %>
       </div>
     </div>
     <div class="tab-content col-md-12" id="pills-tabContent">

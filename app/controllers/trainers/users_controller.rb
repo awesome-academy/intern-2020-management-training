@@ -1,6 +1,6 @@
 class Trainers::UsersController < TrainersController
   before_action :logged_in_user, :trainer?
-  before_action :get_user, only: %i(show edit update)
+  before_action :get_user, except: %i(index new create)
   before_action :get_data, except: :index
 
   def index
@@ -36,6 +36,15 @@ class Trainers::UsersController < TrainersController
       flash.now[:danger] = t "notice.error"
       render :edit
     end
+  end
+
+  def destroy
+    data = if @user.destroy
+             {success: t("notice.success")}
+           else
+             {error: t("notice.error")}
+           end
+    render json: data
   end
 
   private

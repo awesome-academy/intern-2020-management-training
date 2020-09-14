@@ -1,6 +1,7 @@
 class Trainers::CoursesController < TrainersController
   before_action :logged_in_user, :trainer?
   before_action :get_course, except: %i(index create new)
+  before_action :load_data, only: %i(show edit update)
 
   def index
     @courses = Course.order_by_start_date.order_by_status
@@ -29,17 +30,9 @@ class Trainers::CoursesController < TrainersController
     @subjects = @topics.first.subjects
   end
 
-  def edit
-    @subjects = @course.subjects.order_priority.page(params[:page])
-                       .per Settings.pagination.subject.default
-    @users = @course.users.page(params[:page])
-                    .per Settings.pagination.subject.default
-  end
+  def edit; end
 
-  def show
-    @subjects = @course.subjects.order_priority
-    @users = @course.users
-  end
+  def show; end
 
   def update
     if @course.update course_params
@@ -72,5 +65,10 @@ class Trainers::CoursesController < TrainersController
 
     flash[:danger] = t "notice.error"
     redirect_to trainers_courses_path
+  end
+
+  def load_data
+    @subjects = @course.subjects.order_priority
+    @users = @course.users
   end
 end

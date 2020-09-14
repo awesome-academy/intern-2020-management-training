@@ -3,7 +3,7 @@ class Trainers::UserCoursesController < TrainersController
   before_action :get_course_user, only: :show
 
   def show
-    @subjects = Subject.by_course params[:course_id]
+    @subjects = Subject.by_course(params[:course_id]).order_priority
   end
 
   private

@@ -267,4 +267,38 @@ $(document).on('turbolinks:load', function () {
     });
   }
   // End search user
+
+  // Delete user
+  $('.delete-user').on('click', function(event) {
+    event.preventDefault();
+    let url = $(this).data('url');
+    let trParent = $(this).parents('tr');
+    Swal.fire({
+      title: I18n.t('js.trainer.subject.d_confirm_title'),
+      text: I18n.t('js.trainer.subject.d_confirm_text'),
+      showCancelButton: true,
+      icon: 'warning',
+      confirmButtonText: I18n.t('js.trainer.subject.d_btn_confirm'),
+      cancelButtonText: I18n.t('js.trainer.subject.d_btn_cancel')
+    }).then((result) => {
+      if (result.value) {
+        $.ajax({
+          url: url,
+          type: 'delete',
+          success: function(data) {
+            if (data.success) {
+              customAlert('sc');
+              trParent.remove();
+            } else {
+              customAlert('err');
+            }
+          },
+          error: function(data) {
+            customAlert('err');
+          }
+        });
+      }
+    })
+  });
+  // End delete user
 });

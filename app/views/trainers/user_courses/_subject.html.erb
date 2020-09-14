@@ -8,12 +8,14 @@
       <i class="fas fa-arrow-circle-right mx-2"></i>
       <%= item.ended_at item.course_subjects.first.started_at %>
     </div>
-    <h3 class="mt-0"><%= item.name %></h3>
+    <h4 class="mt-0 font-weight-bold">
+      <%= link_to item.name, trainers_course_subject_course_path(course_id, item.id)  %>
+    </h4>
     <p><i class="fas fa-clock"></i> <%= item.duration %> <%= t "trainers.courses.show.days" %></p>
     <p><%= item.note %></p>
     <p>
-      <button class="btn btn-outline-info w-25" type="button" data-toggle="collapse" data-target="#subject<%= item.id %>" aria-expanded="false" aria-controls="subject<%= item.id %>">
-        <%= t "trainers.user_courses.show.task" %>
+      <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#subject<%= item.id %>" aria-expanded="false" aria-controls="subject<%= item.id %>">
+        <%= t "trainers.user_courses.show.task" %> <i class="fas fa-sort-down"></i>
       </button>
     </p>
     <div class="task-list">

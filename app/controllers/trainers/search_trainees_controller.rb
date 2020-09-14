@@ -3,7 +3,7 @@ class Trainers::SearchTraineesController < TrainersController
     query = params[:query]
     return respond_error if query.blank?
 
-    @users = User.by_name(query).exclude_ids params[:ids]
+    @users = User.by_name(query).role_trainee.exclude_ids params[:ids]
     @users = @users.page(params[:page]).per Settings.pagination.subject.default
     respond_to :js
   end

@@ -1,4 +1,6 @@
 class CourseSubject < ApplicationRecord
+  after_create :save_user_course_subject
+
   belongs_to :subject
   belongs_to :course
   has_many :user_course_subjects, dependent: :destroy
@@ -22,5 +24,32 @@ class CourseSubject < ApplicationRecord
 
   def find_user_course_subject_by_user user_id
     user_course_subjects.by_user(user_id).first
+  end
+
+  private
+
+  def save_user_course_subject
+    return unless user_courses = load_user_courses
+
+    user_courses.each do |user_course|
+      next if user_course.id.blank?
+
+      data = {user_id: user_course.user_id, course_subject_id: id,
+              user_course_id: user_course.id,
+              status: Settings.progress_course.percent.zero,
+              progress: Settings.progress_course.percent.zero,
+              deadline: Time.zone.now}
+
+      error_user_course_subject unless UserCourseSubject.new(data).save
+    end
+  end
+
+  def error_user_course_subject
+    errors.add :base, :user_course_subject, message: I18n.t("notice.error")
+    raise ActiveRecord::Rollback
+  end
+
+  def load_user_courses
+    course.user_courses.presence
   end
 end

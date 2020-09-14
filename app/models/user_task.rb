@@ -3,8 +3,8 @@ class UserTask < ApplicationRecord
   belongs_to :task
   belongs_to :user_course_subject
 
-  before_save :edit_status_param
-  after_save :update_subject_progress
+  before_update :edit_status_param
+  after_update :update_subject_progress
 
   validates :task_id, presence: true
   validates :user_course_subject_id, presence: true

@@ -1,6 +1,9 @@
 class UserCourseSubject < ApplicationRecord
+  after_create :save_user_task
+
   belongs_to :course_subject
   belongs_to :user
+  belongs_to :user_course
   has_many :user_tasks, dependent: :destroy
 
   delegate :course_id, to: :course_subject,
@@ -10,11 +13,11 @@ class UserCourseSubject < ApplicationRecord
 
   scope :status, ->(status){where status: status if status.present?}
   scope :task_done, (lambda do |course_id|
-    select("COUNT(user_tasks.user_course_subject_id) AS task_done,
+    select("COUNT(user_tasks.user_course_subject_id) AS task_done_user,
            	course_subjects.subject_id")
         .joins(:course_subject, :user_tasks)
         .where(user_tasks: {status: Settings.validates.model.user_task.done},
-               course_subjects: {id: course_id})
+               course_subjects: {course_id: course_id})
         .group("user_tasks.user_course_subject_id")
         .order(priority: :asc)
   end)
@@ -27,4 +30,21 @@ class UserCourseSubject < ApplicationRecord
   scope :by_subject, (lambda do |subject_id|
     where course_subjects: {subject_id: subject_id} if subject_id.present?
   end)
+
+  private
+
+  def save_user_task
+    task_ids = course_subject.subject.task_ids
+    error_user_task if task_ids.blank?
+    task_ids.each do |task_id|
+      data = {task_id: task_id, user_course_subject_id: id,
+              status: Settings.progress_course.percent.zero}
+      error_user_task unless UserTask.new(data).save
+    end
+  end
+
+  def error_user_task
+    errors.add :base, :user_task, message: I18n.t("notice.error")
+    raise ActiveRecord::Rollback
+  end
 end
