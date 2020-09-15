@@ -98,3 +98,4 @@ status_text:
   done: "done"
 progress:
   zero: 0
+duration_time: 0

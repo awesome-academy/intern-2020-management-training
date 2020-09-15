@@ -33,7 +33,7 @@ class User < ApplicationRecord
             length: {minimum: Settings.validates.model.user.pwd.min_length},
             allow_nil: true
   validates :address,
-            length: {maximum: Settings.validates.model.user.name.max_length}
+            length: {maximum: Settings.validates.model.user.email.max_length}
   validates :program_language_id, :position_id, :department_id, :school_id,
             :office_id, :date_of_birth, presence: true
   validate :birthday_cannot_be_in_future, :birthday_old_men
