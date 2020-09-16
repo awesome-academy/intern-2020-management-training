@@ -44,6 +44,7 @@ class Course < ApplicationRecord
   end
 
   def ended_at duration
+    duration = Settings.duration_time if duration.blank?
     ended_at = created_at + duration.to_int.days
     ended_at.strftime Settings.validates.model.course.date_format
   end
