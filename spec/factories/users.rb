@@ -5,7 +5,7 @@ FactoryBot.define do
     password {"123456"}
     date_of_birth {Faker::Date.between(from: "1970-09-23", to: "2010-08-25")}
     staff_type {Faker::Job.employment_type}
-    address {Faker::Address.full_address}
+    address {Faker::Address.street_address}
     program_language {FactoryBot.create :program_language}
     position {FactoryBot.create :position}
     department {FactoryBot.create :department}
