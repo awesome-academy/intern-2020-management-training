@@ -33,6 +33,7 @@ group :development, :test do
   gem "bundle-audit"
   gem "factory_bot_rails"
   gem "pry"
+  gem "rails-controller-testing"
   gem "rails_best_practices"
   gem "rspec-rails", "~> 4.0.1"
   gem "rubocop", "~> 0.74.0", require: false
@@ -48,10 +49,11 @@ group :development do
 end
 
 group :test do
-  gem "database_cleaner-active_record"
   gem "capybara", ">= 2.15"
+  gem "database_cleaner-active_record"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+  gem "simplecov"
   gem "webdrivers"
 end
 
