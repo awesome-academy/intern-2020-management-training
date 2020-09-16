@@ -21,7 +21,7 @@ class Subject < ApplicationRecord
   accepts_nested_attributes_for :tasks, allow_destroy: true,
                                 reject_if: :reject_tasks?
 
-  validates :name, presence: true, uniqueness: true,
+  validates :name, presence: true, uniqueness: {case_sensitive: true},
             length: {
               minimum: Settings.validates.model.subject.name.min_length,
               maximum: Settings.validates.model.subject.name.max_length
@@ -54,11 +54,15 @@ class Subject < ApplicationRecord
   end
 
   def ended_at started_at
+    return if started_at.blank?
+
     ended_at = Time.zone.strptime(started_at, "%d-%m-%Y") + duration.to_int.days
     ended_at.strftime Settings.validates.model.course.date_format
   end
 
   def find_course_subject_by_course course_id
+    return if course_id.blank?
+
     course_subjects.by_course(course_id).first
   end
 
