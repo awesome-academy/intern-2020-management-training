@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :position do
-    name {Faker::Job.unique.position}
+    name {Faker::Job.position}
   end
 end
