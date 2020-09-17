@@ -4,8 +4,13 @@
       <%= item.name %>
     <% end %>
   </th>
-  <% item.task_done(course.id).each do |task| %>
-    <% task_percent = progress_color task.task_done, task.subject_id %>
-    <td class="text-light text-center border-right <%= task_percent[:color] %>"><%= task_percent[:percent] %>%</td>
+  <% course.subjects.order_priority.ids.each do |subject_id| %>
+    <% task = item.task_done(course.id).by_subject(subject_id).first %>
+      <% if task.present? %>
+        <% task_percent = progress_color task.task_done_user, task.subject_id %>
+        <td class="text-light text-center border-right <%= task_percent[:color] %>"><%= task_percent[:percent] %>%</td>
+      <% else %>
+        <td class="text-light text-center border-right bg-dark"><%= Settings.progress.zero %>%</td>
+      <% end %>
   <% end %>
 </tr>

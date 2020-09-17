@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_032139) do
+ActiveRecord::Schema.define(version: 2020_09_17_022838) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -34,15 +34,14 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   end
 
   create_table "course_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
-    t.integer "subject_id"
-    t.integer "course_id"
+    t.bigint "course_id", null: false
+    t.bigint "subject_id", null: false
     t.integer "status"
     t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "priority", default: 0
+    t.integer "priority"
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
-    t.index ["subject_id", "course_id"], name: "index_course_subjects_on_subject_id_and_course_id", unique: true
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
   end
 
@@ -135,12 +134,12 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   create_table "user_course_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.date "deadline"
     t.integer "status"
-    t.integer "course_subject_id"
-    t.integer "user_id"
+    t.bigint "user_id", null: false
+    t.bigint "course_subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "progress", default: 0.0
-    t.index ["course_subject_id", "user_id"], name: "index_user_course_subjects_on_course_subject_id_and_user_id", unique: true
+    t.integer "user_course_id"
     t.index ["course_subject_id"], name: "index_user_course_subjects_on_course_subject_id"
     t.index ["user_id"], name: "index_user_course_subjects_on_user_id"
   end
@@ -148,24 +147,22 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   create_table "user_courses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer "user_id"
-    t.integer "course_id"
+    t.bigint "course_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "progress", default: 0.0
     t.index ["course_id"], name: "index_user_courses_on_course_id"
-    t.index ["user_id", "course_id"], name: "index_user_courses_on_user_id_and_course_id", unique: true
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
   create_table "user_tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "status"
-    t.integer "task_id"
-    t.integer "user_course_subject_id"
+    t.bigint "task_id", null: false
+    t.bigint "user_course_subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["task_id"], name: "index_user_tasks_on_task_id"
-    t.index ["user_course_subject_id", "task_id"], name: "index_user_tasks_on_user_course_subject_id_and_task_id", unique: true
     t.index ["user_course_subject_id"], name: "index_user_tasks_on_user_course_subject_id"
   end
 
@@ -196,11 +193,19 @@ ActiveRecord::Schema.define(version: 2020_09_04_032139) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "course_subjects", "courses"
+  add_foreign_key "course_subjects", "subjects"
   add_foreign_key "reports", "courses"
   add_foreign_key "reports", "users"
   add_foreign_key "tasks", "subjects"
   add_foreign_key "topic_subjects", "subjects"
   add_foreign_key "topic_subjects", "topics"
+  add_foreign_key "user_course_subjects", "course_subjects"
+  add_foreign_key "user_course_subjects", "users"
+  add_foreign_key "user_courses", "courses"
+  add_foreign_key "user_courses", "users"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "user_course_subjects"
   add_foreign_key "users", "departments"
   add_foreign_key "users", "offices"
   add_foreign_key "users", "positions"

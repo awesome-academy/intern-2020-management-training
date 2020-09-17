@@ -25,6 +25,7 @@
         <%= f.label :address, t("trainers.users.edit.label_address"), class: "font-weight-bold" %>
         <%= f.text_field :address, class: "form-control",
                          placeholder: t("trainers.users.edit.label_address")%>
+        <%= display_error f.object, :address, t("trainers.users.edit.label_address") %>
       </div>
       <div class="form-group">
         <%= f.label :program_language_id, t("trainers.users.edit.label_language"), class: "font-weight-bold label-required" %>
