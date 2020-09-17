@@ -1,7 +1,8 @@
 class Trainers::SubjectsController < TrainersController
-  before_action :logged_in_user, only: %i(index create new)
+  before_action :logged_in_user, :trainer?
   before_action :load_subject, except: %i(index new create)
   before_action :in_active_course, only: :destroy
+  protect_from_forgery only: %i(create new)
 
   def index
     @subjects = if params[:ids].present?
@@ -30,15 +31,7 @@ class Trainers::SubjectsController < TrainersController
   end
 
   def show
-    if @subject.blank?
-      respond_to do |format|
-        format.json do
-          render json: {err: true}
-        end
-      end
-    else
-      respond_to :js, :html
-    end
+    respond_to :js, :html
   end
 
   def edit
@@ -78,7 +71,7 @@ class Trainers::SubjectsController < TrainersController
     respond_to do |format|
       format.html
       format.json do
-        render json: {err: @subject}
+        render json: {err: true}
       end
       format.js
     end
