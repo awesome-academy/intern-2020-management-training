@@ -14,10 +14,7 @@ RSpec.describe Trainers::SubjectsController, type: :controller do
   end
   let(:invalid_params) {FactoryBot.attributes_for :subject, name: nil}
 
-  before do
-    login user
-    trainer?
-  end
+  before {login user}
 
   describe "GET #index" do
     context "with valid param: ids to search" do

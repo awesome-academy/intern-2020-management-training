@@ -1,5 +1,5 @@
 class Trainers::CoursesController < TrainersController
-  before_action :logged_in_user, :trainer?
+  before_action :authenticate_user!, :trainer?
   before_action :get_course, except: %i(index create new)
   before_action :load_data, only: %i(show edit update)
 

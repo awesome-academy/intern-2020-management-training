@@ -169,7 +169,6 @@ RSpec.describe Subject, type: :model do
 
     context "with valid param" do
       let!(:user) {FactoryBot.create :user, id: 1}
-      let!(:user_course) {FactoryBot.create :user_course, user: user, course: course}
       let!(:ucs) {FactoryBot.create :user_course_subject, user: user, course_subject: cs_1, progress: 13.13}
 
       it "subject progress of user in the course" do

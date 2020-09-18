@@ -255,6 +255,7 @@ en:
   notice:
     error: "Something is wrong!"
     success: "Success"
+    email: "is not an email"
   model:
     subject:
       val_img_type: "Uploaded file is not a valid image. Only: .jpeg, .png, .gif"
