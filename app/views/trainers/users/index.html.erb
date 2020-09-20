@@ -8,6 +8,10 @@
       <%= t ".btn_add" %>
       <%= icon "fas", "plus" %>
     <% end %>
+    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
+      <%= t ".btn_add_mul_user" %>
+      <%= icon "fas", "plus" %>
+    </button>
   </div>
 </div>
 <div class="form-group">
@@ -57,4 +61,33 @@
     </div>
   </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <%= form_for :import_user, url: trainers_import_users_path do |f| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <%= t ".btn_add_mul_user" %>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.label :file, t(".label_file") ,class: "label-required" %>
+            <%= f.file_field :file, class: "form-control-file" %>
+            <small><%= t ".label_file_notice" %></small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+            <%= t ".btn_close" %>
+          </button>
+          <%= button_tag t(".btn_add"), class: "btn btn-success btn-sm" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

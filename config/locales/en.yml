@@ -185,6 +185,10 @@ en:
         label_address: "Address"
         label_user: "users"
         btn_add: "New user"
+        btn_add_mul_user: "Add multiple user"
+        btn_close: "Close"
+        label_file_notice: "Only xlsx"
+        label_file: "File data"
       new:
         title: "New user"
         label_name: "Name"

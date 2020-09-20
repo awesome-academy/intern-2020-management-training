@@ -99,3 +99,6 @@ status_text:
 progress:
   zero: 0
 duration_time: 0
+sidekiq:
+  retry: 2
+  delay_time: 1
