@@ -1,5 +1,5 @@
 class Trainee::CoursesController < TraineesController
-  before_action :logged_in_user, :store_location, only: :index
+  before_action :authenticate_user!, :store_location, only: :index
   before_action :trainee?
   before_action :get_course, only: :show
 

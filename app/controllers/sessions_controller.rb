@@ -1,19 +1,15 @@
-class SessionsController < ApplicationController
-  def new; end
+class SessionsController < Devise::SessionsController
+  private
 
-  def create
-    @user = User.find_by email: params[:session][:email].downcase
-    if @user&.authenticate params[:session][:password]
-      log_in @user
-      redirect_to trainer? ? trainers_root_path : trainee_root_path
+  def after_sign_in_path_for resource
+    if resource.is_a?(User) && resource.role_trainer?
+      trainers_courses_path
     else
-      flash[:danger] = t "notice.error"
-      redirect_to login_url
+      trainee_courses_path
     end
   end
 
-  def destroy
-    log_out if logged_in?
-    redirect_to login_url
+  def after_sign_out_path_for _resource
+    new_user_session_path
   end
 end

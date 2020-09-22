@@ -28,10 +28,9 @@ class User < ApplicationRecord
   validates :email, presence: true,
             length: {maximum: Settings.validates.model.user.email.max_length},
             uniqueness: {case_sensitive: false},
-            format: {with: VALID_EMAIL_REGEX}
+            email: true
   validates :password, presence: true,
-            length: {minimum: Settings.validates.model.user.pwd.min_length},
-            allow_nil: true
+            length: {minimum: Settings.validates.model.user.pwd.min_length}
   validates :address,
             length: {maximum: Settings.validates.model.user.email.max_length}
   validates :program_language_id, :position_id, :department_id, :school_id,
@@ -39,6 +38,8 @@ class User < ApplicationRecord
   validate :birthday_cannot_be_in_future, :birthday_old_men
 
   mount_uploader :image, UserUploader
+
+  devise :database_authenticatable, :recoverable, :rememberable
 
   enum role: {trainee: 0, trainer: 1}, _prefix: true
   enum gender: {male: 1, female: 0}, _prefix: true
@@ -48,8 +49,6 @@ class User < ApplicationRecord
   scope :by_course, (lambda do |course_id|
     includes(:courses).where courses: {id: course_id} if course_id.present?
   end)
-
-  has_secure_password
 
   def birthday
     date_of_birth.strftime Settings.validates.model.course.date_format

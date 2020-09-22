@@ -6,10 +6,7 @@ RSpec.describe Trainers::CoursesController, type: :controller do
   let(:valid_param) {FactoryBot.attributes_for :course}
   let(:invalid_param) {FactoryBot.attributes_for :course, name: nil}
 
-  before do
-    login user
-    trainer?
-  end
+  before {login user}
 
   describe "GET #index" do
     let!(:course_two) do

@@ -1,5 +1,5 @@
 class Trainers::SubjectsController < TrainersController
-  before_action :logged_in_user, :trainer?
+  before_action :authenticate_user!, :trainer?
   before_action :load_subject, except: %i(index new create)
   before_action :in_active_course, only: :destroy
   protect_from_forgery only: %i(create new)

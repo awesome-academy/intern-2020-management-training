@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
     root "sessions#new"
 
-    get "login", to: "sessions#new"
-    post "login", to: "sessions#create"
-    delete "logout", to: "sessions#destroy"
-
     namespace :trainers do
       root "subjects#index"
       resources :courses do
@@ -26,5 +22,9 @@ Rails.application.routes.draw do
       end
       resources :user_tasks, only: :update
     end
+
+    devise_for :users,
+               controllers: {sessions: :sessions},
+               path_names: {sign_in: :login, sign_out: :logout}
   end
 end

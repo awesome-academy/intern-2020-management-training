@@ -1,5 +1,5 @@
 class Trainers::SubjectCoursesController < TrainersController
-  before_action :logged_in_user, :trainer?
+  before_action :authenticate_user!, :trainer?
   before_action :get_course_user, only: :show
 
   def show

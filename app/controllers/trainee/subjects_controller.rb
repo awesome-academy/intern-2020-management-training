@@ -1,5 +1,5 @@
 class Trainee::SubjectsController < TraineesController
-  before_action :logged_in_user, :trainee?, :store_location, only: :show
+  before_action :authenticate_user!, :trainee?, :store_location, only: :show
 
   def show
     @course = Course.find_by id: params[:course_id] if params[:course_id]

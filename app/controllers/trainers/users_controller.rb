@@ -1,5 +1,5 @@
 class Trainers::UsersController < TrainersController
-  before_action :logged_in_user, :trainer?
+  before_action :authenticate_user!, :trainer?
   before_action :get_user, except: %i(index new create)
   before_action :get_data, except: :index
 
