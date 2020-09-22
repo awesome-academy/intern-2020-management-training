@@ -41,6 +41,9 @@
                   <div class="form-group form-check">
                     <%= f.check_box :remember_me, class: "form-check-input" %>
                     <%= f.label :remember_me, t("sessions.new.label_remember") %>
+                    <% if devise_mapping.recoverable? && [:passwords, :registrations].exclude?(controller_name) %>
+                      <%= link_to t(".label_forgot_pwd"), new_password_path(resource_name), class: "float-right" %>
+                    <% end %>
                   </div>
                 <% end %>
                 <%= f.submit t("sessions.new.label_submit"), class: "btn btn-primary btn-sm btn-block" %>
