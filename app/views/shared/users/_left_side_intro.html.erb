@@ -1,0 +1,23 @@
+<div class="col-md-6">
+  <div class="col-md-12">
+    <div class="logo">
+      <%= link_to root_path, class: "p-0" do %>
+        <%= image_tag Settings.app.logo, class: "d-inline-block align-top sun-logo-login" %>
+        <span><%= t "sessions.new.training" %></span>
+      <% end %>
+    </div>
+    <div>
+      <h5 class="mt-4 font-weight-bold text-uppercase">
+        <%= t "sessions.new.slogan" %>
+      </h5>
+      <blockquote class="blockquote mt-4">
+        <h4 class="mb-0 text-muted font-italic">
+          <%= t "sessions.new.quote" %>
+        </h4>
+        <footer class="blockquote-footer mt-3">
+          <%= t "sessions.new.ceo" %>
+        </footer>
+      </blockquote>
+    </div>
+  </div>
+</div>

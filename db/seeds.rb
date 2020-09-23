@@ -101,7 +101,7 @@ end
     department_id: Faker::Number.between(from: 1, to: 3),
     school_id: Faker::Number.between(from: 1, to: 10),
     office_id: Faker::Number.between(from: 1, to: 3),
-    gender: Faker::Gender.type,
+    gender: Faker::Number.between(from: 0, to: 1),
     role: role
   )
 end
@@ -116,7 +116,7 @@ User.all.each do |user|
       progress: Faker::Number.decimal(l_digits: 2)
     )
   end
-  
+
   user.courses.each do |course|
     course.course_subjects.each do |cs|
       UserCourseSubject.where(user_id: user.id, course_subject_id: cs.id).first_or_create(
@@ -126,7 +126,7 @@ User.all.each do |user|
       )
     end
     count = Faker::Number.between(from: 3, to: 6)
-    (1..count).each do 
+    (1..count).each do
       course.reports.create!(
         user_id: user.id,
         date_of_report: Faker::Date.between(from: '2019-11-23', to: '2020-01-25'),
