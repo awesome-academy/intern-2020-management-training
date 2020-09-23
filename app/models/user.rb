@@ -30,7 +30,8 @@ class User < ApplicationRecord
             uniqueness: {case_sensitive: false},
             email: true
   validates :password, presence: true,
-            length: {minimum: Settings.validates.model.user.pwd.min_length}
+            length: {minimum: Settings.validates.model.user.pwd.min_length},
+            confirmation: true
   validates :address,
             length: {maximum: Settings.validates.model.user.email.max_length}
   validates :program_language_id, :position_id, :department_id, :school_id,
@@ -39,7 +40,7 @@ class User < ApplicationRecord
 
   mount_uploader :image, UserUploader
 
-  devise :database_authenticatable, :recoverable, :rememberable
+  devise :database_authenticatable, :recoverable, :rememberable, :registerable
 
   enum role: {trainee: 0, trainer: 1}, _prefix: true
   enum gender: {male: 1, female: 0}, _prefix: true

@@ -8,6 +8,7 @@ en:
       user_name: "Nguyen Trung Anh"
       profile: "Profile"
       settings: "Settings"
+      change_pws: "Change password"
       logout: "Log out"
       signin: "Sign in"
       example_notify_content: "This is a wider card with supporting text below as"
@@ -37,6 +38,7 @@ en:
       label_password: "Password"
       label_submit: "Submit"
       label_remember: "Remember"
+      label_forgot_pwd: "Forgot your password?"
       slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
       quote: "\"We are obsessed with making awesome things with awesome people\"."
       ceo: "Sun* Inc. CEO – Taihei Kobayashi"
@@ -86,6 +88,7 @@ en:
         modal_edit_title: "Edit subject"
     courses:
       index:
+        title: "Course"
         sub_title: "All courses"
         no_record: "You have 0 courses!"
         btn_add: "Add new"
@@ -200,6 +203,7 @@ en:
         error_birthday_in_oldmen: "Are you 100 years old"
         label_saving: "Saving"
       show:
+        title: "Profile"
         label_name: "Name"
         label_email: "Email"
         label_birthday: "Birthday"
@@ -217,6 +221,7 @@ en:
         label_info_user: "General information"
         label_info_workplace: "Workspace information"
         label_days: "Days"
+        label_btn_edit: "Edit"
       edit:
         title: "Edit user"
         label_name: "Name"
@@ -435,3 +440,13 @@ en:
     search_placeholder: "Input search ..."
     btn_filter: "Filter"
     filter_option: "Filter options"
+  registrations:
+    edit:
+      title: "Edit password"
+      label_password: "Password"
+      label_password_confirmation: "Password confirmation"
+      label_current_password: "Current password"
+      notice_length_pwd: "characters minimum"
+      notice_current_pwd: "We need your current password to confirm your changes"
+      notice_new_password: "have to different current password"
+      label_update: "Update"

@@ -45,13 +45,13 @@
             <span><%= current_user.name %></span>
           </div>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownProfile">
-            <%= link_to root_path, class: "dropdown-item" do %>
+            <%= link_to trainers_user_path(current_user), class: "dropdown-item" do %>
               <%= icon "fas", "user-circle" %>
               <span><%= t ".profile" %></span>
             <% end %>
-            <%= link_to root_path, class: "dropdown-item" do %>
-              <%= icon "fas", "cog" %>
-              <span><%= t ".settings" %></span>
+            <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+              <%= icon "fas", "key" %>
+              <span><%= t ".change_pws" %></span>
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
               <%= icon "fas", "sign-out-alt" %>

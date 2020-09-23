@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|vi/ do
-    root "sessions#new"
+    root "homes#index"
 
     namespace :trainers do
       root "subjects#index"
@@ -24,7 +24,10 @@ Rails.application.routes.draw do
     end
 
     devise_for :users,
-               controllers: {sessions: :sessions},
-               path_names: {sign_in: :login, sign_out: :logout}
+               controllers: {
+                 sessions: :sessions,
+                 registrations: :registrations
+               },
+               path_names: {sign_in: :login, sign_out: :logout, edit: :edit_password}
   end
 end
