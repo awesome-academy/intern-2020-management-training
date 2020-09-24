@@ -1,8 +1,9 @@
 class Trainers::SubjectsController < TrainersController
-  before_action :authenticate_user!, :trainer?
+  before_action :authenticate_user!
   before_action :load_subject, except: %i(index new create)
   before_action :in_active_course, only: :destroy
   protect_from_forgery only: %i(create new)
+  load_and_authorize_resource
 
   def index
     @subjects = if params[:ids].present?

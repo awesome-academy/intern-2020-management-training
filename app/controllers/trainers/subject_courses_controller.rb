@@ -1,6 +1,7 @@
 class Trainers::SubjectCoursesController < TrainersController
-  before_action :authenticate_user!, :trainer?
+  before_action :authenticate_user!
   before_action :get_course_user, only: :show
+  load_and_authorize_resource
 
   def show
     @users = User.by_course params[:course_id]

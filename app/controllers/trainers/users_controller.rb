@@ -1,7 +1,8 @@
 class Trainers::UsersController < TrainersController
-  before_action :authenticate_user!, :trainer?
+  before_action :authenticate_user!
   before_action :get_user, except: %i(index new create)
   before_action :get_data, except: :index
+  load_and_authorize_resource
 
   def index
     @users = User.by_name(params[:query]).page(params[:page])

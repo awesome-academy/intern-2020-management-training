@@ -1,7 +1,8 @@
 class Trainers::CoursesController < TrainersController
-  before_action :authenticate_user!, :trainer?
+  before_action :authenticate_user!
   before_action :get_course, except: %i(index create new)
   before_action :load_data, only: %i(show edit update)
+  load_and_authorize_resource
 
   def index
     @courses = Course.order_by_start_date.order_by_status
