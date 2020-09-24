@@ -1,10 +1,7 @@
-<% if object.errors.any? %>
+<% if resource.errors.any? %>
   <div id="error_explanation">
-    <div class="alert alert-danger">
-      <%= t "flash.error", count: object.errors.size %>.
-    </div>
-    <ul>
-      <% object.errors.full_messages.each do |msg| %>
+    <ul class="list-unstyled text-danger">
+      <% resource.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>

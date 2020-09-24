@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     devise_for :users,
                controllers: {
                  sessions: :sessions,
-                 registrations: :registrations
+                 registrations: :registrations,
+                 passwords: :passwords
                },
                path_names: {sign_in: :login, sign_out: :logout, edit: :edit_password}
   end

@@ -42,6 +42,7 @@ en:
       slogan: "JOIN US & MAKE AWESOME THINGS THAT MATTER"
       quote: "\"We are obsessed with making awesome things with awesome people\"."
       ceo: "Sun* Inc. CEO – Taihei Kobayashi"
+      forget_pwd: "Forgot your password?"
   trainers:
     index:
       title: "Trainers index"
@@ -257,6 +258,20 @@ en:
         return: "Return to course"
         result: "results"
         label_user: "users"
+  users:
+    passwords:
+      new:
+        reset_title: "Reset password"
+        back_login: "Back to log in"
+      edit:
+        change_pwd: "Change password"
+        password_confirmation: "Confirm new password"
+        password: "New password"
+        minimum_length: "characters minimum"
+        edit_reset_title: "Change your password"
+        back_login: "Back to log in"
+        label_password: "Password"
+        label_password_confirm: "Password confirm"
   notice:
     error: "Something is wrong!"
     success: "Success"
@@ -450,3 +465,9 @@ en:
       notice_current_pwd: "We need your current password to confirm your changes"
       notice_new_password: "have to different current password"
       label_update: "Update"
+    users:
+      left_side_intro:
+        edit_reset_title: "Change your password"
+  mailers:
+    user_mailer:
+      welcome: "Welcome to the New Site"

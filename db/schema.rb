@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_014506) do
+ActiveRecord::Schema.define(version: 2020_09_20_124925) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -173,7 +173,6 @@ ActiveRecord::Schema.define(version: 2020_09_18_014506) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
-    t.string "password_digest"
     t.datetime "date_of_birth"
     t.integer "staff_type"
     t.string "address"

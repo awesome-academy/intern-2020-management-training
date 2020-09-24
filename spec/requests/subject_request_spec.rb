@@ -173,8 +173,8 @@ RSpec.describe Trainers::SubjectsController, type: :controller do
     end
 
     context "cant delete because of belonging to active course" do
-      let!(:c1) {FactoryBot.create :course}
-      let!(:cs_1) {FactoryBot.create :course_subject, course: c1, subject: subject_1, status: "inprogress"}
+      let!(:course_1) {FactoryBot.create :course}
+      let!(:course_subject_1) {FactoryBot.create :course_subject, course: course_1, subject: subject_1, status: "inprogress"}
       before {delete :destroy, params: {id: subject_1.id}, format: :json}
 
       it "delete failed" do

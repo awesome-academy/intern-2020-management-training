@@ -14,7 +14,6 @@ class Course < ApplicationRecord
   has_many :reports, dependent: :destroy
 
   accepts_nested_attributes_for :user_courses, allow_destroy: true
-
   accepts_nested_attributes_for :course_subjects, allow_destroy: true,
                                 reject_if: :checked?
 
