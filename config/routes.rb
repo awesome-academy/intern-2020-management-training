@@ -30,7 +30,7 @@ Rails.application.routes.draw do
                controllers: {
                  sessions: :sessions,
                  registrations: :registrations,
-                 passwords: :passwords
+                 passwords: "users/passwords"
                },
                path_names: {sign_in: :login, sign_out: :logout, edit: :edit_password}
   end
