@@ -102,3 +102,4 @@ duration_time: 0
 sidekiq:
   retry: 2
   delay_time: 1
+  wait: 30

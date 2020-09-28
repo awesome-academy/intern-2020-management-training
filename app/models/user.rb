@@ -4,9 +4,6 @@ class User < ApplicationRecord
     image password_confirmation).freeze
   VALID_EMAIL_REGEX = Settings.REGEX.model.user.email
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
   has_many :user_courses, dependent: :destroy
   has_many :courses, through: :user_courses
   has_many :user_course_subjects, dependent: :destroy
@@ -41,9 +38,8 @@ class User < ApplicationRecord
             :office_id, :date_of_birth, presence: true
   validate :birthday_cannot_be_in_future, :birthday_old_men
 
-  mount_uploader :image, UserUploader
-
-  devise :database_authenticatable, :recoverable, :rememberable, :registerable
+  devise :database_authenticatable, :rememberable, :validatable, :registerable,
+         :async, :recoverable
 
   enum role: {trainee: 0, trainer: 1}, _prefix: true
   enum gender: {male: 1, female: 0}, _prefix: true
