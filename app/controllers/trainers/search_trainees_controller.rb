@@ -1,4 +1,7 @@
 class Trainers::SearchTraineesController < TrainersController
+  before_action :authenticate_user!
+  load_and_authorize_resource
+
   def index
     query = params[:query]
     return respond_error if query.blank?

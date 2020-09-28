@@ -34,4 +34,5 @@ Rails.application.routes.draw do
                },
                path_names: {sign_in: :login, sign_out: :logout, edit: :edit_password}
   end
+  match '*unmatched', to: 'application#rescue_404_exception', via: :all
 end
