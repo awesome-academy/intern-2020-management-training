@@ -17,61 +17,10 @@
       <span><%= t "layouts.side_bar.subject" %></span>
     <% end %>
   </li>
-  <li class="nav-item text-truncate">
-    <%= link_to root_path, class: "nav-link" do %>
-      <%= icon "fas", "calendar-alt" %>
-      <span><%= t "layouts.side_bar.report" %></span>
-    <% end %>
-  </li>
-  <li class="nav-item">
-    <%= link_to root_path, class: "nav-link" do %>
-      <%= icon "fas", "archive" %>
-      <span><%= t "layouts.side_bar.topic" %></span>
-    <% end %>
-  </li>
   <li class="nav-item">
     <%= link_to trainers_users_path, class: "nav-link" do %>
       <%= icon "fas", "users" %>
       <span><%= t "layouts.side_bar.users" %></span>
     <% end %>
-  </li>
-  <li class="nav-item">
-    <div data-toggle="collapse" href="#collapse1" aria-expanded="false" class="nav-link text-truncate">
-      <%= icon "fas", "th-large" %>
-      <span><%= t "layouts.side_bar.data" %></span>
-      <%= icon "fas", "angle-down float-right" %>
-    </div>
-    <ul class="collapse multi-collapse list-unstyled nav" id="collapse1">
-      <li class="nav-item w-100">
-        <%= link_to root_path, class: "dropdown-item" do %>
-          <%= icon "fas", "angle-right" %>
-          <span><%= t "layouts.side_bar.program_languages" %></span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to root_path, class: "dropdown-item" do %>
-          <%= icon "fas", "angle-right" %>
-          <span><%= t "layouts.side_bar.departments" %></span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to root_path, class: "dropdown-item" do %>
-          <%= icon "fas", "angle-right" %>
-          <span><%= t "layouts.side_bar.schools" %></span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to root_path, class: "dropdown-item" do %>
-          <%= icon "fas", "angle-right" %>
-          <span><%= t "layouts.side_bar.positions" %></span>
-        <% end %>
-      </li>
-      <li class="nav-item w-100">
-        <%= link_to root_path, class: "dropdown-item" do %>
-          <%= icon "fas", "angle-right" %>
-          <span><%= t "layouts.side_bar.offices" %></span>
-        <% end %>
-      </li>
-    </ul>
   </li>
 </ul>

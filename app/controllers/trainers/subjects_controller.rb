@@ -9,7 +9,7 @@ class Trainers::SubjectsController < TrainersController
     @q = Subject.tasks_to(tasks_size_max).tasks_from(tasks_size_min)
                 .ransack params[:q], auth_object: set_ransack_auth_object
     @status = Course.statuses
-    @subjects = if params[:ids].present?
+    @subjects = if params[:ids].present? || params[:query].present?
                   load_subject_for_search
                 else
                   ransack_search

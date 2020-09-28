@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  after_save :update_timelife_course_subject
+
   COURSE_PARAMS_PERMIT = [:name, :note, :image, :image_cache,
                           course_subjects_attributes: [:id, :subject_id,
                                                        :priority, :_destroy],
@@ -58,5 +60,22 @@ class Course < ApplicationRecord
 
   def checked? attributes
     attributes[:subject_id].blank?
+  end
+
+  def update_timelife_course_subject
+    start_date ||= created_at
+    course_subjects.order_by_priority.each do |course_subject|
+      end_date = start_date + course_subject.subject.duration.days
+      course_subject.start_date = start_date
+      course_subject.end_date = end_date
+      error_course_subject unless course_subject.save
+
+      start_date = end_date
+    end
+  end
+
+  def error_course_subject
+    errors.add :base, :course_subject, message: I18n.t("notice.error")
+    raise ActiveRecord::Rollback
   end
 end

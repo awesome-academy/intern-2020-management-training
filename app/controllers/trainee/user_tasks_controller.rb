@@ -2,7 +2,7 @@ class Trainee::UserTasksController < TraineesController
   before_action :authenticate_user!, :store_location,
                 :find_user_task_by_id, only: :update
 
-  load_and_authorize_resource
+  authorize_resource User
 
   def update
     @course_id = @user_task.user_course_subject.cs_course_id

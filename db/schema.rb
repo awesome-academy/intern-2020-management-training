@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_124925) do
+ActiveRecord::Schema.define(version: 2020_09_30_013245) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 2020_09_20_124925) do
   create_table "course_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.integer "subject_id"
     t.integer "course_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "start_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "priority", default: 0
+    t.datetime "end_date"
     t.index ["course_id"], name: "index_course_subjects_on_course_id"
     t.index ["subject_id", "course_id"], name: "index_course_subjects_on_subject_id_and_course_id", unique: true
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_124925) do
     t.string "name", null: false
     t.date "start_date"
     t.date "end_date"
-    t.integer "status"
+    t.integer "status", default: 3
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "note"

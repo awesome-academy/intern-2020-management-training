@@ -9,10 +9,11 @@
       <%= current_user.name %>
     </h4>
     <div class="subject-time font-weight-bold">
+      <% course_subject = subject.course_subjects.by_course_and_subject course.id, subject.id %>
       <%= icon "far", "clock" %>
-      <%= course.start_date if course.start_date %>
+      <%= course_subject.started_at %>
       <%= icon "fas", "long-arrow-alt-right" %>
-      <span class="end-date"><%=  %></span>
+      <span class="end-date"><%= course_subject.ended_at %></span>
       <%= t ".expected" %>
     </div>
     <div class="lastest-updated">
