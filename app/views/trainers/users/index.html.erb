@@ -14,30 +14,72 @@
     </button>
   </div>
 </div>
-<div class="form-group">
-  <div class="row">
-    <div class="col-4">
-      <%= text_field_tag "query", "", class: "form-control",
-                         id: "input-search-user",
-                         placeholder: t(".placeholder_search"),
-                         maxlength: Settings.validates.model.course.max_length,
-                         data: {url: trainers_users_path} %>
+<%= search_form_for @q, url: trainers_users_path, remote: true, class: "mb-2", id: "search-form" do |f| %>
+  <div class="form-row">
+    <div class="form-group col-3">
+      <%= f.search_field :name_or_email_cont, placeholder: t(".placeholder_search"),class: "form-control" %>
     </div>
-    <button type="button" class="btn btn-success" id="search-user">
-      <i class="fas fa-search text-light"></i>
-      <%= t ".label_search" %>
-    </button>
+    <div class="form-group col-3">
+      <%= f.search_field :courses_name_cont, placeholder: t(".placeholder_course_name"),class: "form-control" %>
+    </div>
+    <div class="form-group col-3">
+      <a class="btn btn-primary" data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
+        <i class="fas fa-filter"></i>
+      </a>
+      <%= button_tag class: "btn btn-success", id: "btn-submit-search" do %>
+        <i class="fas fa-search text-light"></i>
+        <%= t ".label_search" %>
+      <% end %>
+    </div>
   </div>
-</div>
+  <div class="collapse" id="collapseFilter">
+    <div class="card card-body">
+      <div class="form-row">
+        <div class="form-group col-4">
+          <%= f.label :role_eq, t(".label_role") %>
+          <%= f.select :role_eq, @data[:role].each {|key, value| [key, value]}, {prompt: true}, {class: "form-control form-control-sm"} %>
+        </div>
+        <div class="form-group col-4">
+          <%= f.label :program_language_id_eq, t("trainers.users.edit.label_language") %>
+          <%= f.collection_select :program_language_id_eq, @data[:language], :id, :name, {prompt: true}, {class: "form-control form-control-sm"} %>
+        </div>
+        <div class="form-group col-4">
+          <%= f.label :position_id_eq, t("trainers.users.edit.label_position") %>
+          <%= f.collection_select :position_id_eq, @data[:position], :id, :name, {prompt: true}, {class: "form-control form-control-sm"} %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-4">
+          <%= f.label :department_id_eq, t("trainers.users.edit.label_department") %>
+          <%= f.collection_select :department_id_eq, @data[:department], :id, :name, {prompt: true}, {class: "form-control form-control-sm"} %>
+        </div>
+        <div class="form-group col-4">
+          <%= f.label :office_id_eq, t("trainers.users.edit.label_office") %>
+          <%= f.collection_select :office_id_eq, @data[:office], :id, :name, {prompt: true}, {class: "form-control form-control-sm"} %>
+        </div>
+        <div class="form-group col-4">
+          <%= f.label :gender_eq, t(".label_gender") %>
+          <%= f.select :gender_eq, @data[:gender].each {|key, value| [key, value]}, {prompt: true}, {class: "form-control form-control-sm"} %>
+        </div>
+      </div>
+      <div class="row mt-1 ml-1">
+        <%= button_tag type: "button", class: "btn btn-info btn-sm", id: "reset-form" do %>
+          <i class="fas fa-sync-alt"></i>
+          <%= t ".btn_reset" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 <div class="zui-wrapper">
   <div class="zui-scroller">
     <table class="zui-table table table-hover">
       <thead class="thead-light">
         <tr>
-          <th class="zui-sticky-col"><%= t ".label_name" %></th>
+          <th class="zui-sticky-col"><%= sort_link @q, :name, t(".label_name") %></th>
           <th><%= t ".label_email" %></th>
-          <th><%= t ".label_role" %></th>
-          <th><%= t ".label_gender" %></th>
+          <th><%= sort_link @q, :role, t(".label_role") %></th>
+          <th><%= sort_link @q, :gender, t(".label_gender") %></th>
           <th><%= t ".label_birthday" %></th>
           <th><%= t ".label_address" %></th>
           <th><%= t ".label_language" %></th>
@@ -54,10 +96,13 @@
     </table>
   </div>
 </div>
-<div class="row">
-  <div class="offset-6 col-6 mt-3">
+<div class="row mt-3">
+  <div class="col-6" id="paginator-user-info">
+    <%= page_entries_info @users, entry_name: t(".label_info_item") %>
+  </div>
+  <div class="col-6">
     <div id="paginator-user" class="text-center">
-      <%= paginate @users, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm" %>
+      <%= paginate @users, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true %>
     </div>
   </div>
 </div>

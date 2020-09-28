@@ -2,7 +2,7 @@
   <div class="title text-bold h4"> <%= icon "fas", "book" %>
     <%= t ".sub_title" %>
     <% if @courses.present? %>
-      <%= "\(#{@courses.total_count}\)" %>
+      (<span id="quantity-course"><%= @courses.total_count %></span>)
     <% end %>
     <%= link_to new_trainers_course_path, type: "button", class: "btn btn-success btn-sm" do %>
       <%= t ".btn_add" %>
@@ -10,7 +10,27 @@
     <% end %>
   </div>
 </div>
-<%= render partial: "shared/courses/action_wrapper" %>
+<%= search_form_for @q, url: trainers_courses_path, remote: true, class: "my-2", id: "search-form" do |f| %>
+  <div class="form-row">
+    <div class="form-group col-3">
+      <%= f.search_field :name_cont, placeholder: t(".placeholder_search"), class: "form-control" %>
+    </div>
+    <div class="form-group col-3">
+    <%= f.datetime_field :created_at_gteq_all, class: "form-control" %>
+  </div>
+    <div class="form-group col-3">
+      <%= button_tag type: "button", class: "btn btn-info", id: "reset-form" do %>
+        <i class="fas fa-sync-alt"></i>
+        <%= t ".btn_reset" %>
+      <% end %>
+      <%= button_tag class: "btn btn-success", id: "btn-submit-search" do %>
+        <i class="fas fa-search text-light"></i>
+        <%= t ".label_search" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <div class="list-course mt-4">
   <div class="d-flex flex-wrap clearfix" id="list-course">
     <% if @courses.present? %>

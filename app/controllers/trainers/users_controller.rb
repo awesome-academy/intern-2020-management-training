@@ -1,12 +1,13 @@
 class Trainers::UsersController < TrainersController
   before_action :authenticate_user!
   before_action :get_user, except: %i(index new create)
-  before_action :get_data, except: :index
+  before_action :get_data
   load_and_authorize_resource
 
   def index
-    @users = User.by_name(params[:query]).page(params[:page])
-                 .per Settings.pagination.course.default
+    @q = User.ransack params[:q]
+    @users = @q.result.includes(:courses).page(params[:page])
+               .per Settings.pagination.course.default
     respond_to :js, :html
   end
 
@@ -68,7 +69,9 @@ class Trainers::UsersController < TrainersController
       position: Position.all,
       department: Department.all,
       school: School.all,
-      office: Office.all
+      office: Office.all,
+      role: User.roles,
+      gender: User.genders
     }
   end
 end

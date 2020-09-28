@@ -1,6 +1,6 @@
 class Trainers::SearchTraineesController < TrainersController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource User
 
   def index
     query = params[:query]

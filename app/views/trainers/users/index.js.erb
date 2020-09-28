@@ -1,3 +1,4 @@
 $("#list-user").html("<%= j render partial: "user", collection: @users, as: :item %>");
 $("#paginator-user").html("<%= j paginate @users, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm" %>");
 $("#total-count-user").html("<%= j @users.total_count %>")
+$("#paginator-user-info").html("<%= j page_entries_info @users, entry_name: I18n.t("trainers.users.index.label_info_item") %>")

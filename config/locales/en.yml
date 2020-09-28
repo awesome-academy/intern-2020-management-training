@@ -93,6 +93,9 @@ en:
         sub_title: "All courses"
         no_record: "You have 0 courses!"
         btn_add: "Add new"
+        label_search: "Search"
+        placeholder_search: "Search by course's name"
+        btn_reset: "Reset"
       new:
         title: "Create new course"
         label_name: "Name's course"
@@ -179,7 +182,7 @@ en:
         label_days: "Days"
         trainee: "Trainee"
         return: "Return to course"
-        placeholder_search: "Search by name"
+        placeholder_search: "Search by name or email"
         label_search: "Search"
         label_action: "Action"
         label_address: "Address"
@@ -189,6 +192,9 @@ en:
         btn_close: "Close"
         label_file_notice: "Only xlsx"
         label_file: "File data"
+        btn_reset: "Reset"
+        label_info_item: "item"
+        placeholder_course_name: "Course's name"
       new:
         title: "New user"
         label_name: "Name"
