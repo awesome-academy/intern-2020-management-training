@@ -38,9 +38,12 @@ export function deleteSubject() {
   });
 }
 
-export function customAlert(type, action = I18n.t('js.trainer.subject.action.delete')) {
+export function customAlert(type, trainer = true, action = I18n.t('js.trainer.subject.action.delete')) {
   let prefix = type;
   let vari = 'js.trainer.subject.res.' + action + '.' + prefix;
+  if (!trainer){
+    vari = 'js.trainee.task.res.' + action + '.' + prefix;
+  }
   Swal.fire({
     title: I18n.t(vari + '_title'),
     text: I18n.t(vari + '_text'),
@@ -70,11 +73,11 @@ export function viewSubjectDetail() {
       type: 'get',
       success: function(response) {
         if(response.err){
-          customAlert('err', I18n.t('js.trainer.subject.action.show'));
+          customAlert('err', true, I18n.t('js.trainer.subject.action.show'));
         }
       },
       error: function(error) {
-        customAlert('err', I18n.t('js.trainer.subject.action.show'));
+        customAlert('err', true, I18n.t('js.trainer.subject.action.show'));
       }
     });
   })
@@ -91,7 +94,7 @@ export function showEditForm() {
 
       },
       error: function(error) {
-        customAlert('err', I18n.t('js.trainer.subject.action.show'));
+        customAlert('err', true, I18n.t('js.trainer.subject.action.show'));
       }
     });
   })

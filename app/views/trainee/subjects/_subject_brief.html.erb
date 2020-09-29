@@ -15,7 +15,14 @@
       <% if progress.present? && progress < 100 %>
         <%= link_to t(".btn_finish"), "", class: "btn btn-success btn-finish disabled"%>
       <% else %>
-        <%= link_to t(".btn_finish"), "", class: "btn btn-success btn-finish" %>
+        <% if user_course_subject.inprogress? %>
+          <%= form_for user_course_subject, url: trainee_user_course_subject_path(user_course_subject),
+            class: "form-finish-subject", remote: true do |f| %>
+            <%= f.submit t(".btn_finish"), class: "btn btn-success btn-finish btn-finish-subject" %>
+          <% end %>
+        <% else %>
+          <%= icon "fas", "check-circle fa-2x text-primary" %>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -1,5 +1,6 @@
 class UserCourseSubject < ApplicationRecord
   after_create :save_user_task
+  after_update :update_user_course_progress, if: proc{|ucs| ucs.done?}
 
   belongs_to :course_subject
   belongs_to :user
@@ -45,6 +46,18 @@ class UserCourseSubject < ApplicationRecord
 
   def error_user_task
     errors.add :base, :user_task, message: I18n.t("notice.error")
+    raise ActiveRecord::Rollback
+  end
+
+  def update_user_course_progress
+    all = user_course.user_course_subjects
+    done = all.done
+    data = {progress: done.size * Settings.done_percentage / all.size}
+    err_user_course unless user_course.update data
+  end
+
+  def err_user_course
+    errors.add :base, :user_course, message: I18n.t("notice.error")
     raise ActiveRecord::Rollback
   end
 end

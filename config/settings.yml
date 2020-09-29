@@ -103,3 +103,4 @@ sidekiq:
   retry: 2
   delay_time: 1
   wait: 30
+done_percentage: 100.0

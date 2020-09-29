@@ -310,6 +310,7 @@ en:
           delete: "delete"
           show: "show"
           cant_delete: "cant_delete"
+          update: "update"
         d_confirm_title: "Are you sure?"
         d_confirm_text: "You will not be able to recover this subject!"
         d_btn_confirm: "Yes, delete it!"
@@ -330,6 +331,39 @@ en:
             err_title: "Error!"
             err_text: "Loading this subject failed!"
             err_class: "error"
+    trainee:
+      task:
+        action:
+          update: "update"
+        confirm_title: "Are you sure?"
+        confirm_text: "You will not be able to change this task progress!"
+        btn_confirm: "Yes, update it!"
+        btn_cancel: "Cancel!"
+        res:
+          update:
+            sc_title: "Updated!"
+            sc_text: "Your task has been updated."
+            sc_class: "success"
+            err_title: "Error!"
+            err_text: "Has a error in update progressing!"
+            err_class: "error"
+          finish_subject:
+            sc_title: "Updated!"
+            sc_text: "Your subject has been updated."
+            sc_class: "success"
+            err_title: "Error!"
+            err_text: "Has a error in finish subject!"
+            err_class: "error"
+      finish_subject:
+        action:
+          finish_subject: "finish_subject"
+        confirm_title: "Are you sure?"
+        confirm_text: "You will not be able to back again!"
+        btn_confirm: "Yes, update it!"
+        btn_cancel: "Cancel!"
+    role:
+      trainer: "trainer"
+      trainee: "trainee"
   trainee:
     courses:
       index:
@@ -394,24 +428,13 @@ en:
         duration: "Duration: %{duration} day"
         remind: "After doing all task, please click \"Finish\" to update your progress"
         btn_finish: "Finish"
+        done: "Done"
     user_tasks:
       user_task:
         mark_as_done: "Mark as done"
         done: "Done"
         not_ready: "Not ready"
         bg_danger: "danger"
-    task:
-      confirm_title: "Are you sure?"
-      confirm_text: "You will not be able to change this task progress!"
-      btn_confirm: "Yes, update it!"
-      btn_cancel: "Cancel!"
-      res:
-        sc_title: "Updated!"
-        sc_text: "Your task has been updated."
-        sc_class: "success"
-        err_title: "Error!"
-        err_text: "Has a error in update progressing!"
-        err_class: "error"
   date:
     formats:
       default: "%d-%m-%Y"

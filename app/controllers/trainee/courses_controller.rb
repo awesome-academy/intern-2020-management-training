@@ -20,10 +20,6 @@ class Trainee::CoursesController < TraineesController
   private
 
   def get_course
-    @course = Course.find_by id: params[:id] if params[:id]
-    return if @course
-
-    flash[:danger] = t "notice.error"
-    redirect_back_or @course
+    @course = Course.find params[:id]
   end
 end

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         resources :subjects
       end
       resources :user_tasks, only: :update
+      resources :user_course_subjects, only: :update
     end
 
     devise_for :users,
@@ -35,4 +36,5 @@ Rails.application.routes.draw do
                path_names: {sign_in: :login, sign_out: :logout, edit: :edit_password}
   end
   match '*unmatched', to: 'application#rescue_404_exception', via: :all
+  match '*a', :to => 'application#not_found', via: :all
 end
