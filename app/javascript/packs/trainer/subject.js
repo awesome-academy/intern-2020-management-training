@@ -24,7 +24,7 @@ export function deleteSubject() {
               $('#row-' + id).remove();
               reloadPage();
             } else if (response.active_course) {
-              customAlert('err', I18n.t('js.trainer.subject.action.cant_delete'));
+              customAlert('err', true, I18n.t('js.trainer.subject.action.cant_delete'));
             } else {
               customAlert('err');
             }

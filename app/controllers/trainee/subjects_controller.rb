@@ -2,6 +2,8 @@ class Trainee::SubjectsController < TraineesController
   before_action :authenticate_user!, :store_location, :load_course,
                 :load_subject_by_course, :load_course_subject, only: :show
 
+  load_and_authorize_resource
+
   def show
     @user_course_subject = @course_subject.user_course_subjects
                                           .find_by user_id: current_user.id
