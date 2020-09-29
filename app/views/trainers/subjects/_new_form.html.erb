@@ -1,5 +1,5 @@
 <div class="form-new p-4">
-  <%= form_for subject, url: trainers_subject_path(subject), remote: true do |f| %>
+  <%= form_for subject, url: trainers_subjects_path do |f| %>
     <%= render "shared/error_messages", object: f.object %>
     <div class="form-group row">
       <div class="col-sm-2 col-form-label label-required">

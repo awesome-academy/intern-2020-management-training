@@ -7,19 +7,22 @@
   </td>
   <td><%= subject.name %></td>
   <td><%= subject.duration %></td>
+  <td><%= subject.tasks.count %></td>
   <td><%= subject.note %></td>
   <td>
-    <%= link_to trainers_subject_path(subject), class: "btn btn-sm btn-outline-info detail-subject-item",
-      type: "button", data: {id: "#{subject.id}"} do %>
-      <%= icon "fas", "eye" %>
-    <% end %>
-    <%= link_to edit_trainers_subject_path(subject), class: "btn btn-sm btn-outline-primary edit-subject-item",
-      type: "button", data: {id: "#{subject.id}"} do %>
-      <%= icon "fas", "pencil-alt" %>
-    <% end %>
-    <%= link_to trainers_subject_path(subject), class: "btn btn-sm btn-outline-danger delete-subject-item",
-      type: "button", data: {id: "#{subject.id}"} do %>
-      <%= icon "fas", "trash-alt" %>
-    <% end %>
+    <div class="d-flex align-items-center justify-content-around">
+      <%= link_to trainers_subject_path(subject), class: "btn btn-sm btn-outline-info detail-subject-item",
+        type: "button", data: {id: "#{subject.id}"} do %>
+        <%= icon "fas", "eye" %>
+      <% end %>
+      <%= link_to edit_trainers_subject_path(subject), class: "btn btn-sm btn-outline-primary edit-subject-item",
+        type: "button", data: {id: "#{subject.id}"} do %>
+        <%= icon "fas", "pencil-alt" %>
+      <% end %>
+      <%= link_to trainers_subject_path(subject), class: "btn btn-sm btn-outline-danger delete-subject-item",
+        type: "button", data: {id: "#{subject.id}"} do %>
+        <%= icon "fas", "trash-alt" %>
+      <% end %>
+    </div>
   </td>
 </tr>

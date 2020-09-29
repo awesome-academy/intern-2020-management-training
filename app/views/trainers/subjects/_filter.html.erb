@@ -1,0 +1,40 @@
+<%= search_form_for @q, url: trainers_subjects_path, remote: true, id: "trainer_filter_subject" do |f| %>
+  <div class="row mb-3">
+    <div class="form-group col-md-3">
+      <%= f.label :name_cont, class: "font-weight-bold" do %>
+        <%= t ".label_name" %>
+      <% end %>
+      <%= f.text_field :name_cont, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= f.label :active_eq, t(".label_active"), class: "font-weight-bold" %>
+      <%= f.select :courses_status_eq, @status.each {|key, value| [key.capitalize, value]}, {prompt: true}, {class: "form-control"} %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= f.label :duration, class: "font-weight-bold" do %>
+        <%= t ".label_duration" %>
+      <% end %>
+      <div class="d-flex">
+        <%= f.search_field :duration_gteq, class: "form-control mr-3", type: "number" %>
+        <%= t ".label_to" %><%= f.search_field :duration_lteq, class: "form-control mx-3", type: "number" %>
+      </div>
+    </div>
+    <div class="form-group col-md-3">
+      <%= f.label :tasks_lteq, class: "font-weight-bold" do %>
+        <%= t ".label_task_count" %>
+      <% end %>
+      <div class="d-flex">
+        <%= f.number_field :tasks_from, id: "tasks-gteq", class: "form-control mr-3", type: "number" %>
+        <%= t ".label_to" %><%= f.number_field :tasks_to, id: "tasks-lteq", class: "form-control mx-3", type: "number" %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit class: "btn btn-primary btn-sm", id: "search_btn", type: "submit" do %>
+    <%= icon "fas", "search" %>
+    <%= t ".search_btn" %>
+  <% end %>
+  <%= button_tag type: "reset", class: "btn btn-primary btn-sm", id: "subject_filter" do %>
+    <%= icon "fas", "reset" %>
+    <%= t ".reset_btn" %>
+  <% end %>
+<% end %>

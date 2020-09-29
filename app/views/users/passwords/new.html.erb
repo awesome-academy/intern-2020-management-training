@@ -7,7 +7,7 @@
           <div class="card d-flex align-self-center py-2">
             <div class="card-body">
               <h5 class="card-title font-weight-bold"><%= t ".reset_title" %></h5>
-              <%= render "shared/error_messages", resource: resource %>
+              <%= render "shared/users/error_messages", resource: resource %>
               <%= form_for resource, as: resource_name, url: user_password_path, html: {method: :post}, local: true, class: "rounded" do |f| %>
                 <div class="form-group">
                   <%= f.email_field :email, class: "form-control", required: true,

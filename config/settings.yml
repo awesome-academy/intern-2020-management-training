@@ -49,11 +49,11 @@ validates:
       done: 1
 pagination:
   subject:
-    default: 4
+    default: 10
   course:
-    default: 3
+    default: 10
   trainee:
-    default: 4
+    default: 10
 views:
   trainers:
     subjects:
