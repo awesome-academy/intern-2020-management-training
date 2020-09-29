@@ -48,6 +48,32 @@ class Subject < ApplicationRecord
     includes(:courses).where courses: {id: course_id} if course_id.present?
   end)
   scope :by_id, ->(subject_id){where id: subject_id if subject_id.present?}
+  scope :tasks_to, (lambda do |max|
+    if max.present?
+      joins(:tasks).group("tasks.subject_id")
+                   .having("COUNT(tasks.id) <= ?", max)
+    end
+  end)
+  scope :tasks_from, (lambda do |min|
+    if min.present?
+      joins(:tasks).group("tasks.subject_id")
+                   .having("COUNT(tasks.id) >= ?", min)
+    end
+  end)
+
+  ransack_alias :brief, :name_or_note
+
+  class << self
+    def ransackable_scopes auth_object = nil
+      return unless auth_object == :trainer
+
+      %i(active_eq)
+    end
+
+    def ransackable_attributes _auth_object = nil
+      %w(name duration note brief active_eq tasks_from tasks_to)
+    end
+  end
 
   def started_at
     created_at.strftime Settings.validates.model.course.date_format

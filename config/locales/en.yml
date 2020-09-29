@@ -60,11 +60,24 @@ en:
           note: "Note"
           created_at: "Created at"
           action: "Action"
+          number_task: "No. tasks"
         search_placeholder: "Input search ..."
+        page_entries:
+          html: "Displaying items <b>%{start} - %{end}</b> of <b>%{total}</b> in total"
+        no_record:
+          html: "<h5 class='font-weight-bold my-3'>There're 0 record!</h5>"
       new:
         sub_title: "Subjects"
         breadcrumb: "Add new subject"
       form:
+        label_name: "Subject's name"
+        label_duration: "Duration (days)"
+        label_note: "Note"
+        label_image: "Image"
+        label_task: "Tasks"
+        btn_add: "Add subject"
+        btn_update: "Update subject"
+      new_form:
         label_name: "Subject's name"
         label_duration: "Duration (days)"
         label_note: "Note"
@@ -87,6 +100,15 @@ en:
           other: "(%{count} days)"
       edit:
         modal_edit_title: "Edit subject"
+      filter:
+        label_name: Name
+        label_duration: Duration
+        label_task_count: No. tasks
+        label_from: "from: "
+        label_to: "to: "
+        reset_btn: "Reset"
+        search_btn: "Search"
+        label_active: "Course status"
     courses:
       index:
         title: "Course"
@@ -353,7 +375,7 @@ en:
     reports:
       index:
         sub_title: "Report list"
-        btn_filter: "Filter"
+        btn_filter: "Advanced Filter"
         no_record: "You have 0 report!"
         search_placeholder: "Input search ..."
       report_by_day:

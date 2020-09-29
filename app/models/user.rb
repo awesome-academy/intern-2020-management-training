@@ -14,8 +14,6 @@ class User < ApplicationRecord
   belongs_to :department
   belongs_to :office
 
-  mount_uploader :image, UserUploader
-
   delegate :name, to: :school, prefix: true
   delegate :name, to: :program_language, prefix: true
   delegate :name, to: :position, prefix: true
@@ -37,6 +35,8 @@ class User < ApplicationRecord
   validates :program_language_id, :position_id, :department_id, :school_id,
             :office_id, :date_of_birth, presence: true
   validate :birthday_cannot_be_in_future, :birthday_old_men
+
+  mount_uploader :image, UserUploader
 
   devise :database_authenticatable, :rememberable, :validatable, :registerable,
          :async, :recoverable

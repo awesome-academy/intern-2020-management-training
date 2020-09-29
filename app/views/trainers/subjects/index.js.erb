@@ -1,4 +1,13 @@
+<% total = @subjects.total_count %>
 $("#other-list-subjects").html("<%= j render partial: "/partials/courses/subject", collection: @subjects, as: :item %>");
 $("#subjects-tbody").html("<%= j render @subjects %>");
 $("#paginator-subject").html("<%= j paginate(@subjects, remote: true, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm") %>");
-$("#total-count-subject").html("(<%= @subjects.total_count %> <%= t "trainers.subject_courses.show.result" %>)")
+$("#total-count-subject").html("(<%= total %> <%= t "trainers.subject_courses.show.result" %>)");
+$(".subject-total").html("(<%= total %>)");
+<% current = @subjects.current_page %>
+<% limit = @subjects.limit_value %>
+<% size = @subjects.size %>
+$(".page_entries").html("<%= t "trainers.subjects.index.page_entries.html", start: (current-1)*limit+1, end: (current-1)*limit+size, total: total %>")
+<% if @subjects.blank? %>
+  $(".no-record").html("<%= t "trainers.subjects.index.no_record.html" %>");
+<% end %>

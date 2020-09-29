@@ -96,3 +96,11 @@ export function showEditForm() {
     });
   })
 }
+
+export function resetFilter(){
+  $('body').on('click', '#trainer_filter_subject #subject_filter', function(e){
+    let form = $('#trainer_filter_subject')
+    form.trigger('reset');
+    $('#search_btn').click();
+  })
+}

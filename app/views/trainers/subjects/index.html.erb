@@ -1,6 +1,7 @@
 <div class="content-title d-flex justify-content-between">
   <div class="title text-bold h4"> <%= icon "fas", "book" %>
-    <%= t ".sub_title" %> (<%= @subjects.total_count %>)
+    <%= t ".sub_title" %>
+    <span class="subject-total">(<%= @subjects.total_count %>)</span>
   </div>
 </div>
 <div class="action-wrapper mt-3 row">
@@ -9,22 +10,31 @@
       <%= t ".btn_add" %>
       <%= icon "fas", "plus" %>
     <% end %>
-    <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#filter" aria-expanded="false" aria-controls="filter">
+    <%= link_to "", class: "btn btn-info btn-sm", type: "button", "data-toggle": "collapse",
+      "data-target": "#filter", "aria-expanded": "false", "aria-controls": "filter" do %>
+      <%= icon "fas", "filter" %>
       <%= t ".btn_filter" %>
-    </button>
+    <% end %>
   </div>
-  <form class="col-md-4 offset-md-4">
+  <%= search_form_for @q, url: trainers_subjects_path, remote: true, class: "col-md-4 offset-md-4" do |f| %>
     <div class="input-group input-group-sm mb-3">
-      <input type="text" class="form-control" placeholder="<%= t ".search_placeholder" %>" aria-describedby="basic-addon2">
+      <div class="input-group-prepend">
+        <%= button_tag class: "input-group-text btn btn-sm", id: "basic-addon2", type: "submit" do %>
+          <%= icon "fas", "search" %>
+        <% end %>
+      </div>
+      <%= f.search_field :brief_cont, class: "form-control", placeholder: t(".search_placeholder"), "aria-describedby": "basic-addon2" %>
       <div class="input-group-append">
-        <span class="input-group-text" id="basic-addon2"><%= icon "fas", "search" %></span>
+        <%= link_to trainers_subjects_path, class: "input-group-text btn btn-sm" do %>
+          <%= icon "fas", "sync-alt" %>
+        <% end %>
       </div>
     </div>
-  </form>
+  <% end %>
 </div>
 <div class="collapse" id="filter">
   <div class="card card-body">
-    <%= t ".filter_option" %>
+    <%= render "filter" %>
   </div>
 </div>
 <div class="table-subject mt-3">
@@ -36,9 +46,10 @@
       <tr class="text-center">
         <th scope="col"><%= t ".tbl_head.index" %></th>
         <th scope="col"><%= t ".tbl_head.image" %></th>
-        <th scope="col"><%= t ".tbl_head.name" %></th>
-        <th scope="col"><%= t ".tbl_head.duration" %></th>
-        <th scope="col"><%= t ".tbl_head.note" %></th>
+        <th scope="col"><%= sort_link @q, :name, t(".tbl_head.name"), remote: true %></th>
+        <th scope="col"><%= sort_link @q, :duration, t(".tbl_head.duration") %></th>
+        <th scope="col"><%= sort_link @q, :tasks_count, t(".tbl_head.number_task") %></th>
+        <th scope="col"><%= sort_link @q, :note, t(".tbl_head.note") %></th>
         <th scope="col"><%= t ".tbl_head.action" %></th>
       </tr>
     </thead>
@@ -49,5 +60,6 @@
   <div id="paginator-subject" class="text-center">
     <%= paginate @subjects, theme: "twitter-bootstrap-4", pagination_class: "pagination-sm", remote: true, param: {controller: "trainers/subjects", action: :index} %>
   </div>
+  <span class="no-record"></span>
   <div id="subject-modal"></div>
 </div>

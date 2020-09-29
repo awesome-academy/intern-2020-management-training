@@ -6,11 +6,13 @@ class Trainers::SubjectsController < TrainersController
   load_and_authorize_resource
 
   def index
+    @q = Subject.tasks_to(tasks_size_max).tasks_from(tasks_size_min)
+                .ransack params[:q], auth_object: set_ransack_auth_object
+    @status = Course.statuses
     @subjects = if params[:ids].present?
                   load_subject_for_search
                 else
-                  Subject.by_created_at.page(params[:page])
-                         .per Settings.pagination.subject.default
+                  ransack_search
                 end
     respond_to :js, :html
   end
@@ -60,6 +62,24 @@ class Trainers::SubjectsController < TrainersController
   end
 
   private
+
+  def tasks_size_min
+    params.dig :q, :tasks_from
+  end
+
+  def tasks_size_max
+    params.dig :q, :tasks_to
+  end
+
+  def set_ransack_auth_object
+    trainer? ? :trainer : nil
+  end
+
+  def ransack_search
+    @result = @q.result(distinct: true)
+    @result.page(params[:page])
+           .per Settings.pagination.subject.default
+  end
 
   def subject_params
     params.require(:subject).permit Subject::PERMITTED_CREATE_ATTRS

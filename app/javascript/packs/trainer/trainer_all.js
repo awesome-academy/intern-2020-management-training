@@ -17,12 +17,13 @@ import 'sweetalert2/src/sweetalert2.scss';
 
 window.Swal = Swal;
 
-import {deleteSubject, viewSubjectDetail, showEditForm, updateSubject} from './subject';
+import {deleteSubject, viewSubjectDetail, showEditForm, resetFilter} from './subject';
 
 $(document).on('turbolinks:load', function() {
   deleteSubject();
   viewSubjectDetail();
   showEditForm();
+  resetFilter();
 })
 
 import $ from 'jquery';
