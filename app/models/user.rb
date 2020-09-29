@@ -70,4 +70,14 @@ class User < ApplicationRecord
     errors.add :date_of_birth,
                I18n.t("trainers.users.new.error_birthday_in_oldmen")
   end
+
+  class << self
+    def ransackable_attributes _auth_oject = nil
+      %w(name email role gender)
+    end
+
+    def ransortable_attributes _auth_object = nil
+      %w(name role gender)
+    end
+  end
 end

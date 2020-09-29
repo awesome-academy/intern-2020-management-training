@@ -1,7 +1,7 @@
 class Trainers::ImportUsersController < TrainersController
   before_action :authenticate_user!
   before_action :import_user_param
-  load_and_authorize_resource
+  authorize_resource User
 
   def create
     full_path_file = "public" + upload_file.to_s

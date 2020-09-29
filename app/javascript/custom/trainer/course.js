@@ -269,7 +269,7 @@ $(document).on('turbolinks:load', function () {
   // End search user
 
   // Delete user
-  $('.delete-user').on('click', function(event) {
+  $('.zui-wrapper').on('click', '.delete-user', function(event) {
     event.preventDefault();
     let url = $(this).data('url');
     let trParent = $(this).parents('tr');

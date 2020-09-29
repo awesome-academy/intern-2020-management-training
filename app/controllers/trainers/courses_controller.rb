@@ -5,9 +5,11 @@ class Trainers::CoursesController < TrainersController
   load_and_authorize_resource
 
   def index
-    @courses = Course.order_by_start_date.order_by_status
-                     .page(params[:page])
-                     .per Settings.pagination.course.default
+    @q = Course.ransack params[:q]
+    @courses = @q.result
+                 .order_by_start_date.order_by_status
+                 .page(params[:page])
+                 .per Settings.pagination.course.default
   end
 
   def create
