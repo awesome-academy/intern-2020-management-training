@@ -1,0 +1,4 @@
+<%= form_for user_course_subject, url: trainee_user_course_subject_path(user_course_subject),
+    class: "form-finish-subject", remote: true do |f| %>
+  <%= f.submit t("trainee.subjects.subject_brief.btn_finish"), class: "btn btn-success btn-finish btn-finish-subject" %>
+<% end %>

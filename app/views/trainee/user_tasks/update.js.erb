@@ -5,5 +5,5 @@ $('#subject-progress').html('<%= j render partial: 'trainee/subjects/progress', 
 
 <% progress = subject.subject_progress(current_user.id, course_id) %>
 <% if progress.present? && progress == 100 %>
-  $('.btn-finish').removeClass('disabled');
+  $('.btn-finish').replaceWith('<%= j render partial: 'trainee/subjects/form_finish', locals: {user_course_subject: @user_task.user_course_subject} %>');
 <% end %>
