@@ -4,12 +4,13 @@
   <% end %>
   <div class="media-body">
     <div class="border btn-warning w-25 p-1 rounded text-white text-center mb-2">
-      <%= item.course_subjects.first.started_at %>
+      <% course_subject = item.course_subjects.by_course_and_subject course_id, item.id %>
+      <%= course_subject.started_at %>
       <i class="fas fa-arrow-circle-right mx-2"></i>
-      <%= item.ended_at item.course_subjects.first.started_at %>
+      <%= course_subject.ended_at %>
     </div>
     <h4 class="mt-0 font-weight-bold">
-      <%= link_to trainers_course_subject_course_path course, item do %>
+      <%= link_to trainers_course_subject_course_path course_id, item do %>
         <%= item.name %>
       <% end %>
     </h4>

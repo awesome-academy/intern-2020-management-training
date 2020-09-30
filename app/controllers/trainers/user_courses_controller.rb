@@ -1,7 +1,7 @@
 class Trainers::UserCoursesController < TrainersController
   before_action :authenticate_user!
   before_action :get_course_user, only: :show
-  load_and_authorize_resource
+  authorize_resource User
 
   def show
     @subjects = Subject.by_course(params[:course_id]).order_priority

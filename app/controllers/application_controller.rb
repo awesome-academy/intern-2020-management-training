@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied, with: :rescue_can3_exception
-  rescue_from Exception, with: :handle_exception
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_404_exception
 
   include SessionsHelper
   include UsersHelper
@@ -40,14 +40,6 @@ class ApplicationController < ActionController::Base
         render file: Rails.root.join("public", "403.html").to_s, layout: false,
                status: :forbidden
       end
-    end
-  end
-
-  def handle_exception exception=nil
-    return unless exception
-
-    if [ActionController::RoutingError, ActiveRecord::RecordNotFound].include? exception.class
-      return rescue_404_exception
     end
   end
 end

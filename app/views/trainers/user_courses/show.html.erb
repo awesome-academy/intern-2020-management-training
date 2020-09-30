@@ -4,10 +4,10 @@
   <% end %>
   <div class="media-body">
     <h2 class="mt-0"><%= @course.name %></h2>
-    <p>
+    <p class="font-weight-bold">
       <i class="fas fa-clock"></i> <%= @course.stated_at %>
       <i class="fas fa-arrow-circle-right mx-2"></i>
-      <%= @course.ended_at @course.subjects.total_time_subjects %>
+      <span class="text-danger"><%= @course.ended_at @course.subjects.total_time_subjects %></span>
       <small class="text-muted">(<%= t ".prediction" %>)</small>
     </p>
     <p><i class="fas fa-user"></i><%= t ".created_by" %></p>
