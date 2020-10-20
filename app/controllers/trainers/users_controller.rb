@@ -2,7 +2,7 @@ class Trainers::UsersController < TrainersController
   before_action :authenticate_user!
   before_action :get_user, except: %i(index new create)
   before_action :get_data
-  load_and_authorize_resource
+  authorize_resource
 
   def index
     @q = User.ransack params[:q]
@@ -52,11 +52,7 @@ class Trainers::UsersController < TrainersController
   private
 
   def get_user
-    @user = User.find_by id: params[:id] if params[:id].present?
-    return if @user
-
-    flash[:danger] = t "notice.error"
-    redirect_to trainers_users_path
+    @user = User.find params[:id]
   end
 
   def user_params
