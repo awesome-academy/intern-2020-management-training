@@ -9,9 +9,7 @@ class Trainee::UserTasksController < TraineesController
     if @user_task.update user_task_params
       respond_to :js
     else
-      respond_to do |format|
-        format.json err: I18n.t("flash.task.update_error")
-      end
+      render json: {err: I18n.t("flash.task.update_error")}
     end
   end
 
